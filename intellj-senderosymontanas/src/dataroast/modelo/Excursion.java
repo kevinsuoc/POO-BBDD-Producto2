@@ -19,7 +19,6 @@ public class Excursion {
         }
         if (codigo.length() < 3){
             throw new IllegalArgumentException("El codigo debe tener minimo tres letras");
-            // Agregar excepcion de codigo existente
         }
         if (descripcion.length() < 10){
             throw new IllegalArgumentException("La descricion debe tener al menos 10 caracteres");
