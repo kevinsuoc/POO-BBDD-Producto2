@@ -4,6 +4,11 @@ public class Seguro {
     private TipoSeguro tipoSeguro;
     private double precio;
 
+    public Seguro(double precio, TipoSeguro tipoSeguro){
+        this.tipoSeguro = tipoSeguro;
+        this.precio = precio;
+    }
+
     public TipoSeguro getTipoSeguro() {
         return tipoSeguro;
     }
