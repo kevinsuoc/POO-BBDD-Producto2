@@ -63,6 +63,13 @@ public class View {
             opcionIngresada = menuSocios.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
+                // case 1: añadir socioestandar
+                // case 2: modificar seguro de socio estandar
+                // case 3: añadir socio federado
+                // case 4: añadir socio infantil
+                // case 5: eliminar socio
+                // case 6: mostrar socios
+                // case 7: mostrar facturas mensuales
             }
         }
     }
@@ -75,7 +82,7 @@ public class View {
             switch (opcionIngresada) {
                 case 0: return;
                 case 1: formularios.nuevaExcursion(); break;
-                case 2: break;
+                case 2: formularios.mostrarExcursiones(); break;
             }
         }
     }
@@ -87,6 +94,9 @@ public class View {
             opcionIngresada = menuInscripciones.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
+                // case 1: añadir inscripcion
+                // case 2: eliminar inscripcion
+                // case 3: mostrar inscripciones filtradas
             }
         }
     }

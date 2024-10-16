@@ -5,6 +5,8 @@ import dataroast.modelo.Excursion;
 import dataroast.vista.View;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Controlador {
@@ -17,8 +19,37 @@ public class Controlador {
     }
 
     public void agregarExcursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha){
+        if (encontrarExcursionPorCodigo(codigo) != null){
+            throw new IllegalArgumentException("El codigo de excursion ya esta siendo utilizado");
+        }
         datos.getExcursiones().add(new Excursion(numDias, precioInscripcion, codigo, descripcion, fecha));
         System.out.println("[DEBUG]: Added: ");
         System.out.println(datos.getExcursiones().getLast());
     }
+
+    public Excursion encontrarExcursionPorCodigo(String codigo){
+        for (Excursion excursion: datos.getExcursiones()){
+            if (Objects.equals(excursion.getCodigo(), codigo))
+                return excursion;
+        }
+        return null;
+    }
+
+    public ArrayList<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){
+        ArrayList<Excursion> excursionesValidas = new ArrayList<Excursion>();
+        ArrayList<Excursion> todasLasExcursiones;
+        LocalDate fecha;
+
+        if (fechaInferior.isAfter(fechaSuperior))
+            throw new IllegalArgumentException("La fecha inferior es mayor que la superior");
+        todasLasExcursiones = datos.getExcursiones();
+        for (Excursion excursion: todasLasExcursiones){
+            fecha = excursion.getFecha();
+            if (fecha.isAfter(fechaInferior) && fecha.isBefore(fechaSuperior))
+                excursionesValidas.add(excursion);
+        }
+
+        return excursionesValidas;
+    }
+
 }
