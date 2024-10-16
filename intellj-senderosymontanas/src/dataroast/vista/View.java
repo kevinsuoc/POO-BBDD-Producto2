@@ -1,16 +1,22 @@
 package dataroast.vista;
 
+import dataroast.controlador.Controlador;
+
 import java.util.Scanner;
 
 public class View {
     private Scanner in;
+    private Controlador controlador;
     private Menu menuPrincipal;
     private Menu menuSocios;
     private Menu menuExcursiones;
     private Menu menuInscripciones;
+    private Formulario formularios;
 
-    public View(Scanner in){
+    public View(Controlador controlador, Scanner in){
         this.in = in;
+        this.controlador = controlador;
+        this.formularios = new Formulario(controlador, in);
 
         menuPrincipal = new Menu("Menu Principal", in);
         menuPrincipal.agregarOpcion("Gestion de socios");
@@ -55,7 +61,7 @@ public class View {
 
         while (true) {
             opcionIngresada = menuSocios.obtenerOpcionDeMenu();
-            switch ((opcionIngresada)) {
+            switch (opcionIngresada) {
                 case 0: return;
             }
         }
@@ -66,8 +72,10 @@ public class View {
 
         while (true) {
             opcionIngresada = menuExcursiones.obtenerOpcionDeMenu();
-            switch ((opcionIngresada)) {
+            switch (opcionIngresada) {
                 case 0: return;
+                case 1: formularios.nuevaExcursion(); break;
+                case 2: break;
             }
         }
     }
@@ -77,7 +85,7 @@ public class View {
 
         while (true) {
             opcionIngresada = menuInscripciones.obtenerOpcionDeMenu();
-            switch ((opcionIngresada)) {
+            switch (opcionIngresada) {
                 case 0: return;
             }
         }

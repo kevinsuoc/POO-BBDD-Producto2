@@ -5,9 +5,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
-    private final Scanner in;
-    private final String titulo;
-    private final ArrayList<String> opciones = new ArrayList<String>();
+    private Scanner in;
+    private String titulo;
+    private ArrayList<String> opciones = new ArrayList<String>();
 
     public Menu(String titulo, Scanner in){
         this.titulo = titulo;
