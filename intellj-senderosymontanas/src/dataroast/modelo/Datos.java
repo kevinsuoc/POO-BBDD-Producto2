@@ -15,4 +15,8 @@ public class Datos {
         seguros.add(new Seguro(10, BASICO));
         seguros.add(new Seguro(15, COMPLETO));
     }
+
+    public ArrayList<Excursion> getExcursiones() {
+        return excursiones;
+    }
 }

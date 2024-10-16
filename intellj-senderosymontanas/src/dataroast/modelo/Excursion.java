@@ -9,7 +9,7 @@ public class Excursion {
     private String descripcion;
     private LocalDate fecha;
 
-    public Excursion(int numDias, float precioInscripcion, String codigo, String descripcion, LocalDate fecha)
+    public Excursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha)
     {
         if (numDias <= 0){
             throw new IllegalArgumentException("La excursion debe durar un dia o mas");
@@ -19,7 +19,7 @@ public class Excursion {
         }
         if (codigo.length() < 3){
             throw new IllegalArgumentException("El codigo debe tener minimo tres letras");
-            // And if codigo already exists
+            // Agregar excepcion de codigo existente
         }
         if (descripcion.length() < 10){
             throw new IllegalArgumentException("La descricion debe tener al menos 10 caracteres");
