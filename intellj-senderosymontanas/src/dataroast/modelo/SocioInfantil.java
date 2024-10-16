@@ -4,8 +4,11 @@ public class SocioInfantil extends Socio {
     static final double descuentoCuotaMensual = 0.5;
     private SocioAdulto socioAdulto;
 
-    public SocioInfantil(String nombre, int numeroSocio, SocioAdulto socioAdulto){
+    public SocioInfantil(String nombre, int numeroSocio, SocioAdulto socioAdulto) {
         super(nombre, numeroSocio);
+        if (socioAdulto == null) {
+            throw new IllegalArgumentException("El socio adulto no puede ser nulo.");
+        }
         this.socioAdulto = socioAdulto;
     }
 
