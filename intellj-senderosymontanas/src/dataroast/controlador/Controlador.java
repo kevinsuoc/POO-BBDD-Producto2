@@ -29,7 +29,7 @@ public class Controlador {
         LocalDate fecha;
 
         if (fechaInferior.isAfter(fechaSuperior))
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("La fecha inferior es mayor que la superior");
         todasLasExcursiones = datos.getExcursiones();
         for (Excursion excursion: todasLasExcursiones){
             fecha = excursion.getFecha();

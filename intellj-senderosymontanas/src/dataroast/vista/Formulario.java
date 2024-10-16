@@ -44,7 +44,9 @@ public class Formulario {
         try {
             excursiones = controlador.obtenerExcursiones(fechaMenor, fechaMayor);
             for (Excursion excursion : excursiones) {
+                System.out.println("----- Excursion -----");
                 System.out.println(excursion);
+                System.out.println("--------------------");
             }
         } catch (IllegalArgumentException e){
             System.out.println("Error: " + e.getMessage());
