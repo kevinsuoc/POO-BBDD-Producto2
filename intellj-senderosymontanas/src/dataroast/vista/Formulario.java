@@ -1,9 +1,12 @@
 package dataroast.vista;
 
 import dataroast.controlador.Controlador;
+import dataroast.modelo.Excursion;
 
+import java.lang.reflect.Array;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,6 +31,23 @@ public class Formulario {
             System.out.println("Excursion agregada correctamente");
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void mostrarExcursiones(){
+        LocalDate fechaMenor;
+        LocalDate fechaMayor;
+        ArrayList<Excursion> excursiones;
+
+        fechaMenor = obtenerFecha("Fecha limite inferior...");
+        fechaMayor = obtenerFecha("Fecha limite superior...");
+        try {
+            excursiones = controlador.obtenerExcursiones(fechaMenor, fechaMayor);
+            for (Excursion excursion : excursiones) {
+                System.out.println(excursion);
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println("Error: " + e.getMessage());
         }
     }
 

@@ -75,7 +75,7 @@ public class View {
             switch (opcionIngresada) {
                 case 0: return;
                 case 1: formularios.nuevaExcursion(); break;
-                case 2: break;
+                case 2: formularios.mostrarExcursiones(); break;
             }
         }
     }

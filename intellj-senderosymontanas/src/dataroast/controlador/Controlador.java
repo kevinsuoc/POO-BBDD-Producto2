@@ -5,6 +5,7 @@ import dataroast.modelo.Excursion;
 import dataroast.vista.View;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controlador {
@@ -21,4 +22,22 @@ public class Controlador {
         System.out.println("[DEBUG]: Added: ");
         System.out.println(datos.getExcursiones().getLast());
     }
+
+    public ArrayList<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){
+        ArrayList<Excursion> excursionesValidas = new ArrayList<Excursion>();
+        ArrayList<Excursion> todasLasExcursiones;
+        LocalDate fecha;
+
+        if (fechaInferior.isAfter(fechaSuperior))
+            throw new IllegalArgumentException();
+        todasLasExcursiones = datos.getExcursiones();
+        for (Excursion excursion: todasLasExcursiones){
+            fecha = excursion.getFecha();
+            if (fecha.isAfter(fechaInferior) && fecha.isBefore(fechaSuperior))
+                excursionesValidas.add(excursion);
+        }
+
+        return excursionesValidas;
+    }
+
 }
