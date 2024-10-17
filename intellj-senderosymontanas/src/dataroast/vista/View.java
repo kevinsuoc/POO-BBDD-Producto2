@@ -63,13 +63,30 @@ public class View {
             opcionIngresada = menuSocios.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-//                case 1: formularios.añadirSocioEstandar(); break;
-//                case 2: formularios.modificarSeguroSocioEstandar(); break;
-//                case 3: formularios.añadirSocioFederado(); break;
-//                case 4: formularios.añadirSocioInfantir(); break;
-//                case 5: formularios.EliminarSocio(); break;
-//                case 6: formularios.mostrarSocio(); break; 
-//                case 7: formularios.mostrarFacturasMensuales(); break;
+                case 1:
+                    formularios.añadirSocio(); // Cambia esto para llamar a tu método para agregar socio
+                    break;
+                case 2:
+                    formularios.modificarSeguroSocioEstandar();
+                    break;
+                case 3:
+                    formularios.añadirSocioFederado();
+                    break;
+                case 4:
+                    formularios.añadirSocioInfantil();
+                    break;
+                case 5:
+                    formularios.eliminarSocio();
+                    break;
+                case 6:
+                    formularios.mostrarSocios();
+                    break;
+                case 7:
+                    formularios.mostrarFacturasMensuales();
+                    break;
+                default:
+                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                    break;
  
             }
         }

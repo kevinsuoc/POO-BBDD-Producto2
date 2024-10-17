@@ -3,7 +3,7 @@ package dataroast.modelo;
 public class SocioEstandar extends SocioAdulto{
     private Seguro seguro;
 
-    public SocioEstandar(String nombre, int numeroSocio, String nif, Seguro seguro) {
+    public SocioEstandar(String nombre, int numeroSocio) {
         super(nombre, numeroSocio, nif);
         this.seguro = seguro;
     }

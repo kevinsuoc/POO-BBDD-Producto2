@@ -5,7 +5,7 @@ public class SocioFederado extends SocioAdulto {
     static final double descuentoExcursion = 0.1;
     private Federacion federacion;
 
-    public SocioFederado (String nombre, int numeroSocio, String nif, Federacion federacion) {
+    public SocioFederado (String nombre, int numeroSocio) {
         super(nombre, numeroSocio, nif);
         this.federacion = federacion;
     }
