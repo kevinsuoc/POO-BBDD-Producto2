@@ -3,6 +3,7 @@ package dataroast.controlador;
 import dataroast.modelo.Socio;
 import java.util.ArrayList;
 import java.util.List;
+import dataroast.vista.View;
 
 public class ControladorSocio {
     private List<Socio> listaSocios;

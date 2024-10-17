@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class FormularioSocio {
     private ControladorSocio socioController;
 
-    public FormularioSocio(ControladorSocio socioController) {
+    public FormularioSocio() {
         this.socioController = socioController;
     }
 
@@ -35,7 +35,7 @@ public class FormularioSocio {
         }
     }
 
-    private void agregarSocio() {
+    public void agregarSocio() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Elige el tipo de socio:");
@@ -52,7 +52,7 @@ public class FormularioSocio {
         }
     }
 
-    private void agregarSocioAdulto() {
+    public void agregarSocioAdulto() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Elige el tipo de socio adulto:");
@@ -62,12 +62,16 @@ public class FormularioSocio {
 
         System.out.print("Introduce el nombre del socio: ");
         String nombre = scanner.nextLine().trim();
+
+        System.out.print("Introduce el NIF del socio: ");
+        String nif = scanner.nextLine().trim();
+
         Socio nuevoSocio;
 
         if (tipoAdulto == 1) {
-            nuevoSocio = new SocioEstandar(nombre, socioController.getNumeroSocios() + 1); // Usa el siguiente número
+            nuevoSocio = new SocioEstandar(nombre, socioController.getNumeroSocios() + 1 , nif); // Usa el siguiente número
         } else if (tipoAdulto == 2) {
-            nuevoSocio = new SocioFederado(nombre, socioController.getNumeroSocios() + 1); // Usa el siguiente número
+            nuevoSocio = new SocioFederado(nombre, socioController.getNumeroSocios() + 1 , nif); // Usa el siguiente número
         } else {
             System.out.println("Opción no válida. No se agrega el socio.");
             return;
@@ -76,7 +80,7 @@ public class FormularioSocio {
         socioController.agregarSocio(nuevoSocio);
     }
 
-    private void agregarSocioInfantil() {
+    public void agregarSocioInfantil() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Introduce el número de socio del Tutor: ");
@@ -94,5 +98,18 @@ public class FormularioSocio {
         // Aquí asumo que el número del socio infantil debe ser diferente
         Socio nuevoSocioInfantil = new SocioInfantil(nombreInfantil, socioController.getNumeroSocios() + 1);
         socioController.agregarSocio(nuevoSocioInfantil);
+    }
+
+
+    public void modificarSeguroSocioEstandar() {
+    }
+
+    public void eliminarSocio() {
+    }
+
+    public void mostrarSocios() {
+    }
+
+    public void mostrarFacturasMensuales() {
     }
 }

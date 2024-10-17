@@ -1,22 +1,34 @@
 package dataroast.vista;
 
 import dataroast.controlador.Controlador;
+import dataroast.controlador.ControladorSocio;
 
 import java.util.Scanner;
 
 public class View {
     private Scanner in;
     private Controlador controlador;
+
+    private ControladorSocio controladorSocio;
+
     private Menu menuPrincipal;
     private Menu menuSocios;
     private Menu menuExcursiones;
     private Menu menuInscripciones;
     private Formulario formularios;
 
+    private FormularioSocio formularioSocio;
+
+
     public View(Controlador controlador, Scanner in){
         this.in = in;
         this.controlador = controlador;
         this.formularios = new Formulario(controlador, in);
+
+        this.formularioSocio = new FormularioSocio();
+
+
+
 
         menuPrincipal = new Menu("Menu Principal", in);
         menuPrincipal.agregarOpcion("Gestion de socios");
@@ -64,25 +76,25 @@ public class View {
             switch (opcionIngresada) {
                 case 0: return;
                 case 1:
-                    formularios.añadirSocio(); // Cambia esto para llamar a tu método para agregar socio
+                    formularioSocio.agregarSocio(); // Cambia esto para llamar a tu método para agregar socio
                     break;
                 case 2:
-                    formularios.modificarSeguroSocioEstandar();
+                    formularioSocio.modificarSeguroSocioEstandar();
                     break;
                 case 3:
-                    formularios.añadirSocioFederado();
+                    formularioSocio.agregarSocioAdulto();
                     break;
                 case 4:
-                    formularios.añadirSocioInfantil();
+                    formularioSocio.agregarSocioInfantil();
                     break;
                 case 5:
-                    formularios.eliminarSocio();
+                    formularioSocio.eliminarSocio();
                     break;
                 case 6:
-                    formularios.mostrarSocios();
+                    formularioSocio.mostrarSocios();
                     break;
                 case 7:
-                    formularios.mostrarFacturasMensuales();
+                    formularioSocio.mostrarFacturasMensuales();
                     break;
                 default:
                     System.out.println("Opción no válida. Inténtalo de nuevo.");
