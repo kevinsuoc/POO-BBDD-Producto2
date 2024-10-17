@@ -63,13 +63,14 @@ public class View {
             opcionIngresada = menuSocios.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-                // case 1: añadir socioestandar
-                // case 2: modificar seguro de socio estandar
-                // case 3: añadir socio federado
-                // case 4: añadir socio infantil
-                // case 5: eliminar socio
-                // case 6: mostrar socios
-                // case 7: mostrar facturas mensuales
+//                case 1: formularios.añadirSocioEstandar(); break;
+//                case 2: formularios.modificarSeguroSocioEstandar(); break;
+//                case 3: formularios.añadirSocioFederado(); break;
+//                case 4: formularios.añadirSocioInfantir(); break;
+//                case 5: formularios.EliminarSocio(); break;
+//                case 6: formularios.mostrarSocio(); break; 
+//                case 7: formularios.mostrarFacturasMensuales(); break;
+ 
             }
         }
     }
