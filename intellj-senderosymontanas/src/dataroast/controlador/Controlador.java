@@ -20,6 +20,9 @@ public class Controlador {
         view.ejecutarMenuPrincipal();
     }
 
+
+
+
     // Inscripciones
     public void agregarInscripcion(int numeroInscripcion, int numeroSocio, String codigoExcursion){
         Excursion excursion = encontrarExcursionPorCodigo(codigoExcursion);

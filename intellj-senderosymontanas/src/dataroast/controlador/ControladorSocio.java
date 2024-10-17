@@ -1,6 +1,10 @@
 package dataroast.controlador;
 
 import dataroast.modelo.Socio;
+import dataroast.modelo.SocioAdulto;
+import dataroast.modelo.SocioEstandar;
+import dataroast.modelo.SocioFederado;
+import dataroast.modelo.SocioInfantil;
 import java.util.ArrayList;
 import java.util.List;
 import dataroast.vista.View;
