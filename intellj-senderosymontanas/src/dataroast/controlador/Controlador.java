@@ -100,6 +100,8 @@ public class Controlador {
         return datos.getInscripciones();
     }
 
+
+
     // Excursiones
     public void agregarExcursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha){
         if (encontrarExcursionPorCodigo(codigo) != null){
