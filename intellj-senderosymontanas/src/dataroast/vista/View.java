@@ -65,13 +65,13 @@ public class View {
                 case 0: return;
                     
            
-                case 1: añadirSocioEstandar(); break;
-                case 2: modificarSeguroSocioEstandar(); break;
-                case 3: añadirSocioFederado(); break;
-                case 4: añadirSocioInfantir(); break;
-                case 5: EliminarSocio(); break;
-                case 6: mostrarSocio(); break; 
-                case 7: mostrarFacturasMensuales(); break;
+                case 1: formularios.añadirSocioEstandar(); break;
+                case 2: formularios.modificarSeguroSocioEstandar(); break;
+                case 3: formularios.añadirSocioFederado(); break;
+                case 4: formularios.añadirSocioInfantir(); break;
+                case 5: formularios.EliminarSocio(); break;
+                case 6: formularios.mostrarSocio(); break; 
+                case 7: formularios.mostrarFacturasMensuales(); break;
  
             }
         }
@@ -98,9 +98,9 @@ public class View {
             switch (opcionIngresada) {
                 case 0: return;
                     
-                 case 1: añadirInscripcion(); break;
-                 case 2: EliminarInscripcion(); break;
-                case 3: mostrarInscripcionesFiltradas(); break;
+                 case 1: formularios.añadirInscripcion(); break;
+                 case 2: formularios.EliminarInscripcion(); break;
+                case 3: formularios.mostrarInscripcionesFiltradas(); break;
             }
         }
     }
