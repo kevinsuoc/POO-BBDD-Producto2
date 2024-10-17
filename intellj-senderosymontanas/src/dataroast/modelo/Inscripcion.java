@@ -1,11 +1,16 @@
 package dataroast.modelo;
 
+import java.util.Objects;
+
 public class Inscripcion {
     private int numeroInscripcion;
     private Socio socio;
     private Excursion excursion;
 
     public Inscripcion(int numeroInscripcion, Socio socio, Excursion excursion) {
+        if (numeroInscripcion <= 0){
+            throw new IllegalArgumentException("El numero de inscripcion debe ser positivo");
+        }
         this.numeroInscripcion = numeroInscripcion;
         this.socio = socio;
         this.excursion = excursion;
@@ -35,9 +40,20 @@ public class Inscripcion {
         this.excursion = excursion;
     }
 
+    private double calcularPrecioExcursion(){
+        double precio = excursion.getPrecioInscripcion();
+
+        if (socio instanceof SocioFederado)
+            precio -= precio * SocioFederado.descuentoExcursion;
+        return precio;
+    }
+
     public String toString() {
-        return "Numero de inscripcion: " + numeroInscripcion + "\n" +
-                "Codigo de excursion: " + excursion.getCodigo() + "\n" +
-                "Numero de socio: " + socio.getNumeroSocio();
+        return
+                "Numero de socio: " + socio.getNumeroSocio() + "\n" +
+                "Nombre de socio: " + socio.getNombre() + "\n" +
+                "Fecha de excursion: " + excursion.getFecha() + "\n" +
+                "Descripcion: " + excursion.getDescripcion() + "\n" +
+                "Importe total: " + calcularPrecioExcursion();
     }
 }

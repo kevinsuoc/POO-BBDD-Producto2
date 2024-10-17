@@ -2,8 +2,8 @@ package dataroast.vista;
 
 import dataroast.controlador.Controlador;
 import dataroast.modelo.Excursion;
+import dataroast.modelo.Inscripcion;
 
-import java.lang.reflect.Array;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,6 +17,61 @@ public class Formulario {
     public Formulario(Controlador controlador, Scanner in){
         this.in = in;
         this.controlador = controlador;
+    }
+
+    public void nuevaInscripcion(){
+        int numeroInscripcion = obtenerNumero("Ingresa el numero de inscripcion");
+        int numeroSocio = obtenerNumero("Ingresa el numero de socio");
+        String codigoExcursion = obtenerString("Ingresa el codigo de excursion");
+
+        try {
+            controlador.agregarInscripcion(numeroInscripcion, numeroSocio, codigoExcursion);
+            System.out.println("Inscripcion agregada correctamente");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void eliminarInscripcion(){
+        int numeroInscripcion = obtenerNumero("Ingresa el numero de inscripcion");
+
+        try {
+            controlador.eliminarInscripcion(numeroInscripcion);
+            System.out.println("Inscripcion eliminada");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void mostrarInscripciones(){
+        LocalDate fechaInferior = null;
+        LocalDate fechaSuperior = null;
+        Boolean filtrarPorSocio = obtenerBool("¿Desea filtrar por socio?");
+        Boolean filtrarPorFecha = obtenerBool("¿Desea filtrar por fecha?");
+        int numeroSocio = 0;
+
+        if (filtrarPorSocio){
+            numeroSocio = obtenerNumero("Ingrese el numero de socio");
+        }
+        if (filtrarPorFecha){
+            fechaInferior = obtenerFecha("Fecha inferior");
+            fechaSuperior = obtenerFecha("Fecha superior");
+        }
+        ArrayList<Inscripcion> inscripciones;
+        if (filtrarPorFecha && filtrarPorSocio)
+            inscripciones = controlador.obtenerInscripciones(fechaInferior, fechaSuperior, numeroSocio);
+        else if (filtrarPorSocio)
+            inscripciones = controlador.obtenerInscripciones(numeroSocio);
+        else if (filtrarPorFecha)
+            inscripciones = controlador.obtenerInscripciones(fechaInferior, fechaSuperior);
+        else
+            inscripciones = controlador.obtenerInscripciones();
+
+        for (Inscripcion inscripcion: inscripciones){
+            System.out.println("----- Inscripcion -----");
+            System.out.println(inscripcion);
+            System.out.println("--------------------");
+        }
     }
 
     public void nuevaExcursion(){
@@ -109,6 +164,19 @@ public class Formulario {
             } catch (DateTimeException ignored){
                 System.out.println("Error con la fecha ingresada");
             }
+        }
+    }
+
+    private boolean obtenerBool(String msg){
+        String respuesta;
+
+        while (true){
+            System.out.print(msg + " (y/n): ");
+            respuesta = in.nextLine();
+            if (respuesta.equals("y") || respuesta.equals("yes") || respuesta.equals("si") || respuesta.equals("s"))
+                return true;
+            if (respuesta.equals("n") || respuesta.equals("no"))
+                return false;
         }
     }
 }

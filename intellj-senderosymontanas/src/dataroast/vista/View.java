@@ -63,15 +63,13 @@ public class View {
             opcionIngresada = menuSocios.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-                    
-           
-                case 1: formularios.añadirSocioEstandar(); break;
-                case 2: formularios.modificarSeguroSocioEstandar(); break;
-                case 3: formularios.añadirSocioFederado(); break;
-                case 4: formularios.añadirSocioInfantir(); break;
-                case 5: formularios.EliminarSocio(); break;
-                case 6: formularios.mostrarSocio(); break; 
-                case 7: formularios.mostrarFacturasMensuales(); break;
+//                case 1: formularios.añadirSocioEstandar(); break;
+//                case 2: formularios.modificarSeguroSocioEstandar(); break;
+//                case 3: formularios.añadirSocioFederado(); break;
+//                case 4: formularios.añadirSocioInfantir(); break;
+//                case 5: formularios.EliminarSocio(); break;
+//                case 6: formularios.mostrarSocio(); break; 
+//                case 7: formularios.mostrarFacturasMensuales(); break;
  
             }
         }
@@ -97,10 +95,9 @@ public class View {
             opcionIngresada = menuInscripciones.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-                    
-                 case 1: formularios.añadirInscripcion(); break;
-                 case 2: formularios.EliminarInscripcion(); break;
-                case 3: formularios.mostrarInscripcionesFiltradas(); break;
+                case 1: formularios.nuevaInscripcion(); break;
+                case 2: formularios.eliminarInscripcion(); break;
+                case 3: formularios.mostrarInscripciones(); break;
             }
         }
     }
