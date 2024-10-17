@@ -16,7 +16,15 @@ public class Datos {
         seguros.add(new Seguro(15, COMPLETO));
     }
 
+    public ArrayList<Inscripcion> getInscripciones(){
+        return inscripciones;
+    }
+
     public ArrayList<Excursion> getExcursiones() {
         return excursiones;
+    }
+
+    public ArrayList<Socio> getSocios() {
+        return socios;
     }
 }

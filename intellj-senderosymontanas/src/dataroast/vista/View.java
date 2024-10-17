@@ -94,9 +94,9 @@ public class View {
             opcionIngresada = menuInscripciones.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-                // case 1: añadir inscripcion
-                // case 2: eliminar inscripcion
-                // case 3: mostrar inscripciones filtradas
+                case 1: formularios.nuevaInscripcion(); break;
+                case 2: formularios.eliminarInscripcion(); break;
+                case 3: formularios.mostrarInscripciones(); break;
             }
         }
     }
