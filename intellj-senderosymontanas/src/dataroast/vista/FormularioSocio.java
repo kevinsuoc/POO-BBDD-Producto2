@@ -1,115 +1,129 @@
 package dataroast.vista;
 
+import dataroast.controlador.Controlador;
 import dataroast.controlador.ControladorSocio;
-import dataroast.modelo.Socio;
-import dataroast.modelo.SocioEstandar;
-import dataroast.modelo.SocioFederado;
-import dataroast.modelo.SocioInfantil;
+import dataroast.modelo.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FormularioSocio {
-    private ControladorSocio socioController;
+public class FormularioSocio extends Formulario {
+    private ControladorSocio controlador;
 
-    public FormularioSocio() {
-        this.socioController = socioController;
+    public FormularioSocio(ControladorSocio controladorSocio, Scanner in) {
+        super(in);
+        this.controlador = controladorSocio;
     }
 
-    public void menu() {
-        Scanner scanner = new Scanner(System.in);
+     //           case 2: formularioSocio.modificarSeguroSocioEstandar(); break;
+     //           case 5: formularioSocio.eliminarSocio(); break;
+    //            case 6: formularioSocio.mostrarSocios(); break;
+    //            case 7: formularioSocio.mostrarFacturasMensuales(); break;
 
-        while (true) {
-            System.out.println("Opción 1: Agregar Socio");
-            System.out.println("Opción 0: Volver al menu principal");
-            System.out.print("Selecciona una opción: ");
-            int opcion = Integer.parseInt(scanner.nextLine());
+    public void agregarSocioEstandar() {
+        int numeroSocio = obtenerNumero("Ingresa el numero de socio");
+        String nif = obtenerString("Ingresa el NIF del socio");
+        String nombre = obtenerString("Ingresa el nombre");
+        TipoSeguro tipoSeguro = obtenerTipoSeguro("Tipo de seguro");
 
-            if (opcion == 1) {
-                agregarSocio();
-            } else if (opcion == 0) {
-                System.out.println("Volviendo al menu ...");
-                break;
-            } else {
-                System.out.println("Opción no válida. Inténtalo de nuevo.");
-            }
+        try {
+            controlador.agregarSocioEstandar(numeroSocio, nif, nombre, tipoSeguro);
+            System.out.println("Socio agregado");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
     }
 
-    public void agregarSocio() {
-        Scanner scanner = new Scanner(System.in);
+    public void agregarSocioFederado() {
+        int numeroSocio = obtenerNumero("Ingresa el numero de socio");
+        String nif = obtenerString("Ingresa el NIF del socio");
+        String nombre = obtenerString("Ingresa el nombre");
+        String codigoFederacion = obtenerString("Ingresa el codigo de federacion");
 
-        System.out.println("Elige el tipo de socio:");
-        System.out.println("1: Adulto");
-        System.out.println("2: Infantil");
-        int tipoSocio = Integer.parseInt(scanner.nextLine());
-
-        if (tipoSocio == 1) {
-            agregarSocioAdulto();
-        } else if (tipoSocio == 2) {
-            agregarSocioInfantil();
-        } else {
-            System.out.println("Opción no válida. Inténtalo de nuevo.");
+        try {
+            controlador.agregarSocioFederado(numeroSocio, nif, nombre, codigoFederacion);
+            System.out.println("Socio agregado");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
-    }
-
-    public void agregarSocioAdulto() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Elige el tipo de socio adulto:");
-        System.out.println("1: Socio Estándar");
-        System.out.println("2: Socio Federado");
-        int tipoAdulto = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Introduce el nombre del socio: ");
-        String nombre = scanner.nextLine().trim();
-
-        System.out.print("Introduce el NIF del socio: ");
-        String nif = scanner.nextLine().trim();
-
-        Socio nuevoSocio;
-
-        if (tipoAdulto == 1) {
-            nuevoSocio = new SocioEstandar(nombre, socioController.getNumeroSocios() + 1 , nif); // Usa el siguiente número
-        } else if (tipoAdulto == 2) {
-            nuevoSocio = new SocioFederado(nombre, socioController.getNumeroSocios() + 1 , nif); // Usa el siguiente número
-        } else {
-            System.out.println("Opción no válida. No se agrega el socio.");
-            return;
-        }
-
-        socioController.agregarSocio(nuevoSocio);
     }
 
     public void agregarSocioInfantil() {
-        Scanner scanner = new Scanner(System.in);
-
+        int numeroSocio = obtenerNumero("Ingresa el numero de socio");
+        String nombre = obtenerString("Ingresa el nombre");
+        String nifAdulto = obtenerString("Ingresa el NIF de un socio adulto");
         System.out.print("Introduce el número de socio del Tutor: ");
-        int numeroSocioAdulto = Integer.parseInt(scanner.nextLine());
 
-        // Verifica si el número de socio del adulto es válido
-        if (!socioController.existeSocioPorNumero(numeroSocioAdulto)) {
-            System.out.println("No existe un socio adulto con ese número.");
-            return;
+        try {
+            controlador.agregarSocioInfantil(numeroSocio, nombre, nifAdulto);
+            System.out.println("Socio agregado");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
-
-        System.out.print("Introduce el nombre del socio infantil: ");
-        String nombreInfantil = scanner.nextLine().trim();
-
-        // Aquí asumo que el número del socio infantil debe ser diferente
-        Socio nuevoSocioInfantil = new SocioInfantil(nombreInfantil, socioController.getNumeroSocios() + 1);
-        socioController.agregarSocio(nuevoSocioInfantil);
     }
 
-
     public void modificarSeguroSocioEstandar() {
+        int numeroSocio = obtenerNumero("Ingresa el numero de socio");
+        TipoSeguro tipoSeguro = obtenerTipoSeguro("Que tipo de seguro desea");
+        try {
+            controlador.cambiarTipoSeguro(numeroSocio, tipoSeguro);
+            System.out.println("El tipo de seguro se ha cambiado");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void eliminarSocio() {
+        int numeroSocio = obtenerNumero("Ingresa el numero del socio a eliminar");
+
+        try {
+            controlador.eliminarSocio(numeroSocio);
+            System.out.println("Socio eliminado");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void mostrarSocios() {
+        boolean filtrarPorTipo = obtenerBool("Filtrar por tipo de socio");
+        ArrayList<Socio> sociosFiltrados;
+
+        try {
+            if (!filtrarPorTipo)
+                sociosFiltrados = controlador.obtenerSocios();
+            else
+                sociosFiltrados = controlador.obtenerSociosPorTipo(obtenerTipoSocio("Ingresa el tipo de socio"));
+            for (Socio socio: sociosFiltrados) {
+                System.out.println("----- Socio -----");
+                System.out.println(socio);
+                System.out.println("--------------------");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
+    /*
     public void mostrarFacturasMensuales() {
+        int numeroSocio = obtenerNumero("Ingresa el numero de socio");
+        try {
+            Socio socio = controlador.obtenerSocioPorNumero(numeroSocio);
+            ArrayList<Inscripcion> excursionesDelMes = controlador.obtenerInscripcionesSocio(numeroSocio);
+            double cuotaMensualBase = Controlador.precioCuotaExcursionista;
+            double cuotaMensualTotal;
+
+            if (socio instanceof SocioFederado)
+                cuotaMensualTotal = SocioFederado.obtenerCuotaConDescuento(cuotaMensualBase);
+            else if (socio instanceof  SocioInfantil)
+                cuotaMensualTotal = SocioInfantil.obtenerCuotaConDescuento(cuotaMensualBase);
+
+            System.out.println("----- Cuota mensual de socio -----");
+            System.out.println(socio);
+            System.out.println("----------------------------------");
+
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
+    */
 }

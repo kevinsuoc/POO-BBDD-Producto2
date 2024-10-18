@@ -1,14 +1,11 @@
 package dataroast.modelo;
 
 public class SocioInfantil extends Socio {
-    static final double descuentoCuotaMensual = 0.5;
+    private static final double descuentoCuotaMensual = 0.5;
     private SocioAdulto socioAdulto;
 
-    public SocioInfantil(String nombre, int numeroSocio) {
+    public SocioInfantil(int numeroSocio, String nombre, SocioAdulto socioAdulto) {
         super(nombre, numeroSocio);
-        if (socioAdulto == null) {
-            throw new IllegalArgumentException("El socio adulto no puede ser nulo.");
-        }
         this.socioAdulto = socioAdulto;
     }
 
@@ -18,6 +15,10 @@ public class SocioInfantil extends Socio {
 
     public void setSocioAdulto(SocioAdulto socioAdulto) {
         this.socioAdulto = socioAdulto;
+    }
+
+    public static double obtenerCuotaConDescuento(double cuotaBase){
+        return cuotaBase - cuotaBase * descuentoCuotaMensual;
     }
 
     public String toString() {

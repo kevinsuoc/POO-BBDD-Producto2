@@ -1,16 +1,14 @@
 package dataroast.modelo;
 
 public class SocioFederado extends SocioAdulto {
-    static final double descuentoCuotaMensual = 0.05;
-    static final double descuentoExcursion = 0.1;
+    private static final double descuentoCuotaMensual = 0.05;
+    private static final double descuentoExcursion = 0.1;
     private Federacion federacion;
-    private String nif;
 
 
-    public SocioFederado (String nombre, int numeroSocio, String nif) {
-        super(nombre, numeroSocio);
+    public SocioFederado (int numeroSocio, String nombre, String nif, Federacion federacion) {
+        super(nombre, numeroSocio, nif);
         this.federacion = federacion;
-        this.nif = nif;
     }
 
     public Federacion getFederacion() {
@@ -19,6 +17,14 @@ public class SocioFederado extends SocioAdulto {
 
     public void setFederacion(Federacion federacion) {
         this.federacion = federacion;
+    }
+
+    public static double obtenerCuotaConDescuento(double cuotaBase){
+        return cuotaBase - cuotaBase * descuentoCuotaMensual;
+    }
+
+    public static double obtenerPrecioExcursionConDescuento(double precioBase){
+        return precioBase - precioBase * descuentoExcursion;
     }
 
     public String toString() {

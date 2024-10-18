@@ -44,7 +44,7 @@ public class Inscripcion {
         double precio = excursion.getPrecioInscripcion();
 
         if (socio instanceof SocioFederado)
-            precio -= precio * SocioFederado.descuentoExcursion;
+            precio = SocioFederado.obtenerPrecioExcursionConDescuento(precio);
         return precio;
     }
 

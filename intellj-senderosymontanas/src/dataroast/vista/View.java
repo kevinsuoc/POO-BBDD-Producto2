@@ -6,28 +6,18 @@ import dataroast.controlador.ControladorSocio;
 import java.util.Scanner;
 
 public class View {
-    private Scanner in;
-    private Controlador controlador;
-
-    private ControladorSocio controladorSocio;
-
-    private Menu menuPrincipal;
-    private Menu menuSocios;
-    private Menu menuExcursiones;
-    private Menu menuInscripciones;
-    private Formulario formularios;
-
-    private FormularioSocio formularioSocio;
-
+    private final Menu menuPrincipal;
+    private final Menu menuSocios;
+    private final Menu menuExcursiones;
+    private final Menu menuInscripciones;
+    private final FormularioSocio formularioSocio;
+    private final FormularioInscripcion formularioInscripcion;
+    private final FormularioExcursion formularioExcursion;
 
     public View(Controlador controlador, Scanner in){
-        this.in = in;
-        this.controlador = controlador;
-        this.formularios = new Formulario(controlador, in);
-
-        this.formularioSocio = new FormularioSocio();
-
-
+        this.formularioSocio = new FormularioSocio(controlador.getControladorSocio(), in);
+        this.formularioExcursion = new FormularioExcursion(controlador.getControladorExcursion(), in);
+        this.formularioInscripcion = new FormularioInscripcion(controlador.getControladorInscripcion(), in);
 
 
         menuPrincipal = new Menu("Menu Principal", in);
@@ -51,7 +41,7 @@ public class View {
         menuInscripciones = new Menu("Gestion de Inscripciones", in);
         menuInscripciones.agregarOpcion("Añadir inscripcion");
         menuInscripciones.agregarOpcion("Eliminar inscripcion");
-        menuInscripciones.agregarOpcion("Mostrar inscripciones con las ocpiones de filtrar por socio y/o fechas");
+        menuInscripciones.agregarOpcion("Mostrar inscripciones con las opciones  de filtrar por socio y/o fechas");
     }
 
     public void ejecutarMenuPrincipal(){
@@ -75,31 +65,13 @@ public class View {
             opcionIngresada = menuSocios.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-                case 1:
-                    formularioSocio.agregarSocio(); // Cambia esto para llamar a tu método para agregar socio
-                    break;
-                case 2:
-                    formularioSocio.modificarSeguroSocioEstandar();
-                    break;
-                case 3:
-                    formularioSocio.agregarSocioAdulto();
-                    break;
-                case 4:
-                    formularioSocio.agregarSocioInfantil();
-                    break;
-                case 5:
-                    formularioSocio.eliminarSocio();
-                    break;
-                case 6:
-                    formularioSocio.mostrarSocios();
-                    break;
-                case 7:
-                    formularioSocio.mostrarFacturasMensuales();
-                    break;
-                default:
-                    System.out.println("Opción no válida. Inténtalo de nuevo.");
-                    break;
- 
+                case 1: formularioSocio.agregarSocioEstandar(); break;
+                case 2: formularioSocio.modificarSeguroSocioEstandar(); break;
+                case 3: formularioSocio.agregarSocioFederado(); break;
+                case 4: formularioSocio.agregarSocioInfantil(); break;
+                case 5: formularioSocio.eliminarSocio(); break;
+                case 6: formularioSocio.mostrarSocios(); break;
+//                case 7: formularioSocio.mostrarFacturasMensuales(); break;
             }
         }
     }
@@ -111,8 +83,8 @@ public class View {
             opcionIngresada = menuExcursiones.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-                case 1: formularios.nuevaExcursion(); break;
-                case 2: formularios.mostrarExcursiones(); break;
+                case 1: formularioExcursion.nuevaExcursion(); break;
+                case 2: formularioExcursion.mostrarExcursiones(); break;
             }
         }
     }
@@ -124,9 +96,9 @@ public class View {
             opcionIngresada = menuInscripciones.obtenerOpcionDeMenu();
             switch (opcionIngresada) {
                 case 0: return;
-                case 1: formularios.nuevaInscripcion(); break;
-                case 2: formularios.eliminarInscripcion(); break;
-                case 3: formularios.mostrarInscripciones(); break;
+                case 1: formularioInscripcion.nuevaInscripcion(); break;
+                case 2: formularioInscripcion.eliminarInscripcion(); break;
+                case 3: formularioInscripcion.mostrarInscripciones(); break;
             }
         }
     }

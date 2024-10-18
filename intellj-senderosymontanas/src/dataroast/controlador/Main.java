@@ -1,8 +1,16 @@
 package dataroast.controlador;
 
+import dataroast.modelo.Datos;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args){
-        Controlador controlador = new Controlador();
+        Scanner in = new Scanner(System.in);
+
+        Controlador controlador = new Controlador(in);
         controlador.ejecutarPrograma();
+
+        in.close();
     }
 }
