@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+// todo el precio es 10
 public class Controlador {
     public final static double precioCuotaExcursionista = 10.5;
     private final View view;
@@ -21,10 +22,10 @@ public class Controlador {
 
     public Controlador(Scanner in){
         Datos datos = new Datos();
-        this.view = new View(this, in);
         this.controladorExcursion = new ControladorExcursion(datos);
         this.controladorInscripcion = new ControladorInscripcion(datos);
         this.controladorSocio = new ControladorSocio(datos);
+        this.view = new View(this, in);
     }
 
     public void ejecutarPrograma(){

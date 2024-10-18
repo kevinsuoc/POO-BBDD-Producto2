@@ -8,17 +8,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FormularioSocio extends Formulario {
-    private ControladorSocio controlador;
+    private final ControladorSocio controlador;
 
     public FormularioSocio(ControladorSocio controladorSocio, Scanner in) {
         super(in);
         this.controlador = controladorSocio;
     }
-
-     //           case 2: formularioSocio.modificarSeguroSocioEstandar(); break;
-     //           case 5: formularioSocio.eliminarSocio(); break;
-    //            case 6: formularioSocio.mostrarSocios(); break;
-    //            case 7: formularioSocio.mostrarFacturasMensuales(); break;
 
     public void agregarSocioEstandar() {
         int numeroSocio = obtenerNumero("Ingresa el numero de socio");
