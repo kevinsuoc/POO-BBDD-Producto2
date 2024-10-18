@@ -94,7 +94,7 @@ abstract public class  Formulario {
 
             System.out.println(msg);
             while (true){
-                respuesta = obtenerNumero("ingresa tipo de seguro (1. BASICO, 2. COMPLETO");
+                respuesta = obtenerNumero("ingresa tipo de seguro (1. BASICO, 2. COMPLETO)");
                 if (respuesta == 1)
                     return TipoSeguro.BASICO;
                 if (respuesta == 2)
@@ -107,7 +107,7 @@ abstract public class  Formulario {
 
             System.out.println(msg);
             while (true){
-                respuesta = obtenerNumero("ingresa tipo de socio (1. ESTANDAR, 2. FEDERADO, 3. INFANTIL");
+                respuesta = obtenerNumero("ingresa tipo de socio (1. ESTANDAR, 2. FEDERADO, 3. INFANTIL)");
                 if (respuesta == 1)
                     return TipoSocio.ESTANDAR;
                 if (respuesta == 2)

@@ -40,7 +40,7 @@ abstract public class Socio {
 
     public String toString() {
         return "Nombre de socio: " + nombre + "\n" +
-                "Numero de socio: " + numeroSocio +
+                "Numero de socio: " + numeroSocio + "\n" +
                    "NIF de socio: " + nif;
     }
 }
