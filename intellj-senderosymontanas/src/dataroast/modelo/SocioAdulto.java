@@ -10,6 +10,10 @@ abstract public class SocioAdulto extends Socio {
         this.nif = nif;
     }
 
+    public String getNif(){
+        return this.nif;
+    }
+
     public void setNif(String nif) {
         this.nif = nif;
     }

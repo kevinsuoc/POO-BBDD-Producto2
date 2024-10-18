@@ -44,6 +44,7 @@ public class Menu {
                 in.nextLine();
             }
         }
+        in.nextLine();
         return (opcionIngresada);
     }
 }

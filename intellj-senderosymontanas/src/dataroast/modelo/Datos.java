@@ -52,7 +52,7 @@ public class Datos {
 
     public Socio encontrarSocioPorNif(String nif){
         for (Socio socio: socios){
-            if (Objects.equals(socio.getNif(), nif)){
+            if (socio instanceof SocioAdulto && Objects.equals(((SocioAdulto) socio).getNif(), nif)){
                 return socio;
             }
         }
