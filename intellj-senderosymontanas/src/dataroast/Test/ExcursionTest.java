@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class ExcursionTest {
+public class ExcursionTest {
     private List<Excursion> listaExcursiones = new ArrayList<>();
 
     @Test
@@ -34,9 +34,13 @@ class ExcursionTest {
         listaExcursiones.add(excursion1);
         listaExcursiones.add(excursion2);
 
-        // Then: Verify that the list of excursions is shown correctly
-        List<Excursion> excursiones = new ArrayList<>(listaExcursiones);  // Simulate mostrarExcursiones behavior
-        Assertions.assertFalse(excursiones.isEmpty());
-        Assertions.assertEquals(2, excursiones.size());
+        // Verify that the list of excursions is correct
+        Assertions.assertFalse(listaExcursiones.isEmpty());
+        Assertions.assertEquals(2, listaExcursiones.size());
+
+        // Print the list of excursions to the console after the test completes
+        System.out.println("\n-- Result: Lista de Excursiones --\n");
+        listaExcursiones.forEach(excursion -> System.out.println(excursion));
+        System.out.println("\n-- Fin de la lista --\n");
     }
 }
