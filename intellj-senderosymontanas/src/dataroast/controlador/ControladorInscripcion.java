@@ -18,11 +18,11 @@ public class ControladorInscripcion {
     public void agregarInscripcion(int numeroInscripcion, int numeroSocio, String codigoExcursion){
         Excursion excursion = datos.encontrarExcursionPorCodigo(codigoExcursion);
         if (excursion == null){
-            throw new IllegalArgumentException("La excursion no existe");
+            throw new InstanceNotFoundException("La excursion no existe");
         }
         Socio socio = datos.encontrarSocioPorNumeroSocio(numeroSocio);
         if (socio == null){
-            throw new IllegalArgumentException("El socio no existe");
+            throw new InstanceNotFoundException("El socio no existe");
         }
         datos.getInscripciones().add(new Inscripcion(numeroInscripcion, socio, excursion));
         //
@@ -40,9 +40,7 @@ public class ControladorInscripcion {
                 return ;
             }
         }
-        //Una inscripción solo se puede cancelar si se realiza en una fecha estrictamente anterior
-        //de la que se realiza la excursión.
-        throw new IllegalArgumentException("La inscripcion no existe");
+        throw new InstanceNotFoundException("La inscripcion no existe");
     }
 
     public ArrayList<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior, int numeroSocio){
@@ -61,7 +59,7 @@ public class ControladorInscripcion {
 
     public ArrayList<Inscripcion> obtenerInscripciones(int numeroSocio){
         if (numeroSocio <= 0)
-            throw new IllegalArgumentException("Numero de socio invalido");
+            throw new InstanceNotFoundException("Numero de socio invalido");
         return datos.obtenerInscripciones(numeroSocio);
     }
 

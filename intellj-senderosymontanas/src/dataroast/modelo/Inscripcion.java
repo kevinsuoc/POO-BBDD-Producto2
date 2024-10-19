@@ -9,7 +9,7 @@ public class Inscripcion {
 
     public Inscripcion(int numeroInscripcion, Socio socio, Excursion excursion) {
         if (numeroInscripcion <= 0){
-            throw new IllegalArgumentException("El numero de inscripcion debe ser positivo");
+            throw new InvalidModelArgumentException("El numero de inscripcion debe ser positivo");
         }
         this.numeroInscripcion = numeroInscripcion;
         this.socio = socio;

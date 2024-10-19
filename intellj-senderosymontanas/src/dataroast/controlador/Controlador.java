@@ -1,20 +1,14 @@
 package dataroast.controlador;
 
 import dataroast.modelo.Datos;
-import dataroast.modelo.Excursion;
-import dataroast.modelo.Inscripcion;
-import dataroast.modelo.Socio;
 import dataroast.vista.View;
-
-import javax.naming.ldap.Control;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
-// todo el precio es 10
+// todo: tests de al menos dos metodos
+// todo: video con ejecucion del programa en todas sus opciones
+// todo: informe: enlace a video, enlace a github, autoevaluacion 0/20
 public class Controlador {
-    public final static double precioCuotaExcursionista = 10.5;
+    public final static double precioCuotaExcursionista = 10;
     private final View view;
     private final ControladorExcursion controladorExcursion;
     private final ControladorInscripcion controladorInscripcion;

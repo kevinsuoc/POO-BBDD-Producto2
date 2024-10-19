@@ -15,7 +15,7 @@ public class ControladorExcursion {
 
     public void agregarExcursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha){
         if (datos.encontrarExcursionPorCodigo(codigo) != null){
-            throw new IllegalArgumentException("El codigo de excursion ya esta siendo utilizado");
+            throw new UsedIdentifierException("El codigo de excursion ya esta siendo utilizado");
         }
         datos.getExcursiones().add(new Excursion(numDias, precioInscripcion, codigo, descripcion, fecha));
     }

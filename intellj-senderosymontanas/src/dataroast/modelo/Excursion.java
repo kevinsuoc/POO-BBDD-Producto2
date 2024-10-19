@@ -12,20 +12,20 @@ public class Excursion {
     public Excursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha)
     {
         if (numDias <= 0){
-            throw new IllegalArgumentException("La excursion debe durar un dia o mas");
+            throw new InvalidModelArgumentException("La excursion debe durar un dia o mas");
         }
         if (precioInscripcion < 0){
-            throw new IllegalArgumentException("La excursion no puede tener un precio negativo");
+            throw new InvalidModelArgumentException("La excursion no puede tener un precio negativo");
         }
         if (codigo.length() < 3){
-            throw new IllegalArgumentException("El codigo debe tener minimo tres letras");
+            throw new InvalidModelArgumentException("El codigo debe tener minimo tres letras");
         }
         if (descripcion.length() < 10){
-            throw new IllegalArgumentException("La descricion debe tener al menos 10 caracteres");
+            throw new InvalidModelArgumentException("La descricion debe tener al menos 10 caracteres");
         }
         LocalDate hoy = LocalDate.now();
         if (fecha.isBefore(hoy)){
-            throw new IllegalArgumentException("La fecha debe ser en el futuro");
+            throw new InvalidModelArgumentException("La fecha debe ser en el futuro");
         }
         this.numDias = numDias;
         this.precioInscripcion = precioInscripcion;
