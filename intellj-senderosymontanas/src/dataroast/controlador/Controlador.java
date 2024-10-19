@@ -4,7 +4,6 @@ import dataroast.modelo.Datos;
 import dataroast.vista.View;
 import java.util.Scanner;
 
-// todo: excepciones personalizadas
 // todo: tests de al menos dos metodos
 // todo: video con ejecucion del programa en todas sus opciones
 // todo: informe: enlace a video, enlace a github, autoevaluacion 0/20
