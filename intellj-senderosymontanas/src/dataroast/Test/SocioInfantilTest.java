@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-    public class SocioInfantilTest {
+public class SocioInfantilTest {
     private List<SocioInfantil> listaSocioInfantil = new ArrayList<>();
 
     @Test
@@ -42,5 +42,10 @@ import java.util.List;
         Assertions.assertEquals(2, listaSocioInfantil.size());
         Assertions.assertEquals(socioInfantil1, listaSocioInfantil.get(0));
         Assertions.assertEquals(socioInfantil2, listaSocioInfantil.get(1));
+
+        // Print the list of Socios Infantiles to the console after the test completes
+        System.out.println("\n-- Result: Lista de Socios Infantiles --\n");
+        listaSocioInfantil.forEach(socio -> System.out.println(socio));
+        System.out.println("\n-- Fin de la lista --\n");
     }
-}
+    } 
