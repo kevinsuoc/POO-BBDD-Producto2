@@ -10,6 +10,7 @@ import java.util.List;
 public class SocioFederadoTest {
     private List<SocioFederado> listaSocioFederado = new ArrayList<>();
 
+    @Test
     void agregarSocio() {
         // Given: Un socio estándar válido
         SocioFederado socio1 = new SocioFederado(147,"Miguel", "88996655A", new Federacion("12M", "Malaga"));
@@ -38,5 +39,10 @@ public class SocioFederadoTest {
         Assertions.assertEquals(2, listaSocioFederado.size());
         Assertions.assertEquals(socio1, listaSocioFederado.get(0));
         Assertions.assertEquals(socio2, listaSocioFederado.get(1));
+
+        // Print the list of Socios Federados to the console after the test completes
+        System.out.println("\n-- Result: Lista de Socios Federados --\n");
+        listaSocioFederado.forEach(socio -> System.out.println(socio));
+        System.out.println("\n-- Fin de la lista --\n");
     }
 }
