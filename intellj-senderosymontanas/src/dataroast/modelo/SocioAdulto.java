@@ -1,6 +1,6 @@
 package dataroast.modelo;
 
-abstract public class SocioAdulto extends Socio {
+public class SocioAdulto extends Socio {
     private String nif;
 
     public SocioAdulto(String nombre, int numeroSocio, String nif) {
