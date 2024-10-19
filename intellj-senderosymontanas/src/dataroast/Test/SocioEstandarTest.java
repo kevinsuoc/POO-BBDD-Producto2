@@ -26,6 +26,9 @@ public class SocioEstandarTest {
         Assertions.assertEquals(socio1, listaSocioEstandar.get(0));
     }
 
+
+
+
     @Test
     void mostrarSocioEstandar() {
         // Given: Dos socios estándar válidos
@@ -41,5 +44,10 @@ public class SocioEstandarTest {
         Assertions.assertEquals(2, listaSocioEstandar.size());
         Assertions.assertEquals(socio1, listaSocioEstandar.get(0));
         Assertions.assertEquals(socio2, listaSocioEstandar.get(1));
+
+        // Print the list of Socios Estandar to the console after the test completes
+        System.out.println("\n-- Result: Lista de Socios Estándar --\n");
+        listaSocioEstandar.forEach(socio -> System.out.println(socio));
+        System.out.println("\n-- Fin de la lista --\n");
     }
 }
