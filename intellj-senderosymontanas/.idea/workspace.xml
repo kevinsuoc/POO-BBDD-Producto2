@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="51c64a82-8023-4e2f-9fec-6fbf64f942f2" name="Changes" comment="Test de inscripciones">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/opentest4j-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/senderosymontanas.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/Test/ExcursionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/Test/InscripcionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/Test/SocioEstandarTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/Test/SocioFederadoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/Test/SocioInfantilTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/controlador/Controlador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/controlador/ControladorExcursion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/controlador/ControladorInscripcion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/controlador/ControladorSocio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/controlador/InstanceNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/controlador/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/controlador/UsedIdentifierException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/Datos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/Excursion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/Federacion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/Inscripcion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/InvalidModelArgumentException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/Seguro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/Socio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/SocioAdulto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/SocioEstandar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/SocioFederado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/SocioInfantil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/TipoSeguro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/modelo/TipoSocio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/vista/Formulario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/vista/FormularioExcursion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/vista/FormularioInscripcion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/vista/FormularioSocio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/vista/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataroast/vista/View.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="6bf7715ec52bfb01cddd46c5d4257b1b37a16e1d" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="Added project from local" />
+        <option name="rewordedMessage" value="Added main and some code to test compatibility with other group members&#10;&#10;Added project from local" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="72293057996b75c9a7451272aa8d3b5be676d6bc" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nQJRtRZiHgolpZIJ1opnliYRvm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Controlador.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Senderosymontanas.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.ExcursionTest.executor": "Run",
+    "JUnit.InscripcionTest.executor": "Run",
+    "JUnit.SocioEstandarTest.executor": "Run",
+    "JUnit.SocioFederadoTest.executor": "Run",
+    "JUnit.SocioInfantilTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/UOC/Semestre 3/OOP con acceso a BBDD/Producto 2/DataRoast",
+    "onboarding.tips.debug.path": "C:/UOC/Semestre 3/OOP con acceso a BBDD/Producto 2/senderosymontanas/src/dataroast/Main.java",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "Errors"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\UOC\Semestre 3\OOP con acceso a BBDD\Producto 2\senderosymontanas" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="DataRoast" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="DataRoast" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-51586f01" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51c64a82-8023-4e2f-9fec-6fbf64f942f2" name="Changes" comment="" />
+      <created>1728899363838</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728899363838</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added project from local">
+      <option name="closed" value="true" />
+      <created>1728899510860</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728899510860</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added project from local">
+      <option name="closed" value="true" />
+      <created>1728899549157</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728899549157</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added main and some code to test compatibility with other group members">
+      <option name="closed" value="true" />
+      <created>1728899958490</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728899958490</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added main and some code to test compatibility with other group members">
+      <option name="closed" value="true" />
+      <created>1728900324050</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728900324050</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added main and some code to test compatibility with other group members">
+      <option name="closed" value="true" />
+      <created>1728900339282</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728900339282</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added main and some code to test compatibility with other group members">
+      <option name="closed" value="true" />
+      <created>1728900438545</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728900438545</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added main and some code to test compatibility with other group members">
+      <option name="closed" value="true" />
+      <created>1729022310620</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729022310620</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added main and some code to test compatibility with other group members">
+      <option name="closed" value="true" />
+      <created>1729022416275</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729022416275</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added menues and some model code.">
+      <option name="closed" value="true" />
+      <created>1729098918261</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1729098918261</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1729099007333</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729099007333</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Ahora se pueden agregar excursiones">
+      <option name="closed" value="true" />
+      <created>1729102648714</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729102648714</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Ahora se pueden agregar excursiones">
+      <option name="closed" value="true" />
+      <created>1729102828736</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729102828736</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Agregado mostrar excursiones filtrado por fechas">
+      <option name="closed" value="true" />
+      <created>1729104003338</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1729104003338</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Agregado mensaje de fecha ingresada erronea.">
+      <option name="closed" value="true" />
+      <created>1729104383288</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1729104383288</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Comentadas las accciones a realizar dentro del codigo">
+      <option name="closed" value="true" />
+      <created>1729105900891</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1729105900891</updated>
+    </task>
+    <task id="LOCAL-00016" summary="No se puede ingresar una excursion con un codigo ya utilizado">
+      <option name="closed" value="true" />
+      <created>1729106390072</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1729106390072</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Agregados crear inscripcion, eliminar inscripcion, mostrar inscriciones filtradas por fecha y socio">
+      <option name="closed" value="true" />
+      <created>1729156293059</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1729156293059</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Agregados crear inscripcion, eliminar inscripcion, mostrar inscriciones filtradas por fecha y socio">
+      <option name="closed" value="true" />
+      <created>1729156389390</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1729156389390</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Reestructurados formularios y controladores. Agregados metodos de socio">
+      <option name="closed" value="true" />
+      <created>1729280392905</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1729280392905</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Agregado error en inicializacion de controladores">
+      <option name="closed" value="true" />
+      <created>1729281963536</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1729281963536</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Arreglado toString de socio">
+      <option name="closed" value="true" />
+      <created>1729282181345</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1729282181345</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Removida el atributo NIF de socio y movido a SocioAdulto, arreglado el metodo ToString de Socio">
+      <option name="closed" value="true" />
+      <created>1729282531235</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1729282531235</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update precio a 10">
+      <option name="closed" value="true" />
+      <created>1729359089685</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1729359089685</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added custom exceptions">
+      <option name="closed" value="true" />
+      <created>1729359840359</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1729359840359</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Opcion de cuota mensual de socio agregada">
+      <option name="closed" value="true" />
+      <created>1729445143929</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1729445143929</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Agregado bug en creacion de socios federado e infantil">
+      <option name="closed" value="true" />
+      <created>1729445534091</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1729445534091</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Agregado bug en creacion de socios federado e infantil">
+      <option name="closed" value="true" />
+      <created>1729445575044</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1729445575044</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Agregado control de inscripciones con codigo ya existente.">
+      <option name="closed" value="true" />
+      <created>1729446154518</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1729446154518</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Test de inscripciones">
+      <option name="closed" value="true" />
+      <created>1729450235775</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729450235775</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Test de inscripciones">
+      <option name="closed" value="true" />
+      <created>1729450442331</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1729450442331</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added project from local" />
+    <MESSAGE value="Added main and some code to test compatibility with other group members" />
+    <MESSAGE value="Added menues and some model code." />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="Ahora se pueden agregar excursiones" />
+    <MESSAGE value="Agregado mostrar excursiones filtrado por fechas" />
+    <MESSAGE value="Agregado mensaje de fecha ingresada erronea." />
+    <MESSAGE value="Comentadas las accciones a realizar dentro del codigo" />
+    <MESSAGE value="No se puede ingresar una excursion con un codigo ya utilizado" />
+    <MESSAGE value="Agregados crear inscripcion, eliminar inscripcion, mostrar inscriciones filtradas por fecha y socio" />
+    <MESSAGE value="Reestructurados formularios y controladores. Agregados metodos de socio" />
+    <MESSAGE value="Agregado error en inicializacion de controladores" />
+    <MESSAGE value="Arreglado toString de socio" />
+    <MESSAGE value="Removida el atributo NIF de socio y movido a SocioAdulto, arreglado el metodo ToString de Socio" />
+    <MESSAGE value="Update precio a 10" />
+    <MESSAGE value="Added custom exceptions" />
+    <MESSAGE value="Opcion de cuota mensual de socio agregada" />
+    <MESSAGE value="Agregado bug en creacion de socios federado e infantil" />
+    <MESSAGE value="Agregado control de inscripciones con codigo ya existente." />
+    <MESSAGE value="Test de inscripciones" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test de inscripciones" />
+  </component>
+</project>

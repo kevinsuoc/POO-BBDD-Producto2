@@ -1,7 +1,5 @@
 package dataroast.controlador;
 
-import dataroast.modelo.Datos;
-
 import java.util.Scanner;
 
 public class Main {
