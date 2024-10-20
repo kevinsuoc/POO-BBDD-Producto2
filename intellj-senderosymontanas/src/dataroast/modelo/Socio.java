@@ -1,6 +1,6 @@
 package dataroast.modelo;
 
-public class Socio {
+abstract public class Socio {
     private String nombre;
     private int numeroSocio;
 

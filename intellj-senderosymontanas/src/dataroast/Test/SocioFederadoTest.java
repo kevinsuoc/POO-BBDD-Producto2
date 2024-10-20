@@ -13,7 +13,7 @@ public class SocioFederadoTest {
     @Test
     void agregarSocio() {
         // Given: Un socio estándar válido
-        SocioFederado socio1 = new SocioFederado(147,"Miguel", "88996655A", new Federacion("12M", "Malaga"));
+        SocioFederado socio1 = new SocioFederado(147,"88996655A", "Miguel", new Federacion("12M", "Malaga"));
 
         // When: Añadir el socio a la lista
         listaSocioFederado.add(socio1);
@@ -27,8 +27,8 @@ public class SocioFederadoTest {
     @Test
     void mostrarSocioFederado() {
         // Given: Dos socios federados válidos
-        SocioFederado socio1 = new SocioFederado(147,"Miguel", "88996655A", new Federacion("12M","Malaga"));
-        SocioFederado socio2 = new SocioFederado(124, "Lucia", "77556688B", new Federacion("13X","Madrid"));
+        SocioFederado socio1 = new SocioFederado(147, "88996655A", "Miguel", new Federacion("12M","Malaga"));
+        SocioFederado socio2 = new SocioFederado(124, "77556688B", "Lucia", new Federacion("13X","Madrid"));
 
         // When: Añadir los socios a la lista
         listaSocioFederado.add(socio1);
