@@ -2,13 +2,12 @@ package dataroast.controlador;
 
 import dataroast.modelo.*;
 
-import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.List;
-import dataroast.vista.View;
 
 public class ControladorSocio {
-    private Datos datos;
+    private final Datos datos;
 
     public ControladorSocio(Datos datos) {
         this.datos = datos;
@@ -66,7 +65,7 @@ public class ControladorSocio {
     }
 
     public ArrayList<Socio> obtenerSociosPorTipo(TipoSocio tipoSocio) {
-        ArrayList<Socio> sociosFiltrados = new ArrayList<Socio>();
+        ArrayList<Socio> sociosFiltrados = new ArrayList<>();
         ArrayList<Socio> socios = datos.getSocios();
 
         for (Socio socio: socios){
@@ -99,5 +98,13 @@ public class ControladorSocio {
             throw new IllegalArgumentException("El socio ya tiene ese seguro");
         Seguro seguro = datos.getSeguroPorTipo(tipoSeguro);
         ((SocioEstandar) socio).setSeguro(seguro);
+    }
+
+    public ArrayList<Inscripcion> obtenerInscripcionesMesSocio(int numeroSocio){
+        YearMonth thisMonth = YearMonth.now();
+        LocalDate firstDayOfMonth = thisMonth.atDay(1);
+        LocalDate lastDayOfMonth = thisMonth.atEndOfMonth();
+
+        return datos.obtenerInscripciones(firstDayOfMonth, lastDayOfMonth, numeroSocio);
     }
 }

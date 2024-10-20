@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Menu {
     private final Scanner in;
     private final String titulo;
-    private final ArrayList<String> opciones = new ArrayList<String>();
+    private final ArrayList<String> opciones = new ArrayList<>();
 
     public Menu(String titulo, Scanner in){
         this.titulo = titulo;
@@ -35,7 +35,6 @@ public class Menu {
                 System.out.println("Ingresa una opcion");
                 opcionIngresada = in.nextInt();
                 if (opcionIngresada < 0 || opcionIngresada > opciones.size()) {
-                    opcionIngresada = -1;
                     throw new InputMismatchException();
                 }
                 break ;

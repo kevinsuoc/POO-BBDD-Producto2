@@ -98,27 +98,48 @@ public class FormularioSocio extends Formulario {
         }
     }
 
-    /*
     public void mostrarFacturasMensuales() {
         int numeroSocio = obtenerNumero("Ingresa el numero de socio");
         try {
             Socio socio = controlador.obtenerSocioPorNumero(numeroSocio);
-            ArrayList<Inscripcion> excursionesDelMes = controlador.obtenerInscripcionesSocio(numeroSocio);
-            double cuotaMensualBase = Controlador.precioCuotaExcursionista;
-            double cuotaMensualTotal;
+            ArrayList<Inscripcion> inscripcionesDelMes = controlador.obtenerInscripcionesMesSocio(numeroSocio);
+            double baseCuota = Controlador.precioCuotaExcursionista;
+            double totalCuota;
+            double baseExcursiones = 0;
+            double totalExcursiones;
+            double total;
+
+            for (Inscripcion inscripcion: inscripcionesDelMes)
+                baseExcursiones += inscripcion.getExcursion().getPrecioInscripcion();
+            if (socio instanceof SocioFederado)
+                totalExcursiones = SocioFederado.obtenerPrecioExcursionConDescuento(baseExcursiones);
+            else
+                totalExcursiones = baseExcursiones;
 
             if (socio instanceof SocioFederado)
-                cuotaMensualTotal = SocioFederado.obtenerCuotaConDescuento(cuotaMensualBase);
+                totalCuota = SocioFederado.obtenerCuotaConDescuento(baseCuota);
             else if (socio instanceof  SocioInfantil)
-                cuotaMensualTotal = SocioInfantil.obtenerCuotaConDescuento(cuotaMensualBase);
+                totalCuota = SocioInfantil.obtenerCuotaConDescuento(baseCuota);
+            else
+                totalCuota = baseCuota;
+
+            total = totalCuota + totalExcursiones;
 
             System.out.println("----- Cuota mensual de socio -----");
             System.out.println(socio);
+            System.out.println("Precio mensual de excursiones base: " + baseExcursiones);
+            if (socio instanceof SocioFederado)
+                System.out.println("Con descuento de socio federado: " + totalExcursiones);
+            System.out.println("Precio de cuota excursionista base: " + baseCuota);
+            if (socio instanceof  SocioFederado)
+                System.out.println("Con descuento de socio federado: " + totalCuota);
+            if (socio instanceof  SocioInfantil)
+                System.out.println("Con descuento de socio infantil: " + totalCuota);
+            System.out.println("Total: " + total);
             System.out.println("----------------------------------");
 
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
-    */
 }

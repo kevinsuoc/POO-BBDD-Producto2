@@ -1,7 +1,6 @@
 package dataroast.vista;
 
 import dataroast.controlador.Controlador;
-import dataroast.controlador.ControladorSocio;
 
 import java.util.Scanner;
 
@@ -71,7 +70,7 @@ public class View {
                 case 4: formularioSocio.agregarSocioInfantil(); break;
                 case 5: formularioSocio.eliminarSocio(); break;
                 case 6: formularioSocio.mostrarSocios(); break;
-//                case 7: formularioSocio.mostrarFacturasMensuales(); break;
+                case 7: formularioSocio.mostrarFacturasMensuales(); break;
             }
         }
     }
