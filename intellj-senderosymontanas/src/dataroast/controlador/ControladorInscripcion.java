@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ControladorInscripcion {
-    private Datos datos;
+    private final Datos datos;
 
     public ControladorInscripcion(Datos datos){
         this.datos = datos;
@@ -24,9 +24,9 @@ public class ControladorInscripcion {
         if (socio == null){
             throw new InstanceNotFoundException("El socio no existe");
         }
+        if (datos.obtenerInscripcionPorNumero(numeroInscripcion) != null)
+            throw new UsedIdentifierException("Numero de inscripcion ya utilizado");
         datos.getInscripciones().add(new Inscripcion(numeroInscripcion, socio, excursion));
-        //
-        // Que pasa si el socio ya esta agregado...
     }
 
     public void eliminarInscripcion(int numeroInscripcion) {

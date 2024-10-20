@@ -119,4 +119,11 @@ public class Datos {
         }
         return inscripcionesFiltradas;
     }
+
+    public Inscripcion obtenerInscripcionPorNumero(int numeroInscripcion) {
+        for (Inscripcion inscripcion: inscripciones)
+            if (inscripcion.getNumeroInscripcion() == numeroInscripcion)
+                return inscripcion;
+        return null;
+    }
 }

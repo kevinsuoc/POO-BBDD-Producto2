@@ -88,7 +88,7 @@ public class FormularioSocio extends Formulario {
             else
                 sociosFiltrados = controlador.obtenerSociosPorTipo(obtenerTipoSocio("Ingresa el tipo de socio"));
             for (Socio socio: sociosFiltrados) {
-                System.out.println("----- Socio -----");
+                System.out.println("------ Socio ------");
                 System.out.println(socio);
                 System.out.println("--------------------");
             }

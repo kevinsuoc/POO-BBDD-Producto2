@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ControladorExcursion {
-    private Datos datos;
+    private final Datos datos;
 
     public ControladorExcursion(Datos datos){
         this.datos = datos;
@@ -21,7 +21,7 @@ public class ControladorExcursion {
     }
 
     public ArrayList<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){
-        ArrayList<Excursion> excursionesValidas = new ArrayList<Excursion>();
+        ArrayList<Excursion> excursionesValidas = new ArrayList<>();
         ArrayList<Excursion> todasLasExcursiones;
         LocalDate fecha;
 
