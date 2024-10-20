@@ -6,7 +6,7 @@ public class SocioFederado extends SocioAdulto {
     private Federacion federacion;
 
 
-    public SocioFederado (int numeroSocio, String nombre, String nif, Federacion federacion) {
+    public SocioFederado (int numeroSocio, String nif, String nombre, Federacion federacion) {
         super(nombre, numeroSocio, nif);
         this.federacion = federacion;
     }

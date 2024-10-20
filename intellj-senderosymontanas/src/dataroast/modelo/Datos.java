@@ -21,6 +21,8 @@ public class Datos {
     public Datos(){
         seguros.add(new Seguro(10, BASICO));
         seguros.add(new Seguro(15, COMPLETO));
+        federaciones.add(new Federacion("abc", "Ejemplo 1"));
+        federaciones.add(new Federacion("dce", "Ejemplo 2"));
     }
 
     // Obtener excursiones

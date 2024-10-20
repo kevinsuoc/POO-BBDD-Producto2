@@ -47,7 +47,6 @@ public class FormularioSocio extends Formulario {
         int numeroSocio = obtenerNumero("Ingresa el numero de socio");
         String nombre = obtenerString("Ingresa el nombre");
         String nifAdulto = obtenerString("Ingresa el NIF de un socio adulto");
-        System.out.print("Introduce el número de socio del Tutor: ");
 
         try {
             controlador.agregarSocioInfantil(numeroSocio, nombre, nifAdulto);
