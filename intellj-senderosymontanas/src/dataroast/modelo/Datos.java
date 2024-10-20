@@ -12,11 +12,11 @@ import static dataroast.modelo.TipoSeguro.*;
 * por tdo tipo de controlador. En ese caso, debe encontrarse en esta clase.
 * */
 public class Datos {
-    ArrayList<Federacion> federaciones = new ArrayList<Federacion>();
-    ArrayList<Excursion> excursiones = new ArrayList<Excursion>();
-    ArrayList<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
-    ArrayList<Seguro> seguros = new ArrayList<Seguro>();
-    ArrayList<Socio> socios = new ArrayList<Socio>();
+    ArrayList<Federacion> federaciones = new ArrayList<>();
+    ArrayList<Excursion> excursiones = new ArrayList<>();
+    ArrayList<Inscripcion> inscripciones = new ArrayList<>();
+    ArrayList<Seguro> seguros = new ArrayList<>();
+    ArrayList<Socio> socios = new ArrayList<>();
 
     public Datos(){
         seguros.add(new Seguro(10, BASICO));
@@ -89,7 +89,7 @@ public class Datos {
     }
 
     public ArrayList<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior, int numeroSocio){
-        ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<Inscripcion>();
+        ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<>();
 
         for (Inscripcion inscripcion: inscripciones){
             LocalDate fecha = inscripcion.getExcursion().getFecha();
@@ -100,7 +100,7 @@ public class Datos {
     }
 
     public ArrayList<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior){
-        ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<Inscripcion>();
+        ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<>();
 
         for (Inscripcion inscripcion: inscripciones){
             LocalDate fecha = inscripcion.getExcursion().getFecha();
@@ -111,7 +111,7 @@ public class Datos {
     }
 
     public ArrayList<Inscripcion> obtenerInscripciones(int numeroSocio){
-        ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<Inscripcion>();
+        ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<>();
 
         for (Inscripcion inscripcion: inscripciones){
             if (inscripcion.getSocio().getNumeroSocio() == numeroSocio)
