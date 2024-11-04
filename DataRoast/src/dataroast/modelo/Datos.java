@@ -27,6 +27,7 @@ public class Datos {
 
     // Obtener excursiones
     public ArrayList<Excursion> getExcursiones() {
+
         return excursiones;
     }
 

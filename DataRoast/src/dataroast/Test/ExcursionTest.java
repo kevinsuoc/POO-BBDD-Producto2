@@ -19,7 +19,6 @@ public class ExcursionTest {
         listaExcursiones.add(excursion1);
 
         // Then: Verify that the excursion was added correctly
-        Assertions.assertFalse(listaExcursiones.isEmpty());
         Assertions.assertEquals(1, listaExcursiones.size());
         Assertions.assertEquals(excursion1, listaExcursiones.get(0));
     }
