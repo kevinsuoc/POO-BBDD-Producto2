@@ -1,18 +1,20 @@
 package dataroast.modelo;
 
+import dataroast.DAO.DAOFactory;
+import dataroast.DAO.FederacionDAO;
+import dataroast.DAO.MysqlDAOFactory;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static dataroast.modelo.TipoSeguro.*;
 
-/*
-* El criterio para separar metodos en esta clase y una clase controlador es
-* si un metodo puede ser pensado como una query a una base de datos y utilizado
-* por tdo tipo de controlador. En ese caso, debe encontrarse en esta clase.
-* */
 public class Datos {
-    ArrayList<Federacion> federaciones = new ArrayList<>();
+    MysqlDAOFactory factoryDAO = (MysqlDAOFactory) DAOFactory.getDAOFactory();
+    FederacionDAO federacionDAO =  factoryDAO.getFederacionDAO();
+
     ArrayList<Excursion> excursiones = new ArrayList<>();
     ArrayList<Inscripcion> inscripciones = new ArrayList<>();
     ArrayList<Seguro> seguros = new ArrayList<>();
@@ -21,17 +23,14 @@ public class Datos {
     public Datos(){
         seguros.add(new Seguro(10, BASICO));
         seguros.add(new Seguro(15, COMPLETO));
-        federaciones.add(new Federacion("abc", "Ejemplo 1"));
-        federaciones.add(new Federacion("dce", "Ejemplo 2"));
     }
 
-    // Obtener excursiones
-    public ArrayList<Excursion> getExcursiones() {
-
+    // Excursiones
+    public ArrayList<Excursion> obtenerExcursiones() {
         return excursiones;
     }
 
-    public Excursion encontrarExcursionPorCodigo(String codigo){
+    public Excursion buscarExcursion(String codigo){
         for (Excursion excursion: excursiones){
             if (Objects.equals(excursion.getCodigo(), codigo))
                 return excursion;
@@ -39,12 +38,25 @@ public class Datos {
         return null;
     }
 
-    // Obtener socios
+    public ArrayList<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){
+        ArrayList<Excursion> excursionesValidas = new ArrayList<>();
+        if (fechaInferior.isAfter(fechaSuperior)) {
+            throw new IllegalArgumentException("La fecha inferior es mayor que la superior");
+        }
+        for (Excursion excursion: excursiones){
+            LocalDate fecha = excursion.getFecha();
+            if (fecha.isAfter(fechaInferior) && fecha.isBefore(fechaSuperior))
+                excursionesValidas.add(excursion);
+        }
+        return excursionesValidas;
+    }
+
+    // Socios
     public ArrayList<Socio> getSocios() {
         return socios;
     }
 
-    public Socio encontrarSocioPorNumeroSocio(int numeroSocio){
+    public Socio buscarSocio(int numeroSocio){
         for (Socio socio: socios){
             if (socio.getNumeroSocio() == numeroSocio){
                 return socio;
@@ -53,7 +65,7 @@ public class Datos {
         return null;
     }
 
-    public Socio encontrarSocioPorNif(String nif){
+    public Socio buscarSocioNIF(String nif){
         for (Socio socio: socios){
             if (socio instanceof SocioAdulto && Objects.equals(((SocioAdulto) socio).getNif(), nif)){
                 return socio;
@@ -62,8 +74,8 @@ public class Datos {
         return null;
     }
 
-    // Obtener seguros
-    public Seguro getSeguroPorTipo(TipoSeguro tipoSeguro){
+    // Seguros
+    public Seguro buscarSeguroPorTipo(TipoSeguro tipoSeguro){
         if (tipoSeguro == BASICO)
             return seguros.get(0);
         if (tipoSeguro == COMPLETO)
@@ -71,25 +83,34 @@ public class Datos {
         return null;
     }
 
-    // Obtener federaciones
-    public ArrayList<Federacion> getFederaciones(){
-        return federaciones;
+    // Federaciones
+    public Federacion buscarFederacion(String codigoFederacion) {
+        return federacionDAO.find(codigoFederacion);
     }
 
-    public Federacion encontrarFederacionPorCodigo(String codigoFederacion) {
-        for (Federacion federacion: federaciones){
-            if (Objects.equals(federacion.getCodigo(), codigoFederacion))
-                return federacion;
-        }
-        return null;
+    public List<Federacion> buscarFederaciones(){
+            return federacionDAO.findAll();
     }
 
-    // Obtener inscripciones
-    public ArrayList<Inscripcion> getInscripciones(){
-        return inscripciones;
+    public Federacion agregarFederacion(Federacion federacion){
+        return federacionDAO.insert(federacion);
     }
 
+    public boolean eliminarFederacion(String codigo){
+        return federacionDAO.delete(codigo);
+    }
+
+    public Federacion actualizarFederacion(Federacion federacion){
+        return federacionDAO.update(federacion);
+    }
+
+    // Inscripciones
     public ArrayList<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior, int numeroSocio){
+        if (numeroSocio < 0)
+            throw new ModelException("Numero de inscripcion invalido");
+        if (fechaInferior.isAfter(fechaSuperior)){
+            throw new ModelException("La fecha inferior está luego de la fecha superior");
+        }
         ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<>();
 
         for (Inscripcion inscripcion: inscripciones){
@@ -101,6 +122,9 @@ public class Datos {
     }
 
     public ArrayList<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior){
+        if (fechaInferior.isAfter(fechaSuperior)){
+            throw new ModelException("La fecha inferior está luego de la fecha superior");
+        }
         ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<>();
 
         for (Inscripcion inscripcion: inscripciones){
@@ -112,6 +136,8 @@ public class Datos {
     }
 
     public ArrayList<Inscripcion> obtenerInscripciones(int numeroSocio){
+        if (numeroSocio <= 0)
+            throw new ModelException("Numero de socio invalido");
         ArrayList<Inscripcion> inscripcionesFiltradas = new ArrayList<>();
 
         for (Inscripcion inscripcion: inscripciones){
@@ -121,10 +147,30 @@ public class Datos {
         return inscripcionesFiltradas;
     }
 
-    public Inscripcion obtenerInscripcionPorNumero(int numeroInscripcion) {
+    public ArrayList<Inscripcion> obtenerInscripciones(){
+        return inscripciones;
+    }
+
+    public Inscripcion obtenerInscripcion(int numeroInscripcion) {
+        if (numeroInscripcion <= 0)
+            throw new ModelException("Numero de inscripcion invalido");
         for (Inscripcion inscripcion: inscripciones)
             if (inscripcion.getNumeroInscripcion() == numeroInscripcion)
                 return inscripcion;
         return null;
+    }
+
+    public void eliminarInscripcion(int numeroInscripcion) {
+        if (numeroInscripcion <= 0)
+            throw new ModelException("Numero de inscripcion invalido");
+        for (Inscripcion inscripcion: inscripciones){
+            if (inscripcion.getNumeroInscripcion() == numeroInscripcion) {
+                if (inscripcion.getExcursion().getFecha().isBefore(LocalDate.now()))
+                    throw new ModelException("Solo se pueden eliminar inscripciones de excursiones futuras");
+                inscripciones.remove(inscripcion);
+                return ;
+            }
+        }
+        throw new ModelException("La inscripcion no existe");
     }
 }

@@ -1,7 +1,5 @@
 package dataroast.modelo;
 
-import java.util.Objects;
-
 public class Inscripcion {
     private int numeroInscripcion;
     private Socio socio;
@@ -9,7 +7,13 @@ public class Inscripcion {
 
     public Inscripcion(int numeroInscripcion, Socio socio, Excursion excursion) {
         if (numeroInscripcion <= 0){
-            throw new InvalidModelArgumentException("El numero de inscripcion debe ser positivo");
+            throw new ModelException("El numero de inscripcion debe ser positivo");
+        }
+        if (socio == null) {
+            throw new ModelException("Socio nulo");
+        }
+        if (excursion == null) {
+            throw new ModelException("Excursion nula");
         }
         this.numeroInscripcion = numeroInscripcion;
         this.socio = socio;

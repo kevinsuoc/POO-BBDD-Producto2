@@ -6,6 +6,9 @@ public class SocioEstandar extends SocioAdulto{
 
     public SocioEstandar(int numeroSocio, String nif, String nombre, Seguro seguro) {
         super(nombre, numeroSocio, nif);
+        if (seguro == null){
+            throw new ModelException("Seguro nulo");
+        }
         this.seguro = seguro;
     }
 

@@ -5,6 +5,10 @@ public class Seguro {
     private double precio;
 
     public Seguro(double precio, TipoSeguro tipoSeguro){
+        if (precio < 0)
+            throw new ModelException("El precio del seguro no puede ser negativo");
+        if (tipoSeguro == null)
+            throw new ModelException("tipoSeguro null");
         this.tipoSeguro = tipoSeguro;
         this.precio = precio;
     }

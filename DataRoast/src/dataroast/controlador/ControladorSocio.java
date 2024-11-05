@@ -14,19 +14,19 @@ public class ControladorSocio {
     }
 
     public void agregarSocioEstandar(int numeroSocio, String nif, String nombre, TipoSeguro tipoSeguro) {
-        if (datos.encontrarSocioPorNumeroSocio(numeroSocio) != null) {
+        if (datos.buscarSocio(numeroSocio) != null) {
             throw new UsedIdentifierException("El socio con numero " + numeroSocio + " ya existe. No se puede agregar.");
         }
-        datos.getSocios().add(new SocioEstandar(numeroSocio, nif, nombre, datos.getSeguroPorTipo(tipoSeguro)));
+        datos.getSocios().add(new SocioEstandar(numeroSocio, nif, nombre, datos.buscarSeguroPorTipo(tipoSeguro)));
     }
 
     public void agregarSocioFederado(int numeroSocio, String nif, String nombre, String codigoFederacion) {
         Federacion federacion;
 
-        if (datos.encontrarSocioPorNumeroSocio(numeroSocio) != null) {
+        if (datos.buscarSocio(numeroSocio) != null) {
             throw new UsedIdentifierException("El socio con numero " + numeroSocio + " ya existe. No se puede agregar.");
         }
-        federacion = datos.encontrarFederacionPorCodigo(codigoFederacion);
+        federacion = datos.buscarFederacion(codigoFederacion);
         if (federacion == null){
             throw new InstanceNotFoundException("El codigo no corresponde a ninguna federacion");
         }
@@ -36,22 +36,22 @@ public class ControladorSocio {
     public void agregarSocioInfantil(int numeroSocio, String nombre, String nifAdulto){
         Socio socioAdulto;
 
-        if (datos.encontrarSocioPorNumeroSocio(numeroSocio) != null) {
+        if (datos.buscarSocio(numeroSocio) != null) {
             throw new UsedIdentifierException("El socio con numero " + numeroSocio + " ya existe. No se puede agregar.");
         }
-        socioAdulto = datos.encontrarSocioPorNif(nifAdulto);
+        socioAdulto = datos.buscarSocioNIF(nifAdulto);
         if (!(socioAdulto instanceof SocioAdulto))
             throw new IllegalArgumentException("El socio referido no es adulto");
         datos.getSocios().add(new SocioInfantil(numeroSocio, nombre, (SocioAdulto) socioAdulto));
     }
 
     public void eliminarSocio(int numeroSocio){
-        Socio socio = datos.encontrarSocioPorNumeroSocio(numeroSocio);
+        Socio socio = datos.buscarSocio(numeroSocio);
 
         if (socio == null){
             throw new InstanceNotFoundException("Socio no encontrado");
         }
-        for (Inscripcion inscripcion: datos.getInscripciones()){
+        for (Inscripcion inscripcion: datos.obtenerInscripciones()){
             if (inscripcion.getSocio().getNumeroSocio() == numeroSocio){
                 throw new IllegalArgumentException("El socio no se puede eliminar, está inscrito a una excursión");
             }
@@ -82,21 +82,21 @@ public class ControladorSocio {
     public Socio obtenerSocioPorNumero(int numeroSocio) {
         if (numeroSocio <= 0)
             throw new IllegalArgumentException("Numero de socio invalido");
-        Socio socio = datos.encontrarSocioPorNumeroSocio(numeroSocio);
+        Socio socio = datos.buscarSocio(numeroSocio);
         if (socio == null)
             throw new InstanceNotFoundException("El socio no existe");
         return socio;
     }
 
     public void cambiarTipoSeguro(int numeroSocio, TipoSeguro tipoSeguro) {
-        Socio socio = datos.encontrarSocioPorNumeroSocio(numeroSocio);
+        Socio socio = datos.buscarSocio(numeroSocio);
         if (socio == null)
             throw new InstanceNotFoundException("El socio no existe");
         if (!(socio instanceof SocioEstandar))
             throw new IllegalArgumentException("Solo se puede cambiar el seguro de un socio estandar");
         if (((SocioEstandar) socio).getSeguro().getTipoSeguro() == tipoSeguro)
             throw new IllegalArgumentException("El socio ya tiene ese seguro");
-        Seguro seguro = datos.getSeguroPorTipo(tipoSeguro);
+        Seguro seguro = datos.buscarSeguroPorTipo(tipoSeguro);
         ((SocioEstandar) socio).setSeguro(seguro);
     }
 

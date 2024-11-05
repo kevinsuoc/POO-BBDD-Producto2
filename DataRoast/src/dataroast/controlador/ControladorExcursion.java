@@ -14,26 +14,13 @@ public class ControladorExcursion {
     }
 
     public void agregarExcursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha){
-        if (datos.encontrarExcursionPorCodigo(codigo) != null){
+        if (datos.buscarExcursion(codigo) != null){
             throw new UsedIdentifierException("El codigo de excursion ya esta siendo utilizado");
         }
-        datos.getExcursiones().add(new Excursion(numDias, precioInscripcion, codigo, descripcion, fecha));
+        datos.obtenerExcursiones().add(new Excursion(numDias, precioInscripcion, codigo, descripcion, fecha));
     }
 
     public ArrayList<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){
-        ArrayList<Excursion> excursionesValidas = new ArrayList<>();
-        ArrayList<Excursion> todasLasExcursiones;
-        LocalDate fecha;
-
-        if (fechaInferior.isAfter(fechaSuperior))
-            throw new IllegalArgumentException("La fecha inferior es mayor que la superior");
-        todasLasExcursiones = datos.getExcursiones();
-        for (Excursion excursion: todasLasExcursiones){
-            fecha = excursion.getFecha();
-            if (fecha.isAfter(fechaInferior) && fecha.isBefore(fechaSuperior))
-                excursionesValidas.add(excursion);
-        }
-
-        return excursionesValidas;
+        return datos.obtenerExcursiones(fechaInferior, fechaSuperior);
     }
 }

@@ -6,9 +6,9 @@ abstract public class Socio {
 
     public Socio(String nombre, int numeroSocio) {
         if (numeroSocio <= 0)
-            throw new InvalidModelArgumentException("Numero de socio debe ser mayor a 0");
+            throw new ModelException("Numero de socio debe ser mayor a 0");
         if (nombre.length() < 2)
-            throw new InvalidModelArgumentException("Nombre invalido");
+            throw new ModelException("Nombre muy corto");
         this.nombre = nombre;
         this.numeroSocio = numeroSocio;
     }

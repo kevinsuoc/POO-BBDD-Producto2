@@ -6,9 +6,9 @@ public class Federacion {
 
     public Federacion(String codigo, String nombre){
         if (nombre.length() < 3)
-            throw new InvalidModelArgumentException("Nombre de la federacion muy corto");
-        if (codigo.isEmpty())
-            throw new InvalidModelArgumentException("Codigo de federacion muy corto");
+            throw new ModelException("Nombre de la federacion muy corto");
+        if (codigo.length() < 3)
+            throw new ModelException("Codigo de federacion muy corto");
         this.codigo = codigo;
         this.nombre = nombre;
     }
