@@ -8,10 +8,7 @@ public class SocioFederado extends SocioAdulto {
 
     public SocioFederado (int numeroSocio, String nif, String nombre, Federacion federacion) {
         super(nombre, numeroSocio, nif);
-        if (federacion == null){
-            throw new ModelException("Federacion nula");
-        }
-        this.federacion = federacion;
+        this.setFederacion(federacion);
     }
 
     public Federacion getFederacion() {
@@ -19,7 +16,9 @@ public class SocioFederado extends SocioAdulto {
     }
 
     public void setFederacion(Federacion federacion) {
-        this.federacion = federacion;
+        if (federacion == null){
+            throw new ModelException("Federacion nula");
+        }
     }
 
     public static double obtenerCuotaConDescuento(double cuotaBase){

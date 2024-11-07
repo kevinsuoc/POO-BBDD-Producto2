@@ -6,6 +6,7 @@ import dataroast.modelo.Excursion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FormularioExcursion extends Formulario {
@@ -34,7 +35,7 @@ public class FormularioExcursion extends Formulario {
     public void mostrarExcursiones() {
         LocalDate fechaMenor;
         LocalDate fechaMayor;
-        ArrayList<Excursion> excursiones;
+        List<Excursion> excursiones;
 
         fechaMenor = obtenerFecha("Fecha limite inferior...");
         fechaMayor = obtenerFecha("Fecha limite superior...");

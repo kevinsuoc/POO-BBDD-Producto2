@@ -31,11 +31,11 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
 
                     List<Socio> socios = new ArrayList<>();
                     while (rsSocios.next()) {
-                        Socio socio = new SocioDAO().find(rsSocios.getString("socio_id"));
-                        if (socio != null) socios.add(socio);
+//                        Socio socio = new SocioDAO().find(rsSocios.getString("socio_id"));
+//                        if (socio != null) socios.add(socio);
                     }
 
-                    return new Inscripcion(numeroInscripcion, socios, excursion);
+//                    return new Inscripcion(numeroInscripcion, socios, excursion);
                 }
             }
         } catch (SQLException e) {
@@ -46,29 +46,30 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
 
     @Override
     public Inscripcion insert(Inscripcion inscripcion) {
-        String insertQuery = "INSERT INTO inscripcion (numero_inscripcion, excursion_codigo) VALUES (?, ?)";
-        String insertSociosQuery = "INSERT INTO inscripcion_socio (numero_inscripcion, socio_id) VALUES (?, ?)";
+//        String insertQuery = "INSERT INTO inscripcion (numero_inscripcion, excursion_codigo) VALUES (?, ?)";
+//        String insertSociosQuery = "INSERT INTO inscripcion_socio (numero_inscripcion, socio_id) VALUES (?, ?)";
 
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(insertQuery);
-            stm.setInt(1, inscripcion.getNumeroInscripcion());
-            stm.setString(2, inscripcion.getExcursion().getCodigo());
+//        try (Connection con = MysqlConnection.getConnection()) {
+//            PreparedStatement stm = con.prepareStatement(insertQuery);
+//            stm.setInt(1, inscripcion.getNumeroInscripcion());
+//            stm.setString(2, inscripcion.getExcursion().getCodigo());
 
-            if (stm.executeUpdate() == 1) {
+//            if (stm.executeUpdate() == 1) {
                 // Insertar cada socio en la tabla intermedia
-                for (Socio socio : inscripcion.getSocios()) {
-                    PreparedStatement stmSocio = con.prepareStatement(insertSociosQuery);
-                    stmSocio.setInt(1, inscripcion.getNumeroInscripcion());
-                    stmSocio.setString(2, socio.getNumeroSocio());
-                    stmSocio.executeUpdate();
-                }
-                return inscripcion;
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            throw new DAOException("Error insertando inscripcion: " + e.getMessage());
-        }
+//                for (Socio socio : inscripcion.getSocios()) {
+//                    PreparedStatement stmSocio = con.prepareStatement(insertSociosQuery);
+//                    stmSocio.setInt(1, inscripcion.getNumeroInscripcion());
+//                    stmSocio.setString(2, socio.getNumeroSocio());
+//                    stmSocio.executeUpdate();
+//                }
+//                return inscripcion;
+//            } else {
+//                return null;
+//            }
+//        } catch (SQLException e) {
+//            throw new DAOException("Error insertando inscripcion: " + e.getMessage());
+//        }
+        return null;
     }
 
     @Override
@@ -92,6 +93,7 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
 
     @Override
     public List<Inscripcion> findAll() {
+        /*
         String findAllQuery = "SELECT * FROM inscripcion";
         String sociosQuery = "SELECT socio_id FROM inscripcion_socio WHERE numero_inscripcion = ?";
         List<Inscripcion> inscripciones = new ArrayList<>();
@@ -122,10 +124,13 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
         } catch (SQLException e) {
             throw new DAOException("Error buscando todas las inscripciones: " + e.getMessage());
         }
+        */
+        return null;
     }
 
     @Override
     public Inscripcion update(Inscripcion inscripcion) {
+        /*
         String updateQuery = "UPDATE inscripcion SET excursion_codigo = ? WHERE numero_inscripcion = ?";
         String deleteSociosQuery = "DELETE FROM inscripcion_socio WHERE numero_inscripcion = ?";
         String insertSociosQuery = "INSERT INTO inscripcion_socio (numero_inscripcion, socio_id) VALUES (?, ?)";
@@ -152,6 +157,7 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
             return inscripcion;
         } catch (SQLException e) {
             throw new DAOException("Error actualizando inscripcion: " + e.getMessage());
-        }
+        }*/
+        return null;
     }
 }

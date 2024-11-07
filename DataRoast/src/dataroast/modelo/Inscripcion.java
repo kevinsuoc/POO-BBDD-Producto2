@@ -6,18 +6,9 @@ public class Inscripcion {
     private Excursion excursion;
 
     public Inscripcion(int numeroInscripcion, Socio socio, Excursion excursion) {
-        if (numeroInscripcion <= 0){
-            throw new ModelException("El numero de inscripcion debe ser positivo");
-        }
-        if (socio == null) {
-            throw new ModelException("Socio nulo");
-        }
-        if (excursion == null) {
-            throw new ModelException("Excursion nula");
-        }
-        this.numeroInscripcion = numeroInscripcion;
-        this.socio = socio;
-        this.excursion = excursion;
+        setNumeroInscripcion(numeroInscripcion);
+        setSocio(socio);
+        setExcursion(excursion);
     }
 
     public int getNumeroInscripcion() {
@@ -33,14 +24,23 @@ public class Inscripcion {
     }
 
     public void setNumeroInscripcion(int numeroInscripcion) {
+        if (numeroInscripcion <= 0){
+            throw new ModelException("El numero de inscripcion debe ser positivo");
+        }
         this.numeroInscripcion = numeroInscripcion;
     }
 
     public void setSocio(Socio socio) {
+        if (socio == null) {
+            throw new ModelException("Socio nulo");
+        }
         this.socio = socio;
     }
 
     public void setExcursion(Excursion excursion) {
+        if (excursion == null) {
+            throw new ModelException("Excursion nula");
+        }
         this.excursion = excursion;
     }
 

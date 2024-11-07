@@ -17,7 +17,7 @@ public class ControladorSocio {
         if (datos.buscarSocio(numeroSocio) != null) {
             throw new UsedIdentifierException("El socio con numero " + numeroSocio + " ya existe. No se puede agregar.");
         }
-        datos.getSocios().add(new SocioEstandar(numeroSocio, nif, nombre, datos.buscarSeguroPorTipo(tipoSeguro)));
+        datos.getSocios().add(new SocioEstandar(numeroSocio, nif, nombre, datos.obtenerSeguro(tipoSeguro)));
     }
 
     public void agregarSocioFederado(int numeroSocio, String nif, String nombre, String codigoFederacion) {
@@ -26,7 +26,7 @@ public class ControladorSocio {
         if (datos.buscarSocio(numeroSocio) != null) {
             throw new UsedIdentifierException("El socio con numero " + numeroSocio + " ya existe. No se puede agregar.");
         }
-        federacion = datos.buscarFederacion(codigoFederacion);
+        federacion = datos.obtenerFederacion(codigoFederacion);
         if (federacion == null){
             throw new InstanceNotFoundException("El codigo no corresponde a ninguna federacion");
         }
@@ -96,7 +96,7 @@ public class ControladorSocio {
             throw new IllegalArgumentException("Solo se puede cambiar el seguro de un socio estandar");
         if (((SocioEstandar) socio).getSeguro().getTipoSeguro() == tipoSeguro)
             throw new IllegalArgumentException("El socio ya tiene ese seguro");
-        Seguro seguro = datos.buscarSeguroPorTipo(tipoSeguro);
+        Seguro seguro = datos.obtenerSeguro(tipoSeguro);
         ((SocioEstandar) socio).setSeguro(seguro);
     }
 

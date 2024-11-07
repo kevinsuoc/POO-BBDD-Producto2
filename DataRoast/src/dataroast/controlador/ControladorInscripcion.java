@@ -16,7 +16,7 @@ public class ControladorInscripcion {
     }
 
     public void agregarInscripcion(int numeroInscripcion, int numeroSocio, String codigoExcursion){
-        Excursion excursion = datos.buscarExcursion(codigoExcursion);
+        Excursion excursion = datos.obtenerExcursion(codigoExcursion);
         if (excursion == null){
             throw new InstanceNotFoundException("La excursion no existe");
         }

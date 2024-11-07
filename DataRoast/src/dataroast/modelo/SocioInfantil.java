@@ -6,10 +6,7 @@ public class SocioInfantil extends Socio {
 
     public SocioInfantil(int numeroSocio, String nombre, SocioAdulto socioAdulto) {
         super(nombre, numeroSocio);
-        if (socioAdulto == null){
-            throw new ModelException("Socio adulto nulo");
-        }
-        this.socioAdulto = socioAdulto;
+        setSocioAdulto(socioAdulto);
     }
 
     public SocioAdulto getSocioAdulto() {
@@ -17,6 +14,9 @@ public class SocioInfantil extends Socio {
     }
 
     public void setSocioAdulto(SocioAdulto socioAdulto) {
+        if (socioAdulto == null){
+            throw new ModelException("Socio adulto nulo");
+        }
         this.socioAdulto = socioAdulto;
     }
 

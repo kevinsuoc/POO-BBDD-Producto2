@@ -5,12 +5,9 @@ abstract public class Socio {
     private int numeroSocio;
 
     public Socio(String nombre, int numeroSocio) {
-        if (numeroSocio <= 0)
-            throw new ModelException("Numero de socio debe ser mayor a 0");
-        if (nombre.length() < 2)
-            throw new ModelException("Nombre muy corto");
-        this.nombre = nombre;
-        this.numeroSocio = numeroSocio;
+        setNumeroSocio(numeroSocio);
+        setNombre(nombre);
+
     }
 
     public String getNombre() {
@@ -22,11 +19,13 @@ abstract public class Socio {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre.length() < 2)
+            throw new ModelException("Nombre muy corto");
     }
 
     public void setNumeroSocio(int numeroSocio) {
-        this.numeroSocio = numeroSocio;
+        if (numeroSocio <= 0)
+            throw new ModelException("Numero de socio debe ser mayor a 0");
     }
 
     public String toString() {

@@ -110,4 +110,29 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
             throw new DAOException("Error insertando excursion: " + e.getMessage());
         }
     }
+
+    public List<Excursion> findByDateRange(LocalDate fechaInferior, LocalDate fechaSuperior){
+        String findQuery = "SELECT * FROM excursion WHERE fecha BETWEEN ? AND ?;";
+
+        ArrayList<Excursion> excursiones = new ArrayList<>();
+        try (Connection con = MysqlConnection.getConnection()) {
+            PreparedStatement stm = con.prepareStatement(findQuery);
+            stm.setDate(1, Date.valueOf(fechaInferior));
+            stm.setDate(2, Date.valueOf(fechaSuperior));
+            try (ResultSet results = stm.executeQuery()) {
+                while (results.next()) {
+                    excursiones.add(new Excursion(
+                            results.getInt("num_dias"),
+                            results.getDouble("precio_inscripcion"),
+                            results.getString("codigo"),
+                            results.getString("descripcion"),
+                            results.getDate("fecha").toLocalDate()
+                    ));
+                }
+                return excursiones;
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error buscando excursiones por fecha: " + e.getMessage());
+        }
+    }
 }

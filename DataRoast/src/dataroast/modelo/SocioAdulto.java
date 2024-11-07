@@ -5,9 +5,7 @@ abstract public class SocioAdulto extends Socio {
 
     public SocioAdulto(String nombre, int numeroSocio, String nif) {
         super(nombre, numeroSocio);
-        if (nif.length() < 7 || nif.length() > 10)
-            throw new ModelException("Formato de NIF erroneo");
-        this.nif = nif;
+        setNif(nif);
     }
 
     public String getNif(){
@@ -15,7 +13,8 @@ abstract public class SocioAdulto extends Socio {
     }
 
     public void setNif(String nif) {
-        this.nif = nif;
+        if (nif.length() < 7 || nif.length() > 10)
+            throw new ModelException("Formato de NIF erroneo");
     }
 
     public String toString() {

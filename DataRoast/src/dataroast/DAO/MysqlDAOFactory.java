@@ -1,5 +1,6 @@
       package dataroast.DAO;
 
+import dataroast.modelo.Excursion;
 import dataroast.util.MysqlConnection;
 
 public class MysqlDAOFactory extends DAOFactory {
@@ -8,4 +9,10 @@ public class MysqlDAOFactory extends DAOFactory {
     }
 
     public FederacionDAO getFederacionDAO() { return new FederacionDAO(); }
+
+    public ExcursionDAO getExcursionDAO(){ return new ExcursionDAO(); }
+
+    public InscripcionDAO getInscripcionDAO(){ return new InscripcionDAO(); }
+
+    public SeguroDAO getSeguroDAO(){ return new SeguroDAO(); }
 }

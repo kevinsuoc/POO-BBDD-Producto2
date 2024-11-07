@@ -1,54 +1,48 @@
 package dataroast.modelo;
 
-import dataroast.DAO.DAOFactory;
-import dataroast.DAO.FederacionDAO;
-import dataroast.DAO.MysqlDAOFactory;
+import dataroast.DAO.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static dataroast.modelo.TipoSeguro.*;
-
 public class Datos {
     MysqlDAOFactory factoryDAO = (MysqlDAOFactory) DAOFactory.getDAOFactory();
     FederacionDAO federacionDAO =  factoryDAO.getFederacionDAO();
+    SeguroDAO seguroDAO = factoryDAO.getSeguroDAO();
+    InscripcionDAO inscripcionDAO = factoryDAO.getInscripcionDAO();
+    ExcursionDAO excursionDAO = factoryDAO.getExcursionDAO();
 
-    ArrayList<Excursion> excursiones = new ArrayList<>();
     ArrayList<Inscripcion> inscripciones = new ArrayList<>();
-    ArrayList<Seguro> seguros = new ArrayList<>();
     ArrayList<Socio> socios = new ArrayList<>();
 
     public Datos(){
-        seguros.add(new Seguro(10, BASICO));
-        seguros.add(new Seguro(15, COMPLETO));
     }
 
     // Excursiones
-    public ArrayList<Excursion> obtenerExcursiones() {
-        return excursiones;
+    public Excursion agregarExcursion(Excursion excursion) {
+        return excursionDAO.insert(excursion);
     }
 
-    public Excursion buscarExcursion(String codigo){
-        for (Excursion excursion: excursiones){
-            if (Objects.equals(excursion.getCodigo(), codigo))
-                return excursion;
-        }
-        return null;
+    public List<Excursion> obtenerExcursiones() {
+        return excursionDAO.findAll();
     }
 
-    public ArrayList<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){
-        ArrayList<Excursion> excursionesValidas = new ArrayList<>();
-        if (fechaInferior.isAfter(fechaSuperior)) {
-            throw new IllegalArgumentException("La fecha inferior es mayor que la superior");
-        }
-        for (Excursion excursion: excursiones){
-            LocalDate fecha = excursion.getFecha();
-            if (fecha.isAfter(fechaInferior) && fecha.isBefore(fechaSuperior))
-                excursionesValidas.add(excursion);
-        }
-        return excursionesValidas;
+    public Excursion obtenerExcursion(String codigo){
+        return excursionDAO.find(codigo);
+    }
+
+    public List<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){
+        return excursionDAO.findByDateRange(fechaInferior, fechaSuperior);
+    }
+
+    public boolean eliminarExcursion(String codigo) {
+        return excursionDAO.delete(codigo);
+    }
+
+    public void actualizarExcursion(Excursion excursion) {
+        excursionDAO.update(excursion);
     }
 
     // Socios
@@ -75,16 +69,16 @@ public class Datos {
     }
 
     // Seguros
-    public Seguro buscarSeguroPorTipo(TipoSeguro tipoSeguro){
-        if (tipoSeguro == BASICO)
-            return seguros.get(0);
-        if (tipoSeguro == COMPLETO)
-            return seguros.get(1);
-        return null;
+    public Seguro obtenerSeguro(TipoSeguro tipoSeguro){
+        return seguroDAO.find(tipoSeguro);
+    }
+
+    public List<Seguro> obtenerSeguros() {
+        return seguroDAO.findAll();
     }
 
     // Federaciones
-    public Federacion buscarFederacion(String codigoFederacion) {
+    public Federacion obtenerFederacion(String codigoFederacion) {
         return federacionDAO.find(codigoFederacion);
     }
 
@@ -160,7 +154,7 @@ public class Datos {
         return null;
     }
 
-    public void eliminarInscripcion(int numeroInscripcion) {
+    public boolean eliminarInscripcion(int numeroInscripcion) {
         if (numeroInscripcion <= 0)
             throw new ModelException("Numero de inscripcion invalido");
         for (Inscripcion inscripcion: inscripciones){
@@ -168,7 +162,7 @@ public class Datos {
                 if (inscripcion.getExcursion().getFecha().isBefore(LocalDate.now()))
                     throw new ModelException("Solo se pueden eliminar inscripciones de excursiones futuras");
                 inscripciones.remove(inscripcion);
-                return ;
+                return false;
             }
         }
         throw new ModelException("La inscripcion no existe");

@@ -6,10 +6,7 @@ public class SocioEstandar extends SocioAdulto{
 
     public SocioEstandar(int numeroSocio, String nif, String nombre, Seguro seguro) {
         super(nombre, numeroSocio, nif);
-        if (seguro == null){
-            throw new ModelException("Seguro nulo");
-        }
-        this.seguro = seguro;
+        setSeguro(seguro);
     }
 
     public Seguro getSeguro() {
@@ -17,7 +14,9 @@ public class SocioEstandar extends SocioAdulto{
     }
 
     public void setSeguro(Seguro seguro) {
-        this.seguro = seguro;
+        if (seguro == null){
+            throw new ModelException("Seguro nulo");
+        }
     }
 
     public String toString() {

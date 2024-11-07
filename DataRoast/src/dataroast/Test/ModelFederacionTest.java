@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class FederacionTest {
+public class ModelFederacionTest {
     Datos datos = new Datos();
     String codigoFed1 = "1x2c3ba";
     String codigoFed2 = "awqqe";
@@ -32,7 +32,7 @@ public class FederacionTest {
     @Test
     @Order(2)
     public void find(){
-        Federacion federacion = datos.buscarFederacion(codigoFed1);
+        Federacion federacion = datos.obtenerFederacion(codigoFed1);
         if (federacion == null){
             throw new AssertionError("No se pudo buscar una federacion");
         }
@@ -43,10 +43,10 @@ public class FederacionTest {
     @Test
     @Order(3)
     public void update(){
-        Federacion federacion = datos.buscarFederacion(codigoFed2);
+        Federacion federacion = datos.obtenerFederacion(codigoFed2);
         federacion.setNombre(nombreFed2Upd);
         datos.actualizarFederacion(federacion);
-        federacion = datos.buscarFederacion(codigoFed2);
+        federacion = datos.obtenerFederacion(codigoFed2);
         assertEquals(nombreFed2Upd, federacion.getNombre());
     }
 

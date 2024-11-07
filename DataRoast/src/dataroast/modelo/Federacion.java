@@ -5,12 +5,8 @@ public class Federacion {
     private String nombre;
 
     public Federacion(String codigo, String nombre){
-        if (nombre.length() < 3)
-            throw new ModelException("Nombre de la federacion muy corto");
-        if (codigo.length() < 3)
-            throw new ModelException("Codigo de federacion muy corto");
-        this.codigo = codigo;
-        this.nombre = nombre;
+        setNombre(nombre);
+        setCodigo(codigo);
     }
 
     public String getCodigo() {
@@ -22,10 +18,14 @@ public class Federacion {
     }
 
     public void setCodigo(String codigo) {
+        if (codigo.length() < 3)
+            throw new ModelException("Codigo de federacion muy corto");
         this.codigo = codigo;
     }
 
     public void setNombre(String nombre) {
+        if (nombre.length() < 3)
+            throw new ModelException("Nombre de la federacion muy corto");
         this.nombre = nombre;
     }
 
