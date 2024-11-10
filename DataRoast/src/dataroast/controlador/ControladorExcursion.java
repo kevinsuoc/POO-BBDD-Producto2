@@ -15,10 +15,7 @@ public class ControladorExcursion {
     }
 
     public void agregarExcursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha){
-        if (datos.obtenerExcursion(codigo) != null){
-            throw new UsedIdentifierException("El codigo de excursion ya esta siendo utilizado");
-        }
-        datos.obtenerExcursiones().add(new Excursion(numDias, precioInscripcion, codigo, descripcion, fecha));
+        datos.agregarExcursion(new Excursion(numDias, precioInscripcion, codigo, descripcion, fecha));
     }
 
     public List<Excursion> obtenerExcursiones(LocalDate fechaInferior, LocalDate fechaSuperior){

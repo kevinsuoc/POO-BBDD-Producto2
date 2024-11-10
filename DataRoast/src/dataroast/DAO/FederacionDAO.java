@@ -1,6 +1,7 @@
 package dataroast.DAO;
 
 import dataroast.modelo.Federacion;
+import dataroast.util.DataErrorException;
 import dataroast.util.MysqlConnection;
 
 import java.sql.*;
@@ -23,7 +24,7 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException("Error buscando federacion: " + e.getMessage());
+            throw new DataErrorException("Error buscando federacion");
         }
         return null;
     }
@@ -42,7 +43,7 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
             }
             return federaciones;
         } catch (SQLException e) {
-            throw new DAOException("Error buscando federaciones: " + e.getMessage());
+            throw new DataErrorException("Error buscando federaciones");
         }
     }
 
@@ -60,9 +61,8 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
                 return federacion;
             return null;
         } catch (SQLException e) {
-            throw new DAOException("Error actualizando federacion: " + e.getMessage());
+            throw new DataErrorException("Error actualizando federacion");
         }
-
     }
 
     @Override
@@ -73,7 +73,7 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
             stm.setString(1, codigo);
             return stm.executeUpdate() == 1;
         } catch (SQLException e) {
-            throw new DAOException("Error borrando federacion: " + e.getMessage());
+            throw new DataErrorException("Error borrando federacion");
         }
     }
 
@@ -89,7 +89,7 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
             else
                 return null;
         } catch (SQLException e) {
-            throw new DAOException("Error insertando federacion: " + e.getMessage());
+            throw new DataErrorException("Error agregando federacion");
         }
     }
 }

@@ -4,9 +4,10 @@ import dataroast.modelo.Datos;
 import dataroast.modelo.Excursion;
 import dataroast.modelo.Inscripcion;
 import dataroast.modelo.Socio;
+import dataroast.util.DataErrorException;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ControladorInscripcion {
     private final Datos datos;
@@ -15,37 +16,35 @@ public class ControladorInscripcion {
         this.datos = datos;
     }
 
-    public void agregarInscripcion(int numeroInscripcion, int numeroSocio, String codigoExcursion){
-        Excursion excursion = datos.obtenerExcursion(codigoExcursion);
-        if (excursion == null){
-            throw new InstanceNotFoundException("La excursion no existe");
-        }
-        Socio socio = datos.buscarSocio(numeroSocio);
+    public Inscripcion agregarInscripcion(int numeroSocio, String codigoExcursion){
+        Socio socio = datos.obtenerSocio(numeroSocio);
         if (socio == null){
-            throw new InstanceNotFoundException("El socio no existe");
+            throw new DataErrorException("Socio no encontrado");
         }
-        if (datos.obtenerInscripcion(numeroInscripcion) != null)
-            throw new UsedIdentifierException("Numero de inscripcion ya utilizado");
-        datos.obtenerInscripciones().add(new Inscripcion(numeroInscripcion, socio, excursion));
+        Excursion excursion = datos.obtenerExcursion(codigoExcursion);
+        if (excursion == null) {
+            throw new DataErrorException("Excursion no encontrada");
+        }
+        return datos.agregarInscripcion(new Inscripcion(socio, excursion));
     }
 
     public void eliminarInscripcion(int numeroInscripcion) {
         datos.eliminarInscripcion(numeroInscripcion);
     }
 
-    public ArrayList<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior, int numeroSocio){
+    public List<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior, int numeroSocio){
         return datos.obtenerInscripciones(fechaInferior, fechaSuperior, numeroSocio);
     }
 
-    public ArrayList<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior){
+    public List<Inscripcion> obtenerInscripciones(LocalDate fechaInferior, LocalDate fechaSuperior){
         return datos.obtenerInscripciones(fechaInferior, fechaSuperior);
     }
 
-    public ArrayList<Inscripcion> obtenerInscripciones(int numeroSocio){
+    public List<Inscripcion> obtenerInscripciones(int numeroSocio){
         return datos.obtenerInscripciones(numeroSocio);
     }
 
-    public ArrayList<Inscripcion> obtenerInscripciones(){
+    public List<Inscripcion> obtenerInscripciones(){
         return datos.obtenerInscripciones();
     }
 

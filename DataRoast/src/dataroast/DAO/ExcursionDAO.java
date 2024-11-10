@@ -1,6 +1,7 @@
 package dataroast.DAO;
 
 import dataroast.modelo.Excursion;
+import dataroast.util.DataErrorException;
 import dataroast.util.MysqlConnection;
 
 import java.sql.*;
@@ -28,7 +29,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException("Error buscando excursion: " + e.getMessage());
+            throw new DataErrorException("Error buscando excursion");
         }
         return null;
     }
@@ -53,7 +54,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
             }
             return excursiones;
         } catch (SQLException e) {
-            throw new DAOException("Error buscando excursiones: " + e.getMessage());
+            throw new DataErrorException("Error buscando excursiones");
         }
     }
 
@@ -74,7 +75,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
             }
             return null;
         } catch (SQLException e) {
-            throw new DAOException("Error actualizando excursion: " + e.getMessage());
+            throw new DataErrorException("Error actualizando excursion");
         }
     }
 
@@ -86,7 +87,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
             stm.setString(1, codigo);
             return stm.executeUpdate() == 1;
         } catch (SQLException e) {
-            throw new DAOException("Error borrando excursion: " + e.getMessage());
+            throw new DataErrorException("Error borrando excursion");
         }
     }
 
@@ -107,7 +108,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
                 return null;
             }
         } catch (SQLException e) {
-            throw new DAOException("Error insertando excursion: " + e.getMessage());
+            throw new DataErrorException("Error agregando excursion");
         }
     }
 
@@ -132,7 +133,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
                 return excursiones;
             }
         } catch (SQLException e) {
-            throw new DAOException("Error buscando excursiones por fecha: " + e.getMessage());
+            throw new DataErrorException("Error buscando excursiones");
         }
     }
 }

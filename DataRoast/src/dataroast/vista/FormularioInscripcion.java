@@ -4,9 +4,11 @@ import dataroast.controlador.Controlador;
 import dataroast.controlador.ControladorExcursion;
 import dataroast.controlador.ControladorInscripcion;
 import dataroast.modelo.Inscripcion;
+import dataroast.util.DataErrorException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FormularioInscripcion extends Formulario{
@@ -19,14 +21,13 @@ public class FormularioInscripcion extends Formulario{
     }
 
     public void nuevaInscripcion() {
-        int numeroInscripcion = obtenerNumero("Ingresa el numero de inscripcion");
         int numeroSocio = obtenerNumero("Ingresa el numero de socio");
         String codigoExcursion = obtenerString("Ingresa el codigo de excursion");
 
         try {
-            controlador.agregarInscripcion(numeroInscripcion, numeroSocio, codigoExcursion);
-            System.out.println("Inscripcion agregada correctamente");
-        } catch (IllegalArgumentException e) {
+            Inscripcion inscripcion = controlador.agregarInscripcion(numeroSocio, codigoExcursion);
+            System.out.println("Inscripcion agregada correctamente con id " + inscripcion.getNumeroInscripcion());
+        } catch (DataErrorException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -37,7 +38,7 @@ public class FormularioInscripcion extends Formulario{
         try {
             controlador.eliminarInscripcion(numeroInscripcion);
             System.out.println("Inscripcion eliminada");
-        } catch (IllegalArgumentException e) {
+        } catch (DataErrorException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -53,10 +54,10 @@ public class FormularioInscripcion extends Formulario{
             numeroSocio = obtenerNumero("Ingrese el numero de socio");
         }
         if (filtrarPorFecha) {
-            fechaInferior = obtenerFecha("Fecha inferior");
-            fechaSuperior = obtenerFecha("Fecha superior");
+            fechaInferior = obtenerFecha("Primera fecha limite");
+            fechaSuperior = obtenerFecha("Segunda fecha limite");
         }
-        ArrayList<Inscripcion> inscripciones;
+        List<Inscripcion> inscripciones;
         try {
             if (filtrarPorFecha && filtrarPorSocio)
                 inscripciones = controlador.obtenerInscripciones(fechaInferior, fechaSuperior, numeroSocio);
@@ -72,7 +73,7 @@ public class FormularioInscripcion extends Formulario{
                 System.out.println(inscripcion);
                 System.out.println("--------------------");
             }
-        } catch (IllegalArgumentException e){
+        } catch (DataErrorException e){
             System.out.println(e.getMessage());
         }
     }

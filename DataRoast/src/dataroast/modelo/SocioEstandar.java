@@ -1,11 +1,19 @@
 package dataroast.modelo;
 
 
+import dataroast.util.DataErrorException;
+
+//todo: Socio infantil si se borra el socio adulto.
 public class SocioEstandar extends SocioAdulto{
     private Seguro seguro;
 
     public SocioEstandar(int numeroSocio, String nif, String nombre, Seguro seguro) {
         super(nombre, numeroSocio, nif);
+        setSeguro(seguro);
+    }
+
+    public SocioEstandar(String nif, String nombre, Seguro seguro) {
+        super(nombre, nif);
         setSeguro(seguro);
     }
 
@@ -15,16 +23,13 @@ public class SocioEstandar extends SocioAdulto{
 
     public void setSeguro(Seguro seguro) {
         if (seguro == null){
-            throw new ModelException("Seguro nulo");
+            throw new DataErrorException("Seguro nulo");
         }
+        this.seguro = seguro;
     }
 
     public String toString() {
-        return switch (seguro.getTipoSeguro()) {
-            case BASICO -> super.toString() + "\n" +
-                    "Tipo seguro: BASICO";
-            case COMPLETO -> super.toString() + "\n" +
-                    "Tipo seguro: COMPLETO";
-        };
+        return super.toString() + "\n" +
+                "Tipo seguro: " + seguro.getTipoSeguro().toString();
     }
 }

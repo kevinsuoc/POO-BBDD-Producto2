@@ -1,5 +1,6 @@
 package dataroast.DAO;
 
+import dataroast.util.DataErrorException;
 import dataroast.modelo.Seguro;
 import dataroast.modelo.TipoSeguro;
 import dataroast.util.MysqlConnection;
@@ -14,7 +15,7 @@ import java.util.List;
 public class SeguroDAO implements DAOInterface<Seguro, TipoSeguro>{
     @Override
     public Seguro insert(Seguro entity) {
-        throw new DAOException("No es posible agregar nuevos seguros");
+        throw new DataErrorException("No es posible agregar nuevos seguros");
     }
 
     @Override
@@ -29,7 +30,7 @@ public class SeguroDAO implements DAOInterface<Seguro, TipoSeguro>{
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException("Error buscando federacion: " + e.getMessage());
+            throw new DataErrorException("Error buscando seguro");
         }
         return null;
     }
@@ -48,17 +49,17 @@ public class SeguroDAO implements DAOInterface<Seguro, TipoSeguro>{
             }
             return seguros;
         } catch (SQLException e) {
-            throw new DAOException("Error buscando seguros: " + e.getMessage());
+            throw new DataErrorException("Error buscando seguros");
         }
     }
 
     @Override
     public Seguro update(Seguro entity) {
-        throw new DAOException("No es posible actualizar seguros");
+        throw new DataErrorException("No es posible actualizar seguros");
     }
 
     @Override
     public boolean delete(TipoSeguro tipoSeguro) {
-        throw new DAOException("No es posible borrar seguros");
+        throw new DataErrorException("No es posible borrar seguros");
     }
 }

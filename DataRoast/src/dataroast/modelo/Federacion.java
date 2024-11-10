@@ -1,5 +1,7 @@
 package dataroast.modelo;
 
+import dataroast.util.DataErrorException;
+
 public class Federacion {
     private String codigo;
     private String nombre;
@@ -19,13 +21,13 @@ public class Federacion {
 
     public void setCodigo(String codigo) {
         if (codigo.length() < 3)
-            throw new ModelException("Codigo de federacion muy corto");
+            throw new DataErrorException("Codigo de federacion muy corto");
         this.codigo = codigo;
     }
 
     public void setNombre(String nombre) {
         if (nombre.length() < 3)
-            throw new ModelException("Nombre de la federacion muy corto");
+            throw new DataErrorException("Nombre de la federacion muy corto");
         this.nombre = nombre;
     }
 

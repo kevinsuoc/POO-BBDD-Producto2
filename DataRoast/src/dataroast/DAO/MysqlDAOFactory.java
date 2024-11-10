@@ -1,12 +1,13 @@
       package dataroast.DAO;
 
-import dataroast.modelo.Excursion;
-import dataroast.util.MysqlConnection;
-
-public class MysqlDAOFactory extends DAOFactory {
-    public SocioDAO getSocioDAO(){
-        return new SocioDAO();
+      public class MysqlDAOFactory extends DAOFactory {
+    public SocioEstandarDAO getSocioEstandarDAO(){
+        return new SocioEstandarDAO();
     }
+
+    public SocioFederadoDAO getSocioFederadoDAO() {return new SocioFederadoDAO();};
+
+    public SocioInfantilDAO getSocioInfantilDAO() {return new SocioInfantilDAO();};
 
     public FederacionDAO getFederacionDAO() { return new FederacionDAO(); }
 
@@ -15,4 +16,7 @@ public class MysqlDAOFactory extends DAOFactory {
     public InscripcionDAO getInscripcionDAO(){ return new InscripcionDAO(); }
 
     public SeguroDAO getSeguroDAO(){ return new SeguroDAO(); }
-}
+
+          public SocioDAO getSocioDAO() { return new SocioDAO();}
+
+      }

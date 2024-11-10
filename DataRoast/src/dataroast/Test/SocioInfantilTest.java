@@ -14,7 +14,7 @@ public class SocioInfantilTest {
     void agregarSocio() {
         // Given: Un socio infantil válido con su tutor
         SocioEstandar tutor1 = new SocioEstandar(1, "11447788A", "Juan", new Seguro(10, TipoSeguro.BASICO));
-        SocioInfantil socioInfantil1 = new SocioInfantil(888, "Alex", tutor1);
+        SocioInfantil socioInfantil1 = new SocioInfantil(888, "Alex", 1);
 
         // When: Añadir el socio a la lista
         listaSocioInfantil.add(socioInfantil1);
@@ -30,8 +30,8 @@ public class SocioInfantilTest {
         // Given: Dos socios infantiles válidos con sus tutores
         SocioEstandar tutor1 = new SocioEstandar(1, "11447788A", "Juan", new Seguro(10, TipoSeguro.BASICO));
         SocioEstandar tutor2 = new SocioEstandar(2, "55889644D", "Marc", new Seguro(10, TipoSeguro.BASICO));
-        SocioInfantil socioInfantil1 = new SocioInfantil(888, "Alex", tutor1);
-        SocioInfantil socioInfantil2 = new SocioInfantil(999, "Ana", tutor2);
+        SocioInfantil socioInfantil1 = new SocioInfantil(888, "Alex", 1);
+        SocioInfantil socioInfantil2 = new SocioInfantil(999, "Ana", 2);
 
         // When: Añadir los socios a la lista
         listaSocioInfantil.add(socioInfantil1);

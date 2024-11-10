@@ -3,6 +3,7 @@ package dataroast.vista;
 import dataroast.controlador.Controlador;
 import dataroast.controlador.ControladorExcursion;
 import dataroast.modelo.Excursion;
+import dataroast.util.DataErrorException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class FormularioExcursion extends Formulario {
         try {
             controlador.agregarExcursion(numDias, precioInscripcion, codigo, descripcion, fecha);
             System.out.println("Excursion agregada correctamente");
-        } catch (IllegalArgumentException e) {
+        } catch (DataErrorException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -46,7 +47,7 @@ public class FormularioExcursion extends Formulario {
                 System.out.println(excursion);
                 System.out.println("--------------------");
             }
-        } catch (IllegalArgumentException e) {
+        } catch (DataErrorException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }

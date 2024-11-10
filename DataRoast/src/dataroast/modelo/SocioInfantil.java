@@ -1,23 +1,27 @@
 package dataroast.modelo;
 
+import dataroast.util.DataErrorException;
+
 public class SocioInfantil extends Socio {
     private static final double descuentoCuotaMensual = 0.5;
-    private SocioAdulto socioAdulto;
+    private int numeroSocioTutor;
 
-    public SocioInfantil(int numeroSocio, String nombre, SocioAdulto socioAdulto) {
+    public SocioInfantil(int numeroSocio, String nombre, int numeroSocioTutor) {
         super(nombre, numeroSocio);
-        setSocioAdulto(socioAdulto);
+        setNumeroSocioTutor(numeroSocioTutor);
     }
 
-    public SocioAdulto getSocioAdulto() {
-        return socioAdulto;
+    public SocioInfantil(String nombre, int numeroSocioTutor) {
+        super(nombre);
+        setNumeroSocioTutor(numeroSocioTutor);
     }
 
-    public void setSocioAdulto(SocioAdulto socioAdulto) {
-        if (socioAdulto == null){
-            throw new ModelException("Socio adulto nulo");
-        }
-        this.socioAdulto = socioAdulto;
+    public int getNumeroSocioTutor(){ return this.numeroSocioTutor; }
+
+    public void setNumeroSocioTutor(int numeroSocioTutor){
+        if (numeroSocioTutor <= 0)
+            throw new DataErrorException("Numero de socio tutor no puede ser menor que 0");
+        this.numeroSocioTutor = numeroSocioTutor;
     }
 
     public static double obtenerCuotaConDescuento(double cuotaBase){
@@ -26,6 +30,6 @@ public class SocioInfantil extends Socio {
 
     public String toString() {
         return super.toString() + "\n" +
-                "Numero de socio tutor: " + socioAdulto.getNumeroSocio();
+                "Numero de socio tutor: " + numeroSocioTutor;
     }
 }

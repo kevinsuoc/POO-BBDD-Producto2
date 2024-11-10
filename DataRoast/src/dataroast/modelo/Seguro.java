@@ -1,5 +1,7 @@
 package dataroast.modelo;
 
+import dataroast.util.DataErrorException;
+
 public class Seguro {
     private TipoSeguro tipoSeguro;
     private double precio;
@@ -19,13 +21,13 @@ public class Seguro {
 
     public void setTipoSeguro(TipoSeguro tipoSeguro) {
         if (tipoSeguro == null)
-            throw new ModelException("tipoSeguro null");
+            throw new DataErrorException("tipoSeguro null");
         this.tipoSeguro = tipoSeguro;
     }
 
     public void setPrecio(double precio) {
         if (precio < 0)
-            throw new ModelException("El precio del seguro no puede ser negativo");
+            throw new DataErrorException("El precio del seguro no puede ser negativo");
         this.precio = precio;
     }
 

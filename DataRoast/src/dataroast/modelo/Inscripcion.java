@@ -1,5 +1,7 @@
 package dataroast.modelo;
 
+import dataroast.util.DataErrorException;
+
 public class Inscripcion {
     private int numeroInscripcion;
     private Socio socio;
@@ -7,6 +9,11 @@ public class Inscripcion {
 
     public Inscripcion(int numeroInscripcion, Socio socio, Excursion excursion) {
         setNumeroInscripcion(numeroInscripcion);
+        setSocio(socio);
+        setExcursion(excursion);
+    }
+
+    public Inscripcion(Socio socio, Excursion excursion) {
         setSocio(socio);
         setExcursion(excursion);
     }
@@ -25,21 +32,21 @@ public class Inscripcion {
 
     public void setNumeroInscripcion(int numeroInscripcion) {
         if (numeroInscripcion <= 0){
-            throw new ModelException("El numero de inscripcion debe ser positivo");
+            throw new DataErrorException("El numero de inscripcion debe ser positivo");
         }
         this.numeroInscripcion = numeroInscripcion;
     }
 
     public void setSocio(Socio socio) {
         if (socio == null) {
-            throw new ModelException("Socio nulo");
+            throw new DataErrorException("Socio nulo");
         }
         this.socio = socio;
     }
 
     public void setExcursion(Excursion excursion) {
         if (excursion == null) {
-            throw new ModelException("Excursion nula");
+            throw new DataErrorException("Excursion nula");
         }
         this.excursion = excursion;
     }
