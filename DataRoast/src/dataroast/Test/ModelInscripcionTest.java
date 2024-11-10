@@ -1,20 +1,23 @@
 package dataroast.Test;
 
-import dataroast.controlador.*;
 import dataroast.modelo.*;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ModelInscripcionTest {
     Datos datos = new Datos();
+    int id1;
+    int id2;
+    int id3;
+    int id4;
+    int insid1;
+    int insid2;
+    int insid3;
+    int insid4;
 
     @BeforeAll
     void setupData(){
@@ -26,10 +29,10 @@ public class ModelInscripcionTest {
         datos.agregarExcursion(new Excursion(1, 20., "textExcursion2", "Otra excursion", LocalDate.now().plusDays(5)));
 
         // Agregar algunos socios
-        datos.agregarSocioEstandar(new SocioEstandar(123, "11223366H", "Juan", datos.obtenerSeguro(TipoSeguro.BASICO)));
-        datos.agregarSocioEstandar(new SocioEstandar(125, "aaabbbccc", "Maria", datos.obtenerSeguro(TipoSeguro.COMPLETO)));
-        datos.agregarSocioInfantil(new SocioInfantil(126, "Jose", 125));
-        datos.agregarSocioFederado(new SocioFederado(127, "11223377H", "Lucia", datos.obtenerFederacion("FederacionPrueba")));
+        id1 = datos.agregarSocioEstandar(new SocioEstandar("11223366H", "Juan", datos.obtenerSeguro(TipoSeguro.BASICO))).getNumeroSocio();
+        id2 = datos.agregarSocioEstandar(new SocioEstandar("aaabbbccc", "Maria", datos.obtenerSeguro(TipoSeguro.COMPLETO))).getNumeroSocio();
+        id3 = datos.agregarSocioInfantil(new SocioInfantil("Jose", id1)).getNumeroSocio();
+        id4 = datos.agregarSocioFederado(new SocioFederado("11223377H", "Lucia", datos.obtenerFederacion("FederacionPrueba"))).getNumeroSocio();
     }
 
     @AfterAll
@@ -39,33 +42,41 @@ public class ModelInscripcionTest {
         datos.eliminarExcursion("testExcursion1");
         datos.eliminarExcursion("testExcursion2");
 
-        datos.eliminarSocio(100100);
-        datos.eliminarSocio(100101);
-        datos.eliminarSocio(100102);
-        datos.eliminarSocio(100103);
+        datos.eliminarSocio(id1);
+        datos.eliminarSocio(id2);
+        datos.eliminarSocio(id3);
+        datos.eliminarSocio(id4);
     }
 
     @Test
     @Order(1)
     void insert(){
-        if (datos.agregarInscripcion(new Inscripcion(1, datos.obtenerSocio(100100), datos.obtenerExcursion("testExcursion1"))) == null){
+        Inscripcion ins1 = datos.agregarInscripcion(new Inscripcion(datos.obtenerSocio(id1), datos.obtenerExcursion("testExcursion1")));
+        Inscripcion ins2 = datos.agregarInscripcion(new Inscripcion(datos.obtenerSocio(id2), datos.obtenerExcursion("testExcursion2")));
+        Inscripcion ins3 = datos.agregarInscripcion(new Inscripcion(datos.obtenerSocio(id3), datos.obtenerExcursion("testExcursion1")));
+        Inscripcion ins4 = datos.agregarInscripcion(new Inscripcion(datos.obtenerSocio(id4), datos.obtenerExcursion("testExcursion2")));
+        if (ins1 == null){
             throw new AssertionError("No se pudo agregar una inscripcion");
         }
-        if (datos.agregarInscripcion(new Inscripcion(2, datos.obtenerSocio(100101), datos.obtenerExcursion("testExcursion2"))) == null) {
+        insid1 = ins1.getNumeroInscripcion();
+        if (ins2 == null) {
             throw new AssertionError("No se pudo agregar una inscripcion");
         }
-        if (datos.agregarInscripcion(new Inscripcion(3, datos.obtenerSocio(100102), datos.obtenerExcursion("testExcursion1"))) == null){
+        insid2 = ins1.getNumeroInscripcion();
+        if (ins3 == null){
            throw new AssertionError("No se pudo agregar una inscripcion");
         }
-        if (datos.agregarInscripcion(new Inscripcion(4, datos.obtenerSocio(100103), datos.obtenerExcursion("testExcursion2"))) == null) {
+        insid3 = ins1.getNumeroInscripcion();
+        if (ins4 == null) {
             throw new AssertionError("No se pudo agregar una inscripcion");
         }
+        insid4 = ins1.getNumeroInscripcion();
     }
 
     @Test
     @Order(2)
     void obtenerInscripciones(){
-        List<Inscripcion> inscripciones = datos.obtenerInscripciones(100100);
+        List<Inscripcion> inscripciones = datos.obtenerInscripciones(id1);
         if (inscripciones.size() != 1)
             throw new AssertionError("Debe devolver una inscripcion, devuelve " + inscripciones.size());
 
@@ -80,31 +91,17 @@ public class ModelInscripcionTest {
 
     @Test
     @Order(3)
-    void update(){
-//        Inscripcion inscripcion = datos.obtenerInscripcion(1);
-        Socio socio = datos.obtenerSocio(100101);
-        Excursion excursion = datos.obtenerExcursion("TestExcursion2");
-//        inscripcion.setSocio(socio);
-//        inscripcion.setExcursion(excursion);
-//        datos.actualizarInscripcion(inscripcion);
-//        inscripcion = datos.obtenerInscripcion(1);
-//        assertEquals(inscripcion.getSocio().getNombre(), socio.getNombre());
-//        assertEquals(inscripcion.getExcursion().getCodigo(), excursion.getCodigo());
-    }
-
-    @Test
-    @Order(4)
     void delete(){
-        if (!datos.eliminarInscripcion(1)){
+        if (!datos.eliminarInscripcion(insid1)){
             throw new AssertionError("No se pudo eliminar una inscripcion");
         }
-        if (!datos.eliminarInscripcion(2)){
+        if (!datos.eliminarInscripcion(insid2)){
             throw new AssertionError("No se pudo eliminar una inscripcion");
         }
-        if (!datos.eliminarInscripcion(3)){
+        if (!datos.eliminarInscripcion(insid3)){
             throw new AssertionError("No se pudo eliminar una inscripcion");
         }
-        if (!datos.eliminarInscripcion(4)){
+        if (!datos.eliminarInscripcion(insid4)){
             throw new AssertionError("No se pudo eliminar una inscripcion");
         }
     }

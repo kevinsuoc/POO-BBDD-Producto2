@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,8 +41,8 @@ public class ModelExcursionTest {
         if (excursiones.size() < 2){
             throw new AssertionError("Excursiones no econtradas");
         }
-        Boolean found1 = false;
-        Boolean found2 = false;
+        boolean found1 = false;
+        boolean found2 = false;
         for (Excursion exc: excursiones){
             if (Objects.equals(exc.getCodigo(), "test456"))
                 found1 = true;

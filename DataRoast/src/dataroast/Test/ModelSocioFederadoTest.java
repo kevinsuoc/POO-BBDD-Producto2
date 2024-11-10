@@ -14,24 +14,27 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ModelSocioFederadoTest {
     Datos datos = new Datos();
     Federacion fed = new Federacion("FederacionPrueba", "Federacion");
+    int id1;
 
     @Test
     @Order(1)
     void insert(){
-        assertNotNull(datos.agregarSocioFederado(new SocioFederado(100100, "QQQQQQQQQ", "Clara", fed)));
+        SocioFederado socio = datos.agregarSocioFederado(new SocioFederado("QQQQQQQQQ", "Clara", fed));
+        assertNotNull(socio);
+        id1 = socio.getNumeroSocio();
     }
 
     @Test
     @Order(2)
     void update(){
-        SocioFederado socio = datos.actualizarSocioFederado(new SocioFederado(100100, "QQQQQQQQQ", "Margarita", fed));
+        SocioFederado socio = datos.actualizarSocioFederado(new SocioFederado(id1, "QQQQQQQQQ", "Margarita", fed));
         assertEquals(socio.getNombre(), "Margarita");
     }
 
     @Test
     @Order(3)
     void get(){
-        SocioFederado socio = datos.obtenerSocioFederado(100100);
+        SocioFederado socio = datos.obtenerSocioFederado(id1);
         assertEquals("Margarita", socio.getNombre());
     }
 
@@ -41,7 +44,7 @@ public class ModelSocioFederadoTest {
         List<SocioFederado> socios = datos.obtenerSociosFederados();
         boolean socioFound = false;
         for (SocioFederado socio: socios){
-            if (socio.getNumeroSocio() == 100100) {
+            if (socio.getNumeroSocio() == id1) {
                 socioFound = true;
                 break;
             }
@@ -52,6 +55,6 @@ public class ModelSocioFederadoTest {
     @Test
     @Order(5)
     void delete(){
-        assertTrue(datos.eliminarSocio(100100));
+        assertTrue(datos.eliminarSocio(id1));
     }
 }
