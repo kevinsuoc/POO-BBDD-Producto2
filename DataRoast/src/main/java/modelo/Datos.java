@@ -155,6 +155,8 @@ public class Datos {
     public Federacion agregarFederacion(Federacion federacion){
         return federacionDAO.insert(federacion);
     }
+    public List<Federacion> obtenerFederaciones() { return federacionDAO.findAll(); }
+
     public boolean eliminarFederacion(String codigo){
         return federacionDAO.delete(codigo);
     }

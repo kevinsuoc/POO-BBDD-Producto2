@@ -8,17 +8,24 @@ import static org.hibernate.cfg.JdbcSettings.*;
 import static org.hibernate.cfg.JdbcSettings.HIGHLIGHT_SQL;
 
 public class HibernateUtil {
-    private static SessionFactory sessionFactory = new Configuration().
-            addAnnotatedClass(Federacion.class).
-            setProperty("hibernate.hbm2ddl.auto", "validate").
-            setProperty(URL, "jdbc:mysql://localhost:3306/senderosymontanas").
-            setProperty(USER, "dataroast").
-            setProperty(PASS, "dataroastpassword").
-            setProperty(SHOW_SQL, true)
-            .setProperty(FORMAT_SQL, true)
-            .setProperty(HIGHLIGHT_SQL, true).
-            buildSessionFactory();
+    private static SessionFactory sessionFactory;
 
+    public static void startSessionFactory(){
+        sessionFactory = new Configuration().
+                addAnnotatedClass(Federacion.class).
+                setProperty("hibernate.hbm2ddl.auto", "validate").
+                setProperty(URL, "jdbc:mysql://localhost:3306/senderosymontanas").
+                setProperty(USER, "dataroast").
+                setProperty(PASS, "dataroastpassword").
+                setProperty(SHOW_SQL, true).
+                setProperty(FORMAT_SQL, true).
+                setProperty(HIGHLIGHT_SQL, true).
+                buildSessionFactory();
+    }
+
+    public static void endSessionFactory(){
+        sessionFactory.close();
+    }
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;

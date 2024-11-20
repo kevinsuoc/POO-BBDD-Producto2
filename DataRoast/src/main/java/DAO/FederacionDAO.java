@@ -1,7 +1,12 @@
 package DAO;
 
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import modelo.Federacion;
+import modelo.Federacion_;
+import org.hibernate.SessionFactory;
 import util.DataErrorException;
+import util.HibernateUtil;
 import util.MysqlConnection;
 
 import java.sql.*;
@@ -14,35 +19,29 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
 
     @Override
     public Federacion find(String codigo) {
-        String findQuery = "SELECT * FROM federacion WHERE codigo = ?";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(findQuery);
-            stm.setString(1, codigo);
-            try (ResultSet results = stm.executeQuery()) {
-                if (results.next()){
-                    return new Federacion(results.getString("codigo"), results.getString("nombre"));
-                }
-            }
-        } catch (SQLException e) {
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                return session.find(Federacion.class, codigo);
+            });
+        } catch (Exception e){
             throw new DataErrorException("Error buscando federacion");
         }
-        return null;
     }
 
     @Override
     public List<Federacion> findAll() {
-        String findQuery = "SELECT * FROM federacion";
-        List<Federacion> federaciones = new ArrayList<>();
-
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(findQuery);
-            try (ResultSet results = stm.executeQuery()){
-                while (results.next()){
-                    federaciones.add(new Federacion(results.getString("codigo"), results.getString("nombre")));
-                }
-            }
-            return federaciones;
-        } catch (SQLException e) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        try {
+            return sessionFactory.fromTransaction(session -> {
+                var builder = sessionFactory.getCriteriaBuilder();
+                CriteriaQuery<Federacion> query = builder.createQuery(Federacion.class);
+                Root<Federacion> federacion = query.from(Federacion.class);
+                query.select(federacion);
+                return session.createSelectionQuery(query).getResultList();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
             throw new DataErrorException("Error buscando federaciones");
         }
     }
@@ -67,29 +66,28 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
 
     @Override
     public boolean delete(String codigo){
-        String deleteQuery = "DELETE FROM federacion WHERE codigo = ?";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(deleteQuery);
-            stm.setString(1, codigo);
-            return stm.executeUpdate() == 1;
-        } catch (SQLException e) {
-            throw new DataErrorException("Error borrando federacion");
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                Federacion federacion = session.find(Federacion.class, codigo);
+                System.out.println(federacion);
+                if (federacion != null)
+                    session.remove(federacion);
+                return (federacion != null);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("No se pudo eliminar la federacion");
         }
     }
 
     @Override
     public Federacion insert(Federacion federacion) {
-        String insertQuery = "INSERT INTO federacion (codigo, nombre) VALUES (?, ?)";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(insertQuery);
-            stm.setString(1, federacion.getCodigo());
-            stm.setString(2, federacion.getNombre());
-            if (stm.executeUpdate() == 1)
-                return federacion;
-            else
-                return null;
-        } catch (SQLException e) {
+        try {
+            HibernateUtil.getSessionFactory().inTransaction(session -> {
+                session.persist(federacion);
+            });
+        } catch (Exception e){
             throw new DataErrorException("Error agregando federacion");
         }
+        return federacion;
     }
 }
