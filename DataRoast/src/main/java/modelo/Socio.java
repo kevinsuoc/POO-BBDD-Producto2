@@ -1,15 +1,29 @@
 package modelo;
 
+import jakarta.persistence.*;
 import util.DataErrorException;
 
+import static jakarta.persistence.InheritanceType.JOINED;
+
+@Entity
+@DiscriminatorColumn(name="tiposocio")
+@Inheritance(strategy=JOINED)
 public class Socio {
-    private String nombre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_socio")
     private int numeroSocio;
+    private String nombre;
+//    @Column(name = "tiposocio")
+//    @Enumerated(STRING)
+//    private TipoSocio tipoSocio;
 
     public Socio(String nombre, int numeroSocio) {
         setNumeroSocio(numeroSocio);
         setNombre(nombre);
     }
+
+    public Socio(){}
 
     public Socio(String nombre) {
         setNombre(nombre);
@@ -23,11 +37,17 @@ public class Socio {
         return numeroSocio;
     }
 
+//    public TipoSocio getTipoSocio() {return tipoSocio;}
+
     public void setNombre(String nombre) {
         if (nombre.length() < 2)
             throw new DataErrorException("Nombre muy corto");
         this.nombre = nombre;
     }
+
+//    public void setTipoSocio(TipoSocio tipoSocio){
+//        this.tipoSocio = tipoSocio;
+//    }
 
     public void setNumeroSocio(int numeroSocio) {
         if (numeroSocio <= 0)

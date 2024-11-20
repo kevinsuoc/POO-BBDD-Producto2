@@ -1,9 +1,11 @@
 package DAO;
 
-import modelo.Seguro;
-import modelo.SocioEstandar;
-import modelo.TipoSeguro;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import modelo.*;
+import org.hibernate.SessionFactory;
 import util.DataErrorException;
+import util.HibernateUtil;
 import util.MysqlConnection;
 
 import java.sql.*;
@@ -14,78 +16,52 @@ public class SocioEstandarDAO extends SocioDAO implements DAOInterface<SocioEsta
 
     @Override
     public SocioEstandar insert(SocioEstandar socio) {
-        String insertQuery = "{CALL insertSocioEstandar(?, ?, ?, ?)}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            CallableStatement stm = con.prepareCall(insertQuery);
-            stm.setString(1, socio.getNombre());
-            stm.setString(2, socio.getNif());
-            stm.setString(3, socio.getSeguro().getTipoSeguro().name());
-            stm.registerOutParameter(4, java.sql.Types.INTEGER);
-            stm.execute();
-            socio.setNumeroSocio(stm.getInt(4));
-            return socio;
-        } catch (SQLException e){
-            throw new DataErrorException("Error insertando socio estandar");
+        try {
+            HibernateUtil.getSessionFactory().inTransaction(session -> {
+                session.persist(socio);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("Error agregando socio");
         }
+        return socio;
     }
 
     @Override
     public SocioEstandar find(Integer id) {
-        String findQuery = "{CALL getSocioEstandarById(?)}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(findQuery);
-            stm.setInt(1, id);
-            try (ResultSet results = stm.executeQuery()) {
-                if (results.next()) {
-                    return new SocioEstandar(
-                            id,
-                            results.getString("nif"),
-                            results.getString("nombre"),
-                            new Seguro(results.getDouble("precio"), TipoSeguro.valueOf(results.getString("seguro")))
-                    );
-                }
-            }
-        } catch (SQLException e) {
-            throw new DataErrorException("Error buscando socio estandar");
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                return session.find(SocioEstandar.class, id);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("Error buscando socio");
         }
-        return null;
+
     }
 
     @Override
     public List<SocioEstandar> findAll() {
-        ArrayList<SocioEstandar> socios = new ArrayList<>();
-        String findQuery = "{CALL getSociosEstandar()}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            CallableStatement stm = con.prepareCall(findQuery);
-            try (ResultSet results = stm.executeQuery()) {
-                while (results.next()) {
-                    socios.add(new SocioEstandar(
-                            results.getInt("id"),
-                            results.getString("nif"),
-                            results.getString("nombre"),
-                            new Seguro(results.getDouble("precio"), TipoSeguro.valueOf(results.getString("seguro")))
-                    ));
-                }
-            }
-            return socios;
-        } catch (SQLException e) {
-            throw new DataErrorException("Error buscando socio estandar");
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        try {
+            return sessionFactory.fromTransaction(session -> {
+                var builder = sessionFactory.getCriteriaBuilder();
+                CriteriaQuery<SocioEstandar> query = builder.createQuery(SocioEstandar.class);
+                Root<SocioEstandar> socioEstandar = query.from(SocioEstandar.class);
+                query.select(socioEstandar);
+                return session.createSelectionQuery(query).getResultList();
+            });
+        } catch (Exception e) {
+            throw new DataErrorException("Error buscando socios");
         }
     }
 
     @Override
     public SocioEstandar update(SocioEstandar socio) {
-        String updateQuery = "{CALL updateSocioEstandar(?, ?, ?, ?)}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(updateQuery);
-            stm.setInt(1, socio.getNumeroSocio());
-            stm.setString(2, socio.getNif());
-            stm.setString(3, socio.getNombre());
-            stm.setString(4, socio.getSeguro().getTipoSeguro().name());
-            stm.execute();
-            return socio;
-        } catch (SQLException e){
-            throw new DataErrorException("Error actualizando socio estandar");
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                return session.merge(socio);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("Error actualizando socio");
         }
     }
 }

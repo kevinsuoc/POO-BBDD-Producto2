@@ -40,27 +40,18 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
                 return session.createSelectionQuery(query).getResultList();
             });
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e);
             throw new DataErrorException("Error buscando federaciones");
         }
     }
 
     @Override
     public Federacion update(Federacion federacion) {
-        String updateQuery = "UPDATE federacion SET nombre = ? WHERE codigo = ?";
-
-        try (Connection con = MysqlConnection.getConnection()){
-            PreparedStatement stm = con.prepareStatement(updateQuery);
-
-            stm.setString(1, federacion.getNombre());
-            stm.setString(2, federacion.getCodigo());
-
-            if (stm.executeUpdate() == 1)
-                return federacion;
-            return null;
-        } catch (SQLException e) {
-            throw new DataErrorException("Error actualizando federacion");
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                return session.merge(federacion);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("Error actualizando federaciocn");
         }
     }
 
@@ -69,7 +60,6 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
         try {
             return HibernateUtil.getSessionFactory().fromTransaction(session -> {
                 Federacion federacion = session.find(Federacion.class, codigo);
-                System.out.println(federacion);
                 if (federacion != null)
                     session.remove(federacion);
                 return (federacion != null);

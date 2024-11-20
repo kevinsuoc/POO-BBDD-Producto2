@@ -1,6 +1,7 @@
 
 import modelo.*;
 import org.junit.jupiter.api.*;
+import util.HibernateUtil;
 
 import java.util.List;
 
@@ -13,6 +14,16 @@ public class ModelSocioEstandarTest {
     Datos datos = new Datos();
     int id1;
     int id2;
+
+    @BeforeAll
+    public static void init (){
+        HibernateUtil.startSessionFactory();
+    }
+
+    @AfterAll
+    public static void end (){
+        HibernateUtil.endSessionFactory();
+    }
 
     @Test
     @Order(1)

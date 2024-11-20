@@ -1,10 +1,20 @@
 package modelo;
 
+import jakarta.persistence.*;
 import util.DataErrorException;
 
+import static jakarta.persistence.EnumType.STRING;
+
+@Entity
 public class Seguro {
+    @Id
+    @Column(name="nombre")
+    @Enumerated(STRING)
     private TipoSeguro tipoSeguro;
     private double precio;
+
+    public Seguro(){
+    }
 
     public Seguro(double precio, TipoSeguro tipoSeguro){
         setPrecio(precio);

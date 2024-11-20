@@ -1,10 +1,8 @@
 
 import modelo.Datos;
 import modelo.Excursion;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
+import util.HibernateUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,6 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ModelExcursionTest {
     Datos datos = new Datos();
+
+    @BeforeAll
+    public static void init (){
+        HibernateUtil.startSessionFactory();
+    }
+
+    @AfterAll
+    public static void end (){
+        HibernateUtil.endSessionFactory();
+    }
 
     @Test
     @Order(1)

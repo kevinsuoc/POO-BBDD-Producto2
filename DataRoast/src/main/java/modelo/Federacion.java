@@ -1,6 +1,5 @@
 package modelo;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import util.DataErrorException;
@@ -8,7 +7,6 @@ import util.DataErrorException;
 @Entity
 public class Federacion {
     @Id
-    @Column(name = "codigo")
     private String codigo;
     private String nombre;
 

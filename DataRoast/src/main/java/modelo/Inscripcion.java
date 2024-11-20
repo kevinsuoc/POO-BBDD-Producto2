@@ -1,11 +1,18 @@
 package modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import util.DataErrorException;
 
+@Entity
 public class Inscripcion {
+    @Id
     private int numeroInscripcion;
     private Socio socio;
     private Excursion excursion;
+
+    public Inscripcion() {
+    }
 
     public Inscripcion(int numeroInscripcion, Socio socio, Excursion excursion) {
         setNumeroInscripcion(numeroInscripcion);

@@ -1,9 +1,13 @@
 package modelo;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import util.DataErrorException;
 
+@Entity
 public class SocioEstandar extends SocioAdulto{
+    @ManyToOne
     private Seguro seguro;
 
     public SocioEstandar(int numeroSocio, String nif, String nombre, Seguro seguro) {
@@ -14,6 +18,10 @@ public class SocioEstandar extends SocioAdulto{
     public SocioEstandar(String nif, String nombre, Seguro seguro) {
         super(nombre, nif);
         setSeguro(seguro);
+    }
+
+    public SocioEstandar() {
+        super();
     }
 
     public Seguro getSeguro() {

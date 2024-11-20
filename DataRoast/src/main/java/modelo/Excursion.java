@@ -1,15 +1,25 @@
 package modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import util.DataErrorException;
 
 import java.time.LocalDate;
 
+@Entity
 public class Excursion {
-    private int numDias;
-    private double precioInscripcion;
+    @Id
     private String codigo;
     private String descripcion;
+    @Column(name = "num_dias")
+    private int numDias;
+    @Column(name = "precio_inscripcion")
+    private double precioInscripcion;
     private LocalDate fecha;
+
+    public Excursion() {
+    }
 
     public Excursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha) {
         setNumDias(numDias);

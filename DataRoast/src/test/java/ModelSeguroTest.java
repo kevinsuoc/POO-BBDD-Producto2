@@ -3,6 +3,7 @@ import modelo.Datos;
 import modelo.Seguro;
 import modelo.TipoSeguro;
 import org.junit.jupiter.api.*;
+import util.HibernateUtil;
 
 import java.util.List;
 
@@ -12,6 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ModelSeguroTest {
     Datos datos = new Datos();
+
+    @BeforeAll
+    public static void init (){
+        HibernateUtil.startSessionFactory();
+    }
+
+    @AfterAll
+    public static void end (){
+        HibernateUtil.endSessionFactory();
+    }
 
     @Test
     @Order(1)

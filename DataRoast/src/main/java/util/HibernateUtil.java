@@ -1,6 +1,6 @@
 package util;
 
-import modelo.Federacion;
+import modelo.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -13,6 +13,9 @@ public class HibernateUtil {
     public static void startSessionFactory(){
         sessionFactory = new Configuration().
                 addAnnotatedClass(Federacion.class).
+                addAnnotatedClass(Excursion.class).
+                addAnnotatedClass(SocioEstandar.class).
+                addAnnotatedClass(Seguro.class).
                 setProperty("hibernate.hbm2ddl.auto", "validate").
                 setProperty(URL, "jdbc:mysql://localhost:3306/senderosymontanas").
                 setProperty(USER, "dataroast").

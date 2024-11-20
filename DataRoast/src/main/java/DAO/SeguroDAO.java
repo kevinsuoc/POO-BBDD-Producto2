@@ -1,8 +1,13 @@
 package DAO;
 
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import modelo.Excursion;
+import org.hibernate.SessionFactory;
 import util.DataErrorException;
 import modelo.Seguro;
 import modelo.TipoSeguro;
+import util.HibernateUtil;
 import util.MysqlConnection;
 
 import java.sql.Connection;
@@ -18,37 +23,38 @@ public class SeguroDAO implements DAOInterface<Seguro, TipoSeguro>{
         throw new DataErrorException("No es posible agregar nuevos seguros");
     }
 
+//    public Excursion find(String codigo) {
+
+//    }
+//
+//    @Override
+//    public List<Excursion> findAll() {
+
+//    }
+
     @Override
     public Seguro find(TipoSeguro tipoSeguro) {
-        String findQuery = "SELECT * FROM seguro WHERE nombre = ?";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(findQuery);
-            stm.setString(1, tipoSeguro.name());
-            try (ResultSet results = stm.executeQuery()) {
-                if (results.next()){
-                    return new Seguro(results.getDouble("precio"), TipoSeguro.valueOf(results.getString("nombre")));
-                }
-            }
-        } catch (SQLException e) {
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                return session.find(Seguro.class, tipoSeguro);
+            });
+        } catch (Exception e){
             throw new DataErrorException("Error buscando seguro");
         }
-        return null;
     }
 
     @Override
     public List<Seguro> findAll() {
-        String findQuery = "SELECT * FROM seguro";
-        List<Seguro> seguros = new ArrayList<>();
-
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(findQuery);
-            try (ResultSet results = stm.executeQuery()){
-                while (results.next()){
-                    seguros.add(new Seguro(results.getDouble("precio"), TipoSeguro.valueOf(results.getString("nombre"))));
-                }
-            }
-            return seguros;
-        } catch (SQLException e) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        try {
+            return sessionFactory.fromTransaction(session -> {
+                var builder = sessionFactory.getCriteriaBuilder();
+                CriteriaQuery<Seguro> query = builder.createQuery(Seguro.class);
+                Root<Seguro> seguro = query.from(Seguro.class);
+                query.select(seguro);
+                return session.createSelectionQuery(query).getResultList();
+            });
+        } catch (Exception e) {
             throw new DataErrorException("Error buscando seguros");
         }
     }

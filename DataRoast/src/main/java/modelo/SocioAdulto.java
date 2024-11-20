@@ -1,13 +1,18 @@
 package modelo;
 
+import jakarta.persistence.Entity;
 import util.DataErrorException;
 
+@Entity
 abstract public class SocioAdulto extends Socio {
     private String nif;
 
     public SocioAdulto(String nombre, int numeroSocio, String nif) {
         super(nombre, numeroSocio);
         setNif(nif);
+    }
+
+    public SocioAdulto(){
     }
 
     public SocioAdulto(String nombre, String nif) {
