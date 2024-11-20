@@ -35,6 +35,12 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.6.2.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>6.6.2.Final</version>
+        </dependency>
 
     </dependencies>
+
 </project>

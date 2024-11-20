@@ -1,10 +1,17 @@
 package modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import util.DataErrorException;
 
+@Entity
 public class Federacion {
+    @Id
     private String codigo;
     private String nombre;
+
+    public Federacion(){
+    }
 
     public Federacion(String codigo, String nombre){
         setNombre(nombre);
