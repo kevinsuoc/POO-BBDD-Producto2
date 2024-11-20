@@ -76,6 +76,8 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
                 session.persist(federacion);
             });
         } catch (Exception e){
+            e.printStackTrace();
+            System.out.println(e);
             throw new DataErrorException("Error agregando federacion");
         }
         return federacion;

@@ -21,8 +21,6 @@ public class SocioInfantilDAO extends SocioDAO implements DAOInterface<SocioInfa
                 session.persist(socio);
             });
         } catch (Exception e){
-            e.printStackTrace();
-            System.out.println(e);
             throw new DataErrorException("Error agregando socio");
         }
         return socio;

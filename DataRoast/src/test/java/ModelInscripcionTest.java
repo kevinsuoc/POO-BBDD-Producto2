@@ -1,6 +1,7 @@
 
 import modelo.*;
 import org.junit.jupiter.api.*;
+import util.HibernateUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,8 +21,13 @@ public class ModelInscripcionTest {
 
     @BeforeAll
     void setupData(){
+        HibernateUtil.startSessionFactory();
+
         clearData();
-        datos.agregarFederacion(new Federacion("FederacionPrueba", "Prueba"));
+
+        HibernateUtil.startSessionFactory();
+
+        datos.agregarFederacion(new Federacion("TST", "Prueba"));
 
         // Agregar algunas excursiones
         datos.agregarExcursion(new Excursion(10, 15., "TEST1", "Una excursion", LocalDate.now().plusDays(3)));
@@ -31,18 +37,20 @@ public class ModelInscripcionTest {
         id1 = datos.agregarSocioEstandar(new SocioEstandar("11223366H", "Juan", datos.obtenerSeguro(TipoSeguro.BASICO))).getNumeroSocio();
         id2 = datos.agregarSocioEstandar(new SocioEstandar("aaabbbccc", "Maria", datos.obtenerSeguro(TipoSeguro.COMPLETO))).getNumeroSocio();
         id3 = datos.agregarSocioInfantil(new SocioInfantil("Jose", id1)).getNumeroSocio();
-        id4 = datos.agregarSocioFederado(new SocioFederado("11223377H", "Lucia", datos.obtenerFederacion("FederacionPrueba"))).getNumeroSocio();
+        id4 = datos.agregarSocioFederado(new SocioFederado("11223377H", "Lucia", datos.obtenerFederacion("TST"))).getNumeroSocio();
     }
 
     @AfterAll
     void clearData() {
         try {datos.eliminarExcursion("TEST1"); } catch (Exception e) {System.out.println(e.getMessage());}
         try {datos.eliminarExcursion("TEST2");} catch (Exception e) {System.out.println(e.getMessage());}
-        try {datos.eliminarFederacion("FederacionPrueba");} catch (Exception e) {System.out.println(e.getMessage());}
+        try { datos.eliminarSocio(id3);} catch (Exception e) {System.out.println(e.getMessage());}
         try { datos.eliminarSocio(id1);} catch (Exception e) {System.out.println(e.getMessage());}
         try { datos.eliminarSocio(id2);} catch (Exception e) {System.out.println(e.getMessage());}
-        try { datos.eliminarSocio(id3);} catch (Exception e) {System.out.println(e.getMessage());}
         try {datos.eliminarSocio(id4);} catch (Exception e) {System.out.println(e.getMessage());}
+        try {datos.eliminarFederacion("TST");} catch (Exception e) {System.out.println(e.getMessage());}
+
+        HibernateUtil.endSessionFactory();
     }
 
     @Test

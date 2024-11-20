@@ -1,14 +1,19 @@
 package modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import util.DataErrorException;
 
 @Entity
 public class Inscripcion {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "numero_inscripcion")
     private int numeroInscripcion;
+    @ManyToOne
+    @JoinColumn(name = "id_socio")
     private Socio socio;
+    @ManyToOne
+    @JoinColumn(name = "codigo_excursion")
     private Excursion excursion;
 
     public Inscripcion() {

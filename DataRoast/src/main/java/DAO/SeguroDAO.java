@@ -23,15 +23,6 @@ public class SeguroDAO implements DAOInterface<Seguro, TipoSeguro>{
         throw new DataErrorException("No es posible agregar nuevos seguros");
     }
 
-//    public Excursion find(String codigo) {
-
-//    }
-//
-//    @Override
-//    public List<Excursion> findAll() {
-
-//    }
-
     @Override
     public Seguro find(TipoSeguro tipoSeguro) {
         try {
