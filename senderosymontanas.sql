@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2024 a las 14:42:36
+-- Tiempo de generación: 20-11-2024 a las 17:04:06
 -- Versión del servidor: 8.0.33
 -- Versión de PHP: 8.2.12
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `excursion` (
-  `codigo` varchar(10) NOT NULL,
+  `codigo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `descripcion` text,
   `num_dias` int NOT NULL,
-  `precio_inscripcion` float NOT NULL,
+  `precio_inscripcion` decimal(38,2) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -40,12 +40,12 @@ CREATE TABLE `excursion` (
 --
 
 INSERT INTO `excursion` (`codigo`, `descripcion`, `num_dias`, `precio_inscripcion`, `fecha`) VALUES
-('ABC', 'Una excursion de prueba', 3, 40, '2025-01-01'),
-('GESP', 'Excursion del gobierno de España', 2, 5, '2026-02-06'),
-('SYM1', 'Excursion de S.Y.M', 1, 5, '2022-04-03'),
-('SYM2', 'Excursion larga de S.Y.M', 20, 100, '2025-03-03'),
-('UOC1', 'Excursion de estudiantes 1', 5, 10, '2024-02-05'),
-('UOC2', 'Excursion de estudiantes 2', 3, 20, '2025-10-10');
+('ABC', 'Una excursion de prueba', 3, 40.00, '2025-01-01'),
+('GESP', 'Excursion del gobierno de España', 2, 5.00, '2026-02-06'),
+('SYM1', 'Excursion de S.Y.M', 1, 5.00, '2022-04-03'),
+('SYM2', 'Excursion larga de S.Y.M', 20, 100.00, '2025-03-03'),
+('UOC1', 'Excursion de estudiantes 1', 5, 10.00, '2024-02-05'),
+('UOC2', 'Excursion de estudiantes 2', 3, 20.00, '2025-10-10');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,8 @@ CREATE TABLE `federacion` (
 INSERT INTO `federacion` (`codigo`, `nombre`) VALUES
 ('EUOC', 'Excursiones UOC'),
 ('FAS', 'Federacion de asociados'),
-('FED', 'FedSYM');
+('FED', 'FedSYM'),
+('FederacionPrueba', 'Federacion');
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,8 @@ INSERT INTO `socio` (`id_socio`, `nombre`, `tiposocio`) VALUES
 (168, 'Carlos', 'SocioEstandar'),
 (169, 'Rosa', 'SocioFederado'),
 (172, 'Carlos', 'SocioEstandar'),
-(173, 'Rosa', 'SocioFederado');
+(173, 'Rosa', 'SocioFederado'),
+(206, 'Carlos', 'SocioEstandar');
 
 -- --------------------------------------------------------
 
@@ -204,7 +206,8 @@ INSERT INTO `socioadulto` (`id_socio`, `nif`) VALUES
 (88, '11223366H'),
 (99, '11223366H'),
 (110, '11223366H'),
-(121, '11223366H');
+(121, '11223366H'),
+(206, 'AABBCCDDE');
 
 -- --------------------------------------------------------
 
@@ -239,6 +242,7 @@ INSERT INTO `socioestandar` (`id_socio`, `seguro_nombre`) VALUES
 (99, 'BASICO'),
 (110, 'BASICO'),
 (121, 'BASICO'),
+(206, 'BASICO'),
 (14, 'COMPLETO');
 
 -- --------------------------------------------------------
@@ -381,13 +385,13 @@ ALTER TABLE `tiposocio`
 -- AUTO_INCREMENT de la tabla `inscripcion`
 --
 ALTER TABLE `inscripcion`
-  MODIFY `numero_inscripcion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `numero_inscripcion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de la tabla `socio`
 --
 ALTER TABLE `socio`
-  MODIFY `id_socio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
+  MODIFY `id_socio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
 
 --
 -- Restricciones para tablas volcadas
