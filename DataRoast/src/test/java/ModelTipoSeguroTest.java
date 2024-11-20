@@ -2,16 +2,24 @@
 import modelo.Datos;
 import modelo.Seguro;
 import modelo.TipoSeguro;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
+import util.HibernateUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ModelTipoSeguroTest {
     Datos datos = new Datos();
+
+    @BeforeAll
+    public static void init (){
+        HibernateUtil.startSessionFactory();
+    }
+
+    @AfterAll
+    public static void end (){
+        HibernateUtil.endSessionFactory();
+    }
 
     @Test
     @Order(1)

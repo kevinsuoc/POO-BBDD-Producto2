@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <!-- a SessionFactory instance listed as /jndi/name -->
+    <session-factory>
+
+        <!-- properties -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/senderosymontanas</property>
+        <property name="hibernate.connection.username">dataroast</property>
+        <property name="hibernate.connection.password">dataroastpassword</property>
+
+        <!-- mapping files -->
+        <mapping class="modelo.Federacion"/>
+        <mapping class="modelo.Excursion"/>
+        <mapping class="modelo.SocioEstandar"/>
+        <mapping class="modelo.Seguro"/>
+        <mapping class="modelo.SocioFederado"/>
+        <mapping class="modelo.SocioInfantil"/>
+        <mapping class="modelo.Inscripcion"/>
+
+    </session-factory>
+
+</hibernate-configuration>

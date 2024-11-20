@@ -1,13 +1,7 @@
 package controlador;
 
-import modelo.Federacion;
-import modelo.Federacion_;
-import org.hibernate.SessionFactory;
 import util.HibernateUtil;
-
 import java.util.Scanner;
-
-import static org.hibernate.cfg.AvailableSettings.*;
 
 public class Main {
     public static void main(String[] args) {
