@@ -1,6 +1,7 @@
 
 import modelo.*;
 import org.junit.jupiter.api.*;
+import util.HibernateUtil;
 
 import java.util.List;
 
@@ -10,13 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ModelSocioInfantilTest {
     Datos datos = new Datos();
-    SocioEstandar socio1 = new SocioEstandar(1000, "AABBCCDDE", "Carlos", new Seguro(100, TipoSeguro.BASICO));
-    SocioFederado socio2 = new SocioFederado(2000, "FFGGHHIIJ", "Rosa", new Federacion("FederacionPrueba", "que"));
+    SocioEstandar socio1 = new SocioEstandar("AABBCCDDE", "Carlos", new Seguro(100, TipoSeguro.BASICO));
+    SocioFederado socio2 = new SocioFederado("FFGGHHIIJ", "Rosa", new Federacion("FederacionPrueba", "que"));
     int id1;
     int id2;
 
     @BeforeAll
     void init(){
+        HibernateUtil.startSessionFactory();
         datos.agregarSocioEstandar(socio1);
         datos.agregarSocioFederado(socio2);
     }
@@ -25,6 +27,7 @@ public class ModelSocioInfantilTest {
     void afterAll(){
         datos.eliminarSocio(socio1.getNumeroSocio());
         datos.eliminarSocio(socio2.getNumeroSocio());
+        HibernateUtil.endSessionFactory();
     }
 
     @Test

@@ -16,6 +16,8 @@ public class HibernateUtil {
                 addAnnotatedClass(Excursion.class).
                 addAnnotatedClass(SocioEstandar.class).
                 addAnnotatedClass(Seguro.class).
+                addAnnotatedClass(SocioFederado.class).
+                addAnnotatedClass(SocioInfantil.class).
                 setProperty("hibernate.hbm2ddl.auto", "validate").
                 setProperty(URL, "jdbc:mysql://localhost:3306/senderosymontanas").
                 setProperty(USER, "dataroast").

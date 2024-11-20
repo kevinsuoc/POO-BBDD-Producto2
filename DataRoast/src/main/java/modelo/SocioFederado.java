@@ -1,16 +1,23 @@
 package modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import util.DataErrorException;
 
+@Entity
 public class SocioFederado extends SocioAdulto {
     private static final double descuentoCuotaMensual = 0.05;
     private static final double descuentoExcursion = 0.1;
+    @ManyToOne
     private Federacion federacion;
 
 
     public SocioFederado (int numeroSocio, String nif, String nombre, Federacion federacion) {
         super(nombre, numeroSocio, nif);
         this.setFederacion(federacion);
+    }
+
+    public SocioFederado () {
     }
 
     public SocioFederado (String nif, String nombre, Federacion federacion) {

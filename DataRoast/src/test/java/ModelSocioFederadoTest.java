@@ -3,6 +3,7 @@ import modelo.Datos;
 import modelo.Federacion;
 import modelo.SocioFederado;
 import org.junit.jupiter.api.*;
+import util.HibernateUtil;
 
 import java.util.List;
 
@@ -14,6 +15,16 @@ public class ModelSocioFederadoTest {
     Datos datos = new Datos();
     Federacion fed = new Federacion("FederacionPrueba", "Federacion");
     int id1;
+
+    @BeforeAll
+    public static void init (){
+        HibernateUtil.startSessionFactory();
+    }
+
+    @AfterAll
+    public static void end (){
+        HibernateUtil.endSessionFactory();
+    }
 
     @Test
     @Order(1)

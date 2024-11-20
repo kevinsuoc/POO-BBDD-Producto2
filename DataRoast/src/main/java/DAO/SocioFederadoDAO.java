@@ -1,89 +1,63 @@
 package DAO;
 
-import modelo.Federacion;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import modelo.SocioFederado;
+import org.hibernate.SessionFactory;
 import util.DataErrorException;
-import util.MysqlConnection;
+import util.HibernateUtil;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SocioFederadoDAO extends SocioDAO implements DAOInterface<SocioFederado, Integer> {
     @Override
     public SocioFederado insert(SocioFederado socio) {
-        String insertQuery = "{CALL insertSocioFederado(?, ?, ?, ?)}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            CallableStatement stm = con.prepareCall(insertQuery);
-            stm.setString(1, socio.getNif());
-            stm.setString(2, socio.getNombre());
-            stm.setString(3, socio.getFederacion().getCodigo());
-            stm.execute();
-            stm.registerOutParameter(4, java.sql.Types.INTEGER);
-            socio.setNumeroSocio(stm.getInt(4));
-            return socio;
-        } catch (SQLException e){
-            throw new DataErrorException("Error agregando socio federado");
+        try {
+            HibernateUtil.getSessionFactory().inTransaction(session -> {
+                session.persist(socio);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("Error agregando socio");
         }
+        return socio;
     }
 
     @Override
     public SocioFederado find(Integer id) {
-        String findQuery = "{CALL getSocioFederadoById(?)}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(findQuery);
-            stm.setInt(1, id);
-            try (ResultSet results = stm.executeQuery()) {
-                if (results.next()) {
-                    return new SocioFederado(
-                            id,
-                            results.getString("nif"),
-                            results.getString("nombre"),
-                            new Federacion(results.getString("codigo_federacion"), results.getString("nombre_federacion"))
-                    );
-                }
-            }
-        } catch (SQLException e) {
-            throw new DataErrorException("Error buscando socio federado");
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                return session.find(SocioFederado.class, id);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("Error buscando socio");
         }
-        return null;
+
     }
 
     @Override
     public List<SocioFederado> findAll() {
-        ArrayList<SocioFederado> socios = new ArrayList<>();
-        String findQuery = "{CALL getSociosFederados()}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            CallableStatement stm = con.prepareCall(findQuery);
-            try (ResultSet results = stm.executeQuery()) {
-                while (results.next()) {
-                    socios.add(new SocioFederado(
-                            results.getInt("id"),
-                            results.getString("nif"),
-                            results.getString("nombre"),
-                            new Federacion(results.getString("codigo_federacion"), results.getString("nombre_federacion"))
-                    ));
-                }
-            }
-            return socios;
-        } catch (SQLException e) {
-            throw new DataErrorException("Error busncaod socios federados");
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        try {
+            return sessionFactory.fromTransaction(session -> {
+                var builder = sessionFactory.getCriteriaBuilder();
+                CriteriaQuery<SocioFederado> query = builder.createQuery(SocioFederado.class);
+                Root<SocioFederado> socioFederado = query.from(SocioFederado.class);
+                query.select(socioFederado);
+                return session.createSelectionQuery(query).getResultList();
+            });
+        } catch (Exception e) {
+            throw new DataErrorException("Error buscando socios");
         }
     }
 
     @Override
     public SocioFederado update(SocioFederado socio) {
-        String insertQuery = "{CALL updateSocioFederado(?, ?, ?, ?)}";
-        try (Connection con = MysqlConnection.getConnection()) {
-            PreparedStatement stm = con.prepareStatement(insertQuery);
-            stm.setInt(1, socio.getNumeroSocio());
-            stm.setString(2, socio.getNif());
-            stm.setString(3, socio.getNombre());
-            stm.setString(4, socio.getFederacion().getCodigo());
-            stm.execute();
-            return socio;
-        } catch (SQLException e){
-            throw new DataErrorException("Error actualizando socio federado");
+        try {
+            return HibernateUtil.getSessionFactory().fromTransaction(session -> {
+                return session.merge(socio);
+            });
+        } catch (Exception e){
+            throw new DataErrorException("Error actualizando socio");
         }
     }
 }

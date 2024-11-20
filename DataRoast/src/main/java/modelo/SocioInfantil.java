@@ -1,10 +1,18 @@
 package modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.ManyToOne;
 import util.DataErrorException;
 
+@Entity
 public class SocioInfantil extends Socio {
     private static final double descuentoCuotaMensual = 0.5;
+    @Column(name="tutor")
     private int numeroSocioTutor;
+
+    public SocioInfantil() {}
 
     public SocioInfantil(int numeroSocio, String nombre, int numeroSocioTutor) {
         super(nombre, numeroSocio);
