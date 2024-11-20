@@ -3,11 +3,13 @@ package modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import util.DataErrorException;
 
 @Entity
 public class SocioEstandar extends SocioAdulto{
     @ManyToOne
+    @NotNull(message = "El seguro no puede ser nulo")
     private Seguro seguro;
 
     public SocioEstandar(int numeroSocio, String nif, String nombre, Seguro seguro) {
@@ -29,9 +31,6 @@ public class SocioEstandar extends SocioAdulto{
     }
 
     public void setSeguro(Seguro seguro) {
-        if (seguro == null){
-            throw new DataErrorException("Seguro nulo");
-        }
         this.seguro = seguro;
     }
 

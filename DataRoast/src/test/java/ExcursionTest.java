@@ -1,6 +1,8 @@
 import modelo.Excursion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class ExcursionTest {
     @Test
     void agregarExcursion() {
         // Given: A valid excursion
-        Excursion excursion1 = new Excursion(3, 150.0, "ABC", "Excursion a la montaña.", LocalDate.now().plusDays(1));
+        Excursion excursion1 = new Excursion(3, new BigDecimal("150.0"), "ABC", "Excursion a la montaña.", LocalDate.now().plusDays(1));
 
         // When: Adding the excursion to the list
         listaExcursiones.add(excursion1);
@@ -25,8 +27,8 @@ public class ExcursionTest {
     @Test
     void mostrarExcursiones() {
         // Given: Two valid excursions
-        Excursion excursion1 = new Excursion(3, 150.0, "ABC", "Excursion a la montaña.", LocalDate.now().plusDays(1));
-        Excursion excursion2 = new Excursion(2, 100.0, "DEF", "Excursion a la playa.", LocalDate.now().plusDays(2));
+        Excursion excursion1 = new Excursion(3, new BigDecimal("150.0"), "ABC", "Excursion a la montaña.", LocalDate.now().plusDays(1));
+        Excursion excursion2 = new Excursion(2, new BigDecimal("100.0"), "DEF", "Excursion a la playa.", LocalDate.now().plusDays(2));
 
         // When: Adding excursions to the list
         listaExcursiones.add(excursion1);

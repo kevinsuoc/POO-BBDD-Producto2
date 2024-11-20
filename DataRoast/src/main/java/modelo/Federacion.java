@@ -2,12 +2,19 @@ package modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import util.DataErrorException;
 
 @Entity
 public class Federacion {
     @Id
+    @NotNull(message = "El codigo no puede ser nulo")
+    @Size(min = 3, max = 7, message = "El codigo debe tener de {min} a {max} caracteres")
     private String codigo;
+
+    @NotNull(message = "El nombre no puede ser nulo")
+    @Size(min=2, max=35, message = "El nombre debe tener de {min} a {max} caracteres")
     private String nombre;
 
     public Federacion(){
@@ -27,14 +34,10 @@ public class Federacion {
     }
 
     public void setCodigo(String codigo) {
-        if (codigo.length() < 3)
-            throw new DataErrorException("Codigo de federacion muy corto");
         this.codigo = codigo;
     }
 
     public void setNombre(String nombre) {
-        if (nombre.length() < 3)
-            throw new DataErrorException("Nombre de la federacion muy corto");
         this.nombre = nombre;
     }
 

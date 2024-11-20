@@ -3,10 +3,11 @@ package controlador;
 import modelo.Datos;
 import vista.View;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Controlador {
-    public final static double precioCuotaExcursionista = 10;
+    public final static BigDecimal precioCuotaExcursionista = new BigDecimal(10);
     private final View view;
     private final ControladorExcursion controladorExcursion;
     private final ControladorInscripcion controladorInscripcion;

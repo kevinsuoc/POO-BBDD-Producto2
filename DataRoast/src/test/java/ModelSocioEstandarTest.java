@@ -17,12 +17,12 @@ public class ModelSocioEstandarTest {
 
     @BeforeAll
     public static void init (){
-        HibernateUtil.startSessionFactory();
+        HibernateUtil.initializeUtils();
     }
 
     @AfterAll
     public static void end (){
-        HibernateUtil.endSessionFactory();
+        HibernateUtil.closeUtils();
     }
 
     @Test

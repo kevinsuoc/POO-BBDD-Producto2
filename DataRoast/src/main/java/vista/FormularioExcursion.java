@@ -4,6 +4,7 @@ import controlador.ControladorExcursion;
 import modelo.Excursion;
 import util.DataErrorException;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class FormularioExcursion extends Formulario {
 
     public void nuevaExcursion() {
         int numDias = obtenerNumero("Ingresa el numero de dias");
-        double precioInscripcion = obtenerDouble("Ingresa el precio de la inscripcion");
+        BigDecimal precioInscripcion = obtenerBigDecimal("Ingresa el precio de la inscripcion");
         String codigo = obtenerString("Ingresa el codigo de excursion");
         String descripcion = obtenerString("Ingresa una descripcion");
         LocalDate fecha = obtenerFecha("Fecha de excursion...");

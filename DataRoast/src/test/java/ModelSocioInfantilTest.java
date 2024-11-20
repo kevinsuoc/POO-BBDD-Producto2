@@ -18,7 +18,7 @@ public class ModelSocioInfantilTest {
 
     @BeforeAll
     void init(){
-        HibernateUtil.startSessionFactory();
+        HibernateUtil.initializeUtils();
         datos.agregarSocioEstandar(socio1);
         datos.agregarSocioFederado(socio2);
     }
@@ -27,7 +27,7 @@ public class ModelSocioInfantilTest {
     void afterAll(){
         datos.eliminarSocio(socio1.getNumeroSocio());
         datos.eliminarSocio(socio2.getNumeroSocio());
-        HibernateUtil.endSessionFactory();
+        HibernateUtil.closeUtils();
     }
 
     @Test

@@ -4,12 +4,20 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import util.DataErrorException;
+
+import java.math.BigDecimal;
 
 @Entity
 public class SocioInfantil extends Socio {
-    private static final double descuentoCuotaMensual = 0.5;
+    private static final BigDecimal descuentoCuotaMensual = new BigDecimal("0.5");
+
     @Column(name="tutor")
+    @NotNull(message = "El numero del socio tutor no puede ser nulo")
+    @DecimalMin(value = "0", message = "El numero del socio tutor debe ser mayor a 0")
     private int numeroSocioTutor;
 
     public SocioInfantil() {}
@@ -32,8 +40,8 @@ public class SocioInfantil extends Socio {
         this.numeroSocioTutor = numeroSocioTutor;
     }
 
-    public static double obtenerCuotaConDescuento(double cuotaBase){
-        return cuotaBase - cuotaBase * descuentoCuotaMensual;
+    public static BigDecimal obtenerCuotaConDescuento(BigDecimal cuotaBase){
+        return cuotaBase.subtract(cuotaBase.multiply(descuentoCuotaMensual));
     }
 
     public String toString() {

@@ -2,13 +2,18 @@ package modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import util.DataErrorException;
+
+import java.math.BigDecimal;
 
 @Entity
 public class SocioFederado extends SocioAdulto {
-    private static final double descuentoCuotaMensual = 0.05;
-    private static final double descuentoExcursion = 0.1;
+    private static final BigDecimal descuentoCuotaMensual = new BigDecimal("0.5");
+    private static final BigDecimal descuentoExcursion = new BigDecimal("0.1");
+
     @ManyToOne
+    @NotNull(message = "La federacion no puede ser nula")
     private Federacion federacion;
 
 
@@ -36,12 +41,12 @@ public class SocioFederado extends SocioAdulto {
         this.federacion = federacion;
     }
 
-    public static double obtenerCuotaConDescuento(double cuotaBase){
-        return cuotaBase - cuotaBase * descuentoCuotaMensual;
+    public static BigDecimal obtenerCuotaConDescuento(BigDecimal cuotaBase){
+        return cuotaBase.subtract(cuotaBase.multiply(descuentoCuotaMensual));
     }
 
-    public static double obtenerPrecioExcursionConDescuento(double precioBase){
-        return precioBase - precioBase * descuentoExcursion;
+    public static BigDecimal obtenerPrecioExcursionConDescuento(BigDecimal precioBase){
+        return precioBase.subtract(precioBase.multiply(descuentoExcursion));
     }
 
     public String toString() {

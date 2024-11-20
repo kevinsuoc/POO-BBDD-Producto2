@@ -3,6 +3,7 @@ package vista;
 import modelo.TipoSeguro;
 import modelo.TipoSocio;
 
+import java.math.BigDecimal;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
@@ -31,13 +32,13 @@ abstract public class  Formulario {
             }
         }
 
-        protected double obtenerDouble(String msg) {
-            double numeroIngresado;
+        protected BigDecimal obtenerBigDecimal(String msg) {
+            BigDecimal numeroIngresado;
 
             while (true) {
                 try {
                     System.out.print(msg + ": ");
-                    numeroIngresado = in.nextDouble();
+                    numeroIngresado = in.nextBigDecimal();
                     in.nextLine();
                     return numeroIngresado;
                 } catch (InputMismatchException ignored) {

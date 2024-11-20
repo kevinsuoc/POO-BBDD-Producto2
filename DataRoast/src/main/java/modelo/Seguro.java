@@ -1,6 +1,7 @@
 package modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import util.DataErrorException;
 
 import static jakarta.persistence.EnumType.STRING;
@@ -9,8 +10,11 @@ import static jakarta.persistence.EnumType.STRING;
 public class Seguro {
     @Id
     @Column(name="nombre")
+    @NotNull(message = "El tipo de seguro no puede ser nulo")
     @Enumerated(STRING)
     private TipoSeguro tipoSeguro;
+
+    @NotNull(message = "El precio del seguro no puede ser nulo")
     private double precio;
 
     public Seguro(){
@@ -30,14 +34,10 @@ public class Seguro {
     }
 
     public void setTipoSeguro(TipoSeguro tipoSeguro) {
-        if (tipoSeguro == null)
-            throw new DataErrorException("tipoSeguro null");
         this.tipoSeguro = tipoSeguro;
     }
 
     public void setPrecio(double precio) {
-        if (precio < 0)
-            throw new DataErrorException("El precio del seguro no puede ser negativo");
         this.precio = precio;
     }
 

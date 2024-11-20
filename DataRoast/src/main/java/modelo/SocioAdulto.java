@@ -1,10 +1,14 @@
 package modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import util.DataErrorException;
 
 @Entity
 abstract public class SocioAdulto extends Socio {
+    @Size(min = 7, max = 13, message = "El NIF debe tener de {min} a {max} caracteres")
+    @NotNull(message = "El NIF no puede ser nulo")
     private String nif;
 
     public SocioAdulto(String nombre, int numeroSocio, String nif) {
@@ -25,8 +29,6 @@ abstract public class SocioAdulto extends Socio {
     }
 
     public void setNif(String nif) {
-        if (nif.length() < 7 || nif.length() > 10)
-            throw new DataErrorException("Formato de NIF erroneo");
         this.nif = nif;
     }
 

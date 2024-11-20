@@ -2,6 +2,9 @@ package DAO;
 
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import modelo.SocioFederado;
 import modelo.SocioInfantil;
 import org.hibernate.SessionFactory;
 import util.DataErrorException;
@@ -11,11 +14,13 @@ import util.MysqlConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class SocioInfantilDAO extends SocioDAO implements DAOInterface<SocioInfantil, Integer> {
 
     @Override
     public SocioInfantil insert(SocioInfantil socio) {
+        validate(socio);
         try {
             HibernateUtil.getSessionFactory().inTransaction(session -> {
                 session.persist(socio);
@@ -56,12 +61,26 @@ public class SocioInfantilDAO extends SocioDAO implements DAOInterface<SocioInfa
 
     @Override
     public SocioInfantil update(SocioInfantil socio) {
+        validate(socio);
         try {
             return HibernateUtil.getSessionFactory().fromTransaction(session -> {
                 return session.merge(socio);
             });
         } catch (Exception e){
             throw new DataErrorException("Error actualizando socio");
+        }
+    }
+
+    private void validate(SocioInfantil socio){
+        StringBuilder error = new StringBuilder();
+
+        Validator validator = HibernateUtil.getValidator();
+        Set<ConstraintViolation<SocioInfantil>> constraintViolations = validator.validate(socio);
+        if (!constraintViolations.isEmpty()){
+            for (ConstraintViolation<SocioInfantil> violation : constraintViolations) {
+                error.append("\n").append(violation.getMessage());
+            }
+            throw new DataErrorException(error.toString());
         }
     }
 }

@@ -2,6 +2,8 @@ package DAO;
 
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import modelo.*;
 import org.hibernate.SessionFactory;
 import util.DataErrorException;
@@ -12,6 +14,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
 
@@ -29,6 +32,7 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
 
     @Override
     public Inscripcion insert(Inscripcion inscripcion) {
+        validate(inscripcion);
         try {
             HibernateUtil.getSessionFactory().inTransaction(session -> {
                 session.persist(inscripcion);
@@ -120,6 +124,19 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
             });
         } catch (Exception e) {
             throw new DataErrorException("Error buscando inscripciones");
+        }
+    }
+
+    private void validate(Inscripcion inscripcion){
+        StringBuilder error = new StringBuilder();
+
+        Validator validator = HibernateUtil.getValidator();
+        Set<ConstraintViolation<Inscripcion>> constraintViolations = validator.validate(inscripcion);
+        if (!constraintViolations.isEmpty()){
+            for (ConstraintViolation<Inscripcion> violation : constraintViolations) {
+                error.append("\n").append(violation.getMessage());
+            }
+            throw new DataErrorException(error.toString());
         }
     }
 }

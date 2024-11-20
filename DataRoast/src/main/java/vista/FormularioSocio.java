@@ -5,6 +5,7 @@ import controlador.ControladorSocio;
 import modelo.*;
 import util.DataErrorException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -101,14 +102,14 @@ public class FormularioSocio extends Formulario {
         try {
             Socio socio = controlador.obtenerSocioPorNumero(numeroSocio);
             List<Inscripcion> inscripcionesDelMes = controlador.obtenerInscripcionesMesSocio(numeroSocio);
-            double baseCuota = Controlador.precioCuotaExcursionista;
-            double totalCuota;
-            double baseExcursiones = 0;
-            double totalExcursiones;
-            double total;
+            BigDecimal baseCuota = Controlador.precioCuotaExcursionista;
+            BigDecimal totalCuota;
+            BigDecimal baseExcursiones = new BigDecimal(0);
+            BigDecimal totalExcursiones;
+            BigDecimal total;
 
             for (Inscripcion inscripcion: inscripcionesDelMes)
-                baseExcursiones += inscripcion.getExcursion().getPrecioInscripcion();
+                baseExcursiones = baseExcursiones.add(inscripcion.getExcursion().getPrecioInscripcion());
             if (socio instanceof SocioFederado)
                 totalExcursiones = SocioFederado.obtenerPrecioExcursionConDescuento(baseExcursiones);
             else
@@ -121,7 +122,7 @@ public class FormularioSocio extends Formulario {
             else
                 totalCuota = baseCuota;
 
-            total = totalCuota + totalExcursiones;
+            total = totalCuota.add(totalExcursiones);
 
             System.out.println("----- Cuota mensual de socio -----");
             System.out.println(socio);

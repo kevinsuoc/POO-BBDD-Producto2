@@ -1,6 +1,9 @@
 package modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import util.DataErrorException;
 
 import static jakarta.persistence.InheritanceType.JOINED;
@@ -11,12 +14,13 @@ import static jakarta.persistence.InheritanceType.JOINED;
 public class Socio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @DecimalMin(value = "0", message = "El numero de socio debe ser mayor a {value}")
     @Column(name = "id_socio")
     private int numeroSocio;
+
+    @NotNull(message = "El nombre no puede ser nulo")
+    @Size(min = 2, max = 35, message = "El nombre debe tener entre {min} y {max} caracteres")
     private String nombre;
-//    @Column(name = "tiposocio")
-//    @Enumerated(STRING)
-//    private TipoSocio tipoSocio;
 
     public Socio(String nombre, int numeroSocio) {
         setNumeroSocio(numeroSocio);
@@ -37,21 +41,11 @@ public class Socio {
         return numeroSocio;
     }
 
-//    public TipoSocio getTipoSocio() {return tipoSocio;}
-
     public void setNombre(String nombre) {
-        if (nombre.length() < 2)
-            throw new DataErrorException("Nombre muy corto");
         this.nombre = nombre;
     }
 
-//    public void setTipoSocio(TipoSocio tipoSocio){
-//        this.tipoSocio = tipoSocio;
-//    }
-
     public void setNumeroSocio(int numeroSocio) {
-        if (numeroSocio <= 0)
-            throw new DataErrorException("Numero de socio debe ser mayor a 0");
         this.numeroSocio = numeroSocio;
     }
 

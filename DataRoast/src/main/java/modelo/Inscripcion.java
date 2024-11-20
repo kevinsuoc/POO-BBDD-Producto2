@@ -1,7 +1,10 @@
 package modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import util.DataErrorException;
+
+import java.math.BigDecimal;
 
 @Entity
 public class Inscripcion {
@@ -9,11 +12,15 @@ public class Inscripcion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numero_inscripcion")
     private int numeroInscripcion;
+
     @ManyToOne
     @JoinColumn(name = "id_socio")
+    @NotNull(message = "El socio no puede ser nulo")
     private Socio socio;
+
     @ManyToOne
     @JoinColumn(name = "codigo_excursion")
+    @NotNull(message = "La excursion no puede ser nula")
     private Excursion excursion;
 
     public Inscripcion() {
@@ -43,28 +50,19 @@ public class Inscripcion {
     }
 
     public void setNumeroInscripcion(int numeroInscripcion) {
-        if (numeroInscripcion <= 0){
-            throw new DataErrorException("El numero de inscripcion debe ser positivo");
-        }
         this.numeroInscripcion = numeroInscripcion;
     }
 
     public void setSocio(Socio socio) {
-        if (socio == null) {
-            throw new DataErrorException("Socio nulo");
-        }
         this.socio = socio;
     }
 
     public void setExcursion(Excursion excursion) {
-        if (excursion == null) {
-            throw new DataErrorException("Excursion nula");
-        }
         this.excursion = excursion;
     }
 
-    private double calcularPrecioExcursion(){
-        double precio = excursion.getPrecioInscripcion();
+    private BigDecimal calcularPrecioExcursion(){
+        BigDecimal precio = excursion.getPrecioInscripcion();
 
         if (socio instanceof SocioFederado)
             precio = SocioFederado.obtenerPrecioExcursionConDescuento(precio);

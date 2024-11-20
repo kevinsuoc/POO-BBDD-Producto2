@@ -2,6 +2,8 @@ package DAO;
 
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import modelo.Excursion;
 import modelo.Excursion_;
 import modelo.SocioFederado;
@@ -14,6 +16,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ExcursionDAO implements DAOInterface<Excursion, String> {
 
@@ -46,6 +49,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
 
     @Override
     public Excursion update(Excursion excursion) {
+        validate(excursion);
         try {
             return HibernateUtil.getSessionFactory().fromTransaction(session -> {
                 return session.merge(excursion);
@@ -71,6 +75,7 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
 
     @Override
     public Excursion insert(Excursion excursion) {
+        validate(excursion);
         try {
             HibernateUtil.getSessionFactory().inTransaction(session -> {
                 session.persist(excursion);
@@ -94,6 +99,19 @@ public class ExcursionDAO implements DAOInterface<Excursion, String> {
             });
         } catch (Exception e) {
             throw new DataErrorException("Error buscando excuriones");
+        }
+    }
+
+    private void validate(Excursion excursion){
+        StringBuilder error = new StringBuilder();
+
+        Validator validator = HibernateUtil.getValidator();
+        Set<ConstraintViolation<Excursion>> constraintViolations = validator.validate(excursion);
+        if (!constraintViolations.isEmpty()){
+            for (ConstraintViolation<Excursion> violation : constraintViolations) {
+                error.append("\n").append(violation.getMessage());
+            }
+            throw new DataErrorException(error.toString());
         }
     }
 }

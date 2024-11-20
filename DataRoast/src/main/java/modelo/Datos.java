@@ -91,8 +91,6 @@ public class Datos {
 
     // Excursiones
     public Excursion agregarExcursion(Excursion excursion) {
-        if (!excursion.getFecha().isAfter(LocalDate.now()))
-            throw new DataErrorException("La fecha de excursion debe ser posterior al dia actual");
         Excursion exc = obtenerExcursion(excursion.getCodigo());
         if (exc != null)
             throw new DataErrorException("El codigo de excursion ya esta siendo utilizado");

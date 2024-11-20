@@ -2,6 +2,9 @@ package DAO;
 
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import modelo.Excursion;
 import modelo.Federacion;
 import modelo.Federacion_;
 import org.hibernate.SessionFactory;
@@ -12,6 +15,7 @@ import util.MysqlConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class FederacionDAO implements DAOInterface<Federacion, String> {
     public FederacionDAO() {
@@ -46,6 +50,7 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
 
     @Override
     public Federacion update(Federacion federacion) {
+        validate(federacion);
         try {
             return HibernateUtil.getSessionFactory().fromTransaction(session -> {
                 return session.merge(federacion);
@@ -71,6 +76,7 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
 
     @Override
     public Federacion insert(Federacion federacion) {
+        validate(federacion);
         try {
             HibernateUtil.getSessionFactory().inTransaction(session -> {
                 session.persist(federacion);
@@ -81,5 +87,18 @@ public class FederacionDAO implements DAOInterface<Federacion, String> {
             throw new DataErrorException("Error agregando federacion");
         }
         return federacion;
+    }
+
+    private void validate(Federacion federacion){
+        StringBuilder error = new StringBuilder();
+
+        Validator validator = HibernateUtil.getValidator();
+        Set<ConstraintViolation<Federacion>> constraintViolations = validator.validate(federacion);
+        if (!constraintViolations.isEmpty()){
+            for (ConstraintViolation<Federacion> violation : constraintViolations) {
+                error.append("\n").append(violation.getMessage());
+            }
+            throw new DataErrorException(error.toString());
+        }
     }
 }

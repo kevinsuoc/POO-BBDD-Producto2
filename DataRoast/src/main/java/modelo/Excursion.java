@@ -3,25 +3,43 @@ package modelo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.*;
 import util.DataErrorException;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 public class Excursion {
     @Id
+    @NotNull(message = "El codigo no puede ser nulo")
+    @Size(min = 3, max = 7, message = "El codigo debe tener de {min} a {max} caracteres")
     private String codigo;
+
+    @NotNull(message = "La descripcion no puede ser nula")
+    @Size(min = 5, max = 100, message = "La descripcion debe tener de {min} a {max} caracteres")
     private String descripcion;
+
     @Column(name = "num_dias")
+    @NotNull(message = "La cantidad de dias no puede ser nula")
+    @DecimalMin(value = "1", message = "La excursión debe durar al menos {value} días")
+    @DecimalMax(value = "900", message = "La excursión no puede durar más que {value} días")
     private int numDias;
+
     @Column(name = "precio_inscripcion")
-    private double precioInscripcion;
+    @NotNull(message = "El precio de la inscripcion no puede ser nulo")
+    @DecimalMin(value = "0.0", message = "La excursión debe valer al menos {value}")
+    @DecimalMax(value = "999.0", message = "La excursión no puede valer más que {value}")
+    private BigDecimal precioInscripcion;
+
+    @Future(message = "La fecha debe estar en el futuro")
+    @NotNull(message = "La fecha de excursion no puede ser nula")
     private LocalDate fecha;
 
     public Excursion() {
     }
 
-    public Excursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha) {
+    public Excursion(int numDias, BigDecimal precioInscripcion, String codigo, String descripcion, LocalDate fecha) {
         setNumDias(numDias);
         setPrecioInscripcion(precioInscripcion);
         setCodigo(codigo);
@@ -33,7 +51,7 @@ public class Excursion {
         return numDias;
     }
 
-    public double getPrecioInscripcion() {
+    public BigDecimal getPrecioInscripcion() {
         return precioInscripcion;
     }
 
@@ -50,30 +68,18 @@ public class Excursion {
     }
 
     public void setNumDias(int numDias) {
-        if (numDias <= 0){
-            throw new DataErrorException("La excursion debe durar un dia o mas");
-        }
         this.numDias = numDias;
     }
 
-    public void setPrecioInscripcion(double precioInscripcion) {
-        if (precioInscripcion < 0){
-            throw new DataErrorException("La excursion no puede tener un precio negativo");
-        }
+    public void setPrecioInscripcion(BigDecimal precioInscripcion) {
         this.precioInscripcion = precioInscripcion;
     }
 
     public void setCodigo(String codigo) {
-        if (codigo.length() < 3){
-            throw new DataErrorException("El codigo debe tener minimo tres letras");
-        }
         this.codigo = codigo;
     }
 
     public void setDescripcion(String descripcion) {
-        if (descripcion.length() < 10){
-            throw new DataErrorException("La descricion debe tener al menos 10 caracteres");
-        }
         this.descripcion = descripcion;
     }
 

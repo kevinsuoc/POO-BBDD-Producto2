@@ -3,6 +3,7 @@ package controlador;
 import modelo.Datos;
 import modelo.Excursion;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class ControladorExcursion {
         this.datos = datos;
     }
 
-    public void agregarExcursion(int numDias, Double precioInscripcion, String codigo, String descripcion, LocalDate fecha){
+    public void agregarExcursion(int numDias, BigDecimal precioInscripcion, String codigo, String descripcion, LocalDate fecha){
         datos.agregarExcursion(new Excursion(numDias, precioInscripcion, codigo, descripcion, fecha));
     }
 

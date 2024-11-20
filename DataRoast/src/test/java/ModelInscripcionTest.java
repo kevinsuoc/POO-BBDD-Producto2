@@ -3,6 +3,7 @@ import modelo.*;
 import org.junit.jupiter.api.*;
 import util.HibernateUtil;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,17 +22,17 @@ public class ModelInscripcionTest {
 
     @BeforeAll
     void setupData(){
-        HibernateUtil.startSessionFactory();
+        HibernateUtil.initializeUtils();
 
         clearData();
 
-        HibernateUtil.startSessionFactory();
+        HibernateUtil.initializeUtils();
 
         datos.agregarFederacion(new Federacion("TST", "Prueba"));
 
         // Agregar algunas excursiones
-        datos.agregarExcursion(new Excursion(10, 15., "TEST1", "Una excursion", LocalDate.now().plusDays(3)));
-        datos.agregarExcursion(new Excursion(1, 20., "TEST2", "Otra excursion", LocalDate.now().plusDays(5)));
+        datos.agregarExcursion(new Excursion(10, new BigDecimal(15), "TEST1", "Una excursion", LocalDate.now().plusDays(3)));
+        datos.agregarExcursion(new Excursion(1, new BigDecimal(20), "TEST2", "Otra excursion", LocalDate.now().plusDays(5)));
 
         // Agregar algunos socios
         id1 = datos.agregarSocioEstandar(new SocioEstandar("11223366H", "Juan", datos.obtenerSeguro(TipoSeguro.BASICO))).getNumeroSocio();
@@ -50,7 +51,7 @@ public class ModelInscripcionTest {
         try {datos.eliminarSocio(id4);} catch (Exception e) {System.out.println(e.getMessage());}
         try {datos.eliminarFederacion("TST");} catch (Exception e) {System.out.println(e.getMessage());}
 
-        HibernateUtil.endSessionFactory();
+        HibernateUtil.closeUtils();
     }
 
     @Test

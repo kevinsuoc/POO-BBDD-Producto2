@@ -4,6 +4,7 @@ import modelo.Excursion;
 import org.junit.jupiter.api.*;
 import util.HibernateUtil;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -17,24 +18,24 @@ public class ModelExcursionTest {
 
     @BeforeAll
     public static void init (){
-        HibernateUtil.startSessionFactory();
+        HibernateUtil.initializeUtils();
     }
 
     @AfterAll
     public static void end (){
-        HibernateUtil.endSessionFactory();
+        HibernateUtil.closeUtils();
     }
 
     @Test
     @Order(1)
     void insert(){
-        if (datos.agregarExcursion(new Excursion(10, 20., "test123", "Una excursion de prueba", LocalDate.now().plusDays(1))) == null)
+        if (datos.agregarExcursion(new Excursion(10, new BigDecimal(20), "test123", "Una excursion de prueba", LocalDate.now().plusDays(1))) == null)
             throw new AssertionError("No se pudo agregar una excursion");
-        if (datos.agregarExcursion(new Excursion(10, 20., "test456", "Otra excursion de prueba", LocalDate.now().plusDays(50))) == null)
+        if (datos.agregarExcursion(new Excursion(10, new BigDecimal(20), "test456", "Otra excursion de prueba", LocalDate.now().plusDays(50))) == null)
             throw new AssertionError("No se pudo agregar una excursion");
-        if (datos.agregarExcursion(new Excursion(10, 20., "test789", "Otra excursion de prueba", LocalDate.now().plusDays(100))) == null)
+        if (datos.agregarExcursion(new Excursion(10, new BigDecimal(20), "test789", "Otra excursion de prueba", LocalDate.now().plusDays(100))) == null)
             throw new AssertionError("No se pudo agregar una excursion");
-        if (datos.agregarExcursion(new Excursion(10, 20., "test101112", "Otra excursion de prueba", LocalDate.now().plusDays(200))) == null)
+        if (datos.agregarExcursion(new Excursion(10, new BigDecimal(20), "test101", "Otra excursion de prueba", LocalDate.now().plusDays(200))) == null)
             throw new AssertionError("No se pudo agregar una excursion");
     }
 
@@ -64,9 +65,9 @@ public class ModelExcursionTest {
     @Test
     @Order(3)
     void update(){
-        datos.actualizarExcursion(new Excursion(10, 30., "test123", "Una excursion de prueba", LocalDate.now().plusDays(1)));
+        datos.actualizarExcursion(new Excursion(10, new BigDecimal(30), "test123", "Una excursion de prueba", LocalDate.now().plusDays(1)));
         Excursion excursion = datos.obtenerExcursion("test123");
-        assertEquals(excursion.getPrecioInscripcion(), 30.);
+        assertEquals(0, excursion.getPrecioInscripcion().compareTo(new BigDecimal("30")));
     }
 
     @Test
@@ -81,7 +82,7 @@ public class ModelExcursionTest {
         if (!datos.eliminarExcursion("test789")){
             throw new AssertionError("No se pudo eliminar una excursion");
         }
-        if (!datos.eliminarExcursion("test101112")){
+        if (!datos.eliminarExcursion("test101")){
             throw new AssertionError("No se pudo eliminar una excursion");
         }
     }

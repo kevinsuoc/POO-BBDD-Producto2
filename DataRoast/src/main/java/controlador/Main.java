@@ -8,13 +8,15 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         try {
-            HibernateUtil.startSessionFactory();
+            HibernateUtil.initializeUtils();
             Controlador controlador = new Controlador(in);
             controlador.ejecutarPrograma();
         } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
             System.out.println("Error ejecutando la aplicación");
         } finally {
-            HibernateUtil.endSessionFactory();
+            HibernateUtil.closeUtils();
             in.close();
         }
     }
