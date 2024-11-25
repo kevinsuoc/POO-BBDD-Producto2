@@ -117,9 +117,10 @@ public class InscripcionDAO implements DAOInterface<Inscripcion, Integer> {
                 var builder = sessionFactory.getCriteriaBuilder();
                 CriteriaQuery<Inscripcion> query = builder.createQuery(Inscripcion.class);
                 Root<Inscripcion> inscripcion = query.from(Inscripcion.class);
-                query.where(builder.equal(inscripcion.get(Inscripcion_.socio).get(Socio_.numeroSocio), numeroSocio));
-                query.where(builder.between(inscripcion.get(Inscripcion_.excursion).get(Excursion_.fecha), fechaInferior, fechaSuperior));
-                query.select(inscripcion);
+                query.where(builder.and(
+                        builder.equal(inscripcion.get(Inscripcion_.socio).get(Socio_.numeroSocio), numeroSocio),
+                        builder.between(inscripcion.get(Inscripcion_.excursion).get(Excursion_.fecha), fechaInferior, fechaSuperior)
+                ));                query.select(inscripcion);
                 return session.createSelectionQuery(query).getResultList();
             });
         } catch (Exception e) {

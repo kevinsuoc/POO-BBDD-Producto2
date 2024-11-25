@@ -108,8 +108,10 @@ public class FormularioSocio extends Formulario {
             BigDecimal totalExcursiones;
             BigDecimal total;
 
-            for (Inscripcion inscripcion: inscripcionesDelMes)
+            for (Inscripcion inscripcion: inscripcionesDelMes) {
+                System.out.println(inscripcionesDelMes);
                 baseExcursiones = baseExcursiones.add(inscripcion.getExcursion().getPrecioInscripcion());
+            }
             if (socio instanceof SocioFederado)
                 totalExcursiones = SocioFederado.obtenerPrecioExcursionConDescuento(baseExcursiones);
             else
