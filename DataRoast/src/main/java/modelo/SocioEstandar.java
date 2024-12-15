@@ -4,7 +4,6 @@ package modelo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
-import util.DataErrorException;
 
 @Entity
 public class SocioEstandar extends SocioAdulto{

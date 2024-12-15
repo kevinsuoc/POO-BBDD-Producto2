@@ -2,19 +2,12 @@ package DAO;
 
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import modelo.Excursion;
-import org.hibernate.SessionFactory;
-import util.DataErrorException;
 import modelo.Seguro;
 import modelo.TipoSeguro;
+import org.hibernate.SessionFactory;
+import util.DataErrorException;
 import util.HibernateUtil;
-import util.MysqlConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SeguroDAO implements DAOInterface<Seguro, TipoSeguro>{

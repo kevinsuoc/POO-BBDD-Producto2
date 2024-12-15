@@ -4,15 +4,15 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
-import modelo.*;
+import modelo.Excursion_;
+import modelo.Inscripcion;
+import modelo.Inscripcion_;
+import modelo.Socio_;
 import org.hibernate.SessionFactory;
 import util.DataErrorException;
 import util.HibernateUtil;
-import util.MysqlConnection;
 
-import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 

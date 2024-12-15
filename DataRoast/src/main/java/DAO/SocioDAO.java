@@ -1,14 +1,8 @@
 package DAO;
 
-import modelo.Excursion;
 import modelo.Socio;
 import util.DataErrorException;
 import util.HibernateUtil;
-import util.MysqlConnection;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class  SocioDAO {
 

@@ -6,15 +6,11 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import modelo.Excursion;
 import modelo.Excursion_;
-import modelo.SocioFederado;
 import org.hibernate.SessionFactory;
 import util.DataErrorException;
 import util.HibernateUtil;
-import util.MysqlConnection;
 
-import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 

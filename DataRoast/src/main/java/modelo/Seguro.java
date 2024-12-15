@@ -2,7 +2,6 @@ package modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import util.DataErrorException;
 
 import static jakarta.persistence.EnumType.STRING;
 

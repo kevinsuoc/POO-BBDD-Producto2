@@ -3,7 +3,6 @@ package modelo;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import util.DataErrorException;
 
 @Entity
 abstract public class SocioAdulto extends Socio {

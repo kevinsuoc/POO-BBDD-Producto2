@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
-import util.DataErrorException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

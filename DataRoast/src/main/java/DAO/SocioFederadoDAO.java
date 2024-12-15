@@ -4,7 +4,6 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
-import modelo.SocioEstandar;
 import modelo.SocioFederado;
 import org.hibernate.SessionFactory;
 import util.DataErrorException;
