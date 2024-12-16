@@ -51,6 +51,7 @@ public class SocioEstandarDAO extends SocioDAO implements DAOInterface<SocioEsta
                 return session.createSelectionQuery(query).getResultList();
             });
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new DataErrorException("Error buscando socios");
         }
     }

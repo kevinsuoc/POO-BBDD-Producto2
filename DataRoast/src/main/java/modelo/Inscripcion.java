@@ -60,7 +60,7 @@ public class Inscripcion {
         this.excursion = excursion;
     }
 
-    private BigDecimal calcularPrecioExcursion(){
+    public BigDecimal calcularPrecioExcursion(){
         BigDecimal precio = excursion.getPrecioInscripcion();
 
         if (socio instanceof SocioFederado)

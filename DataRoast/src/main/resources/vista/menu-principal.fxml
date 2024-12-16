@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #90D5FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Controlador">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Button id="menuSocio" mnemonicParsing="false" onAction="#onMenuSocio" prefWidth="200.0" text="Menú Socios">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+   <Button id="menuExcursion" mnemonicParsing="false" onAction="#onMenuExcursion" prefWidth="200.0" text="Menú Excursiones ">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+   <Button id="menuInscripcion" mnemonicParsing="false" onAction="#onMenuInscripcion" prefWidth="200.0" text="Menú Inscripción">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+   <Button id="salir" mnemonicParsing="false" onAction="#salir" prefWidth="200.0" text="Salir">
+      <font>
+         <Font size="17.0" />
+      </font></Button>
+</VBox>

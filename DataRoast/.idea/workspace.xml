@@ -4,11 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5d255d1-bcc0-42b9-a77a-9051a95943ed" name="Changes" comment="" />
+    <list default="true" id="a5d255d1-bcc0-42b9-a77a-9051a95943ed" name="Changes" comment="&quot;Java FX + Hibernate. Configuracion basica.&quot;">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vista/MostrarInscripcionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vista/MostrarSocioUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-estandar.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-excursion.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-federado.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-infantil.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-inscripcion.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/eliminar-inscripcion.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/eliminar-socio.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/facturas-mensuales.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-excursion.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-inscripcion.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-principal.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-socio.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/modificar-seguro.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/mostrar-excursiones.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/mostrar-inscripcion.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/mostrar-socios.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/SocioEstandarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/SocioEstandarDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/SocioInfantilDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/SocioInfantilDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controlador/ControladorExcursion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/ControladorExcursion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controlador/ControladorInscripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/ControladorInscripcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controlador/ControladorSocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/ControladorSocio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/Inscripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Inscripcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vista/Formulario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vista/FormularioExcursion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vista/FormularioInscripcion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vista/FormularioSocio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vista/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vista/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vista/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hello-view.fxml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -20,32 +67,34 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2qGGV7pSx5HzqbPTIj2y90eHkZg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.main.executor": "Run",
-    "Application.uoc.dataroast.Main.executor": "Run",
-    "Maven.DataRoast [clean].executor": "Run",
-    "Maven.DataRoast [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/UOC/Semestre 3/OOP con acceso a BBDD/Producto 5/DataRoast/src",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.19425288",
-    "settings.editor.selected.configurable": "preferences.pathVariables"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.uoc.dataroast.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.DataRoast [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.DataRoast [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Javafx&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/UOC/Semestre 3/OOP con acceso a BBDD/Producto 5/DataRoast/src&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.19425288&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\UOC\Semestre 3\OOP con acceso a BBDD\Producto 5\DataRoast\src" />
@@ -79,6 +128,19 @@
       <option name="presentableId" value="Default" />
       <updated>1734281520186</updated>
     </task>
+    <task id="LOCAL-00001" summary="&quot;Java FX + Hibernate. Configuracion basica.&quot;">
+      <option name="closed" value="true" />
+      <created>1734285242150</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734285242150</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;Java FX + Hibernate. Configuracion basica.&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Java FX + Hibernate. Configuracion basica.&quot;" />
   </component>
 </project>

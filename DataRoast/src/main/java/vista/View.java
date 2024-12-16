@@ -1,104 +1,83 @@
 package vista;
 
 import controlador.Controlador;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import modelo.Socio;
+import modelo.SocioEstandar;
+import modelo.SocioFederado;
+import modelo.SocioInfantil;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
-    private final Menu menuPrincipal;
-    private final Menu menuSocios;
-    private final Menu menuExcursiones;
-    private final Menu menuInscripciones;
-    private final FormularioSocio formularioSocio;
-    private final FormularioInscripcion formularioInscripcion;
-    private final FormularioExcursion formularioExcursion;
+    public static Stage stage;
 
-    public View(Controlador controlador, Scanner in){
-        this.formularioSocio = new FormularioSocio(controlador.getControladorSocio(), in);
-        this.formularioExcursion = new FormularioExcursion(controlador.getControladorExcursion(), in);
-        this.formularioInscripcion = new FormularioInscripcion(controlador.getControladorInscripcion(), in);
+    public View(){}
 
-
-        menuPrincipal = new Menu("Menu Principal", in);
-        menuPrincipal.agregarOpcion("Gestion de socios");
-        menuPrincipal.agregarOpcion("Gestion de excursiones");
-        menuPrincipal.agregarOpcion("Gestion de inscripciones");
-
-        menuSocios = new Menu("Gestion de Socios", in);
-        menuSocios.agregarOpcion("Añadir socio estandar");
-        menuSocios.agregarOpcion("Modificar tipo de seguro de un socio estandar");
-        menuSocios.agregarOpcion("Añadir socio federado");
-        menuSocios.agregarOpcion("Añadir socio infantil");
-        menuSocios.agregarOpcion("Eliminar socio");
-        menuSocios.agregarOpcion("Mostrar socios");
-        menuSocios.agregarOpcion("Mostrar factura mensual por socios");
-
-        menuExcursiones = new Menu("Gestion de Excursiones", in);
-        menuExcursiones.agregarOpcion("Añadir excursion");
-        menuExcursiones.agregarOpcion("Mostrar excursiones con filtro entre fechas");
-
-        menuInscripciones = new Menu("Gestion de Inscripciones", in);
-        menuInscripciones.agregarOpcion("Añadir inscripcion");
-        menuInscripciones.agregarOpcion("Eliminar inscripcion");
-        menuInscripciones.agregarOpcion("Mostrar inscripciones con las opciones  de filtrar por socio y/o fechas");
+    // Mostrar vista
+    private void show(String view) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(View.class.getResource(view));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void ejecutarMenuPrincipal(){
-        int opcionIngresada;
-
-        while (true) {
-            opcionIngresada = menuPrincipal.obtenerOpcionDeMenu();
-            switch (opcionIngresada){
-                case 0: System.out.println("Adios"); return;
-                case 1: ejecutarMenuSocios(); break;
-                case 2: ejecutarMenuExcursiones(); break;
-                case 3: ejecutarMenuInscripciones(); break;
-            }
-        }
+    // Mostrar Alertas
+    public void infoAlert(String info){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setHeaderText(null);
+        alerta.setTitle(null);
+        alerta.setContentText(info);
+        alerta.showAndWait();
     }
 
-    public void ejecutarMenuSocios(){
-        int opcionIngresada;
-
-        while (true) {
-            opcionIngresada = menuSocios.obtenerOpcionDeMenu();
-            switch (opcionIngresada) {
-                case 0: return;
-                case 1: formularioSocio.agregarSocioEstandar(); break;
-                case 2: formularioSocio.modificarSeguroSocioEstandar(); break;
-                case 3: formularioSocio.agregarSocioFederado(); break;
-                case 4: formularioSocio.agregarSocioInfantil(); break;
-                case 5: formularioSocio.eliminarSocio(); break;
-                case 6: formularioSocio.mostrarSocios(); break;
-                case 7: formularioSocio.mostrarFacturasMensuales(); break;
-            }
-        }
+    public void infoAlert(String info, String descripcion) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setHeaderText(descripcion);
+        alerta.setTitle(null);
+        alerta.setContentText(info);
+        alerta.showAndWait();
     }
 
-    public void ejecutarMenuExcursiones(){
-        int opcionIngresada;
-
-        while (true) {
-            opcionIngresada = menuExcursiones.obtenerOpcionDeMenu();
-            switch (opcionIngresada) {
-                case 0: return;
-                case 1: formularioExcursion.nuevaExcursion(); break;
-                case 2: formularioExcursion.mostrarExcursiones(); break;
-            }
-        }
+    public void errorAlert(String error){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setHeaderText(null);
+        alerta.setTitle(null);
+        alerta.setContentText(error);
+        alerta.showAndWait();
     }
 
-    public void ejecutarMenuInscripciones(){
-        int opcionIngresada;
+    // Vistas
 
-        while (true) {
-            opcionIngresada = menuInscripciones.obtenerOpcionDeMenu();
-            switch (opcionIngresada) {
-                case 0: return;
-                case 1: formularioInscripcion.nuevaInscripcion(); break;
-                case 2: formularioInscripcion.eliminarInscripcion(); break;
-                case 3: formularioInscripcion.mostrarInscripciones(); break;
-            }
-        }
-    }
+    // Menues principales
+    public void ejecutarMenuPrincipal() throws IOException {show("menu-principal.fxml");}
+
+    public void ejecutarMenuSocios() throws IOException {show("menu-socio.fxml");}
+
+    public void ejecutarMenuExcursiones() throws IOException {show("menu-excursion.fxml");}
+
+    public void ejecutarMenuInscripciones() throws IOException {show("menu-inscripcion.fxml");}
+
+    // Vistas de menu de socio
+    public void mostrarSociosForm() throws IOException {show("mostrar-socios.fxml");}
+    public void mostrarFacturas() throws IOException {show("facturas-mensuales.fxml");}
+    public void mostrarEliminarSocioForm() throws IOException {show("eliminar-socio.fxml");}
+    public void mostrarModificarSeguroForm() throws IOException {show("modificar-seguro.fxml");}
+    public void mostrarAgregarSocioEstandarForm() throws IOException {show("agregar-estandar.fxml");}
+    public void mostrarAgregarSocioFederadoForm() throws IOException {show("agregar-federado.fxml");}
+    public void mostrarAgregarSocioInfantilForm() throws IOException { show("agregar-infantil.fxml");}
+
+    // Vistas excursiones
+    public void agregarExcursion() throws IOException {show("agregar-excursion.fxml");}
+    public void mostrarExcursiones() throws IOException {show("mostrar-excursiones.fxml");}
+
+    // Vistas inscripciones
+    public void mostrarInscripcionesFiltradas() throws IOException {show("mostrar-inscripcion.fxml");}
+    public void eliminarInscripcion() throws IOException {show("eliminar-inscripcion.fxml");}
+    public void agregarInscripcion() throws IOException {show("agregar-inscripcion.fxml");}
 }

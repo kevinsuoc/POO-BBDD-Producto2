@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #90D5FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorExcursion">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+      
+          <Label prefWidth="200.0" text="Numero de dias">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <Spinner fx:id="numeroDiasSpinner" editable="true" maxWidth="200.0" prefWidth="200.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+      
+          <Label prefWidth="200.0" text="Precio">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <TextField fx:id="precioField" maxWidth="200.0" prefWidth="200.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+      
+          <Label prefWidth="200.0" text="Codigo de excursion">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <TextField fx:id="codigoExcursionField" maxWidth="200.0" prefWidth="200.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+      
+          <Label prefWidth="200.0" text="Descripcion">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <TextField fx:id="descripcionField" maxWidth="200.0" prefWidth="200.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+      
+          <Label prefWidth="200.0" text="Fecha">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <DatePicker fx:id="fechaField" maxWidth="200.0" prefWidth="200.0" />
+      </children>
+   </HBox>
+
+
+    <Button mnemonicParsing="false" onAction="#agregarExcursion" prefWidth="200.0" text="Agregar excursion">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+
+    <Button id="salir" mnemonicParsing="false" onAction="#volver" prefWidth="200.0" text="Volver">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+</VBox>

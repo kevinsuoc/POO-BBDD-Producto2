@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #90D5FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorExcursion">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Button prefWidth="200.0"  mnemonicParsing="false" text="Nueva excursion" onAction="#onAgregarExcursion">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+    <Button prefWidth="200.0"  mnemonicParsing="false" text="Mostrar excursiones" onAction="#onMostrarExcursionesFiltradas" >
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+    <Button prefWidth="200.0"  id="salir" mnemonicParsing="false" text="Volver" onAction="#salir" >
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+</VBox>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #90D5FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorExcursion">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+      
+          <Label prefWidth="200.0" text="Excursiones desde ... ">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <DatePicker fx:id="fechaField" prefWidth="200.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+      
+          <Label prefWidth="200.0" text="Hasta ... ">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <DatePicker fx:id="fechaField2" prefWidth="200.0" />
+      </children>
+   </HBox>
+
+    <TableView fx:id="tablaExcursiones" prefHeight="303.0" prefWidth="748.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+        <columns>
+            <TableColumn fx:id="descripcionTableField" prefWidth="200.79999160766602" text="Descripcion" />
+            <TableColumn fx:id="codigoTableField" prefWidth="140.80003356933594" text="Codigo" />
+            <TableColumn fx:id="precioTableField" prefWidth="92.00001525878906" text="Precio" />
+            <TableColumn fx:id="numDiasTableField" prefWidth="175.79998779296875" text="Duracion (Días)" />
+            <TableColumn fx:id="fechaTableField" prefWidth="155.4000244140625" text="Fecha" />
+        </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+    </TableView>
+    <Button mnemonicParsing="false" onAction="#mostrarExcursiones" prefWidth="200.0" text="Mostrar excursiones">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+
+    <Button id="salir" mnemonicParsing="false" onAction="#volver" prefWidth="200.0" text="Volver">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
+</VBox>

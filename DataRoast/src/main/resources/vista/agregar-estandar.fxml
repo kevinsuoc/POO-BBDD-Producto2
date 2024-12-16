@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #90D5FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorSocio">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+          <Label prefWidth="200.0" text="NIF">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <TextField fx:id="nifSocioField" maxWidth="-Infinity" prefWidth="200.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+          <Label prefWidth="200.0" text="Nombre">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <TextField fx:id="nombreSocioField" maxWidth="-Infinity" prefWidth="200.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+          <Label prefWidth="200.0" text="Tipo de seguro">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+          <ChoiceBox fx:id="tipoSeguro" maxWidth="-Infinity" prefWidth="200.0">
+              <items>
+                  <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Seguro basico" />
+                      <String fx:value="Seguro completo" />
+                  </FXCollections>
+              </items>
+          </ChoiceBox>
+      </children>
+   </HBox>
+
+    <Button mnemonicParsing="false" onAction="#agregarSocioEstandar" text="Agregar socio estandar">
+        <font>
+            <Font size="16.0" />
+        </font></Button>
+
+    <Button id="salir" mnemonicParsing="false" onAction="#volver" text="Volver">
+        <font>
+            <Font size="16.0" />
+        </font></Button>
+</VBox>

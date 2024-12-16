@@ -51,6 +51,7 @@ public class SocioInfantilDAO extends SocioDAO implements DAOInterface<SocioInfa
                 return session.createSelectionQuery(query).getResultList();
             });
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new DataErrorException("Error buscando socios");
         }
     }

@@ -1,39 +1,43 @@
 package controlador;
 
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.stage.Stage;
 import modelo.Datos;
 import vista.View;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Controlador {
+    public static View view;
+    public static Datos datos;
     public final static BigDecimal precioCuotaExcursionista = new BigDecimal(10);
-    private final View view;
-    private final ControladorExcursion controladorExcursion;
-    private final ControladorInscripcion controladorInscripcion;
-    private final ControladorSocio controladorSocio;
 
-    public Controlador(Scanner in){
-        Datos datos = new Datos();
-        this.controladorExcursion = new ControladorExcursion(datos);
-        this.controladorInscripcion = new ControladorInscripcion(datos);
-        this.controladorSocio = new ControladorSocio(datos);
-        this.view = new View(this, in);
-    }
+    public Controlador(){}
 
-    public void ejecutarPrograma(){
+    public void ejecutarPrograma() throws IOException {
         view.ejecutarMenuPrincipal();
     }
 
-    public ControladorExcursion getControladorExcursion(){
-        return this.controladorExcursion;
+    @FXML
+    protected void onMenuExcursion() throws IOException {
+        view.ejecutarMenuExcursiones();
     }
 
-    public ControladorInscripcion getControladorInscripcion(){
-        return this.controladorInscripcion;
+    @FXML
+    protected void onMenuSocio() throws IOException {
+        view.ejecutarMenuSocios();
     }
 
-    public ControladorSocio getControladorSocio(){
-        return this.controladorSocio;
+    @FXML
+    protected void onMenuInscripcion() throws IOException {
+        view.ejecutarMenuInscripciones();
+    }
+
+    @FXML
+    protected void salir(){
+        Platform.exit();
     }
 }
