@@ -4,42 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5d255d1-bcc0-42b9-a77a-9051a95943ed" name="Changes" comment="&quot;Java FX + Hibernate. Configuracion basica.&quot;">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vista/MostrarInscripcionUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vista/MostrarSocioUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-estandar.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-excursion.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-federado.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-infantil.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/agregar-inscripcion.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/eliminar-inscripcion.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/eliminar-socio.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/facturas-mensuales.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-excursion.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-inscripcion.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-principal.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/menu-socio.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/modificar-seguro.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/mostrar-excursiones.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/mostrar-inscripcion.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/vista/mostrar-socios.fxml" afterDir="false" />
+    <list default="true" id="a5d255d1-bcc0-42b9-a77a-9051a95943ed" name="Changes" comment="&quot;Producto 5&quot;">
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/SocioEstandarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/SocioEstandarDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/SocioInfantilDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/SocioInfantilDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controlador/ControladorExcursion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/ControladorExcursion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controlador/ControladorInscripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/ControladorInscripcion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controlador/ControladorSocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controlador/ControladorSocio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/Inscripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Inscripcion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vista/Formulario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vista/FormularioExcursion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vista/FormularioInscripcion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vista/FormularioSocio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vista/Menu.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vista/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vista/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +25,26 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "kevinsuoc"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="kevinsuoc" />
+        <option name="repository" value="POO-BBDD-Producto2" />
+      </RepoCoordinatesHolder>
+    </option>
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="7fe80fda-1f0d-49dc-b80c-60ea07a33df9" />
+        <option name="url" value="git@github.com:kevinsuoc/POO-BBDD-Producto2.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -136,11 +125,20 @@
       <option name="project" value="LOCAL" />
       <updated>1734285242150</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="&quot;Producto 5&quot;">
+      <option name="closed" value="true" />
+      <created>1734380777621</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734380777621</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;Java FX + Hibernate. Configuracion basica.&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;Java FX + Hibernate. Configuracion basica.&quot;" />
+    <MESSAGE value="&quot;Producto 5&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Producto 5&quot;" />
   </component>
 </project>

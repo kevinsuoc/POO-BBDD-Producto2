@@ -245,6 +245,7 @@ public class ControladorSocio {
             textoAlerta.append("Total: " + total + "\n");
         } else {
             view.errorAlert("Socio no encontrado");
+            return ;
         }
 
         view.infoAlert(textoAlerta.toString(), "Cuota mensual de socio");

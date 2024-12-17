@@ -4,6 +4,7 @@ import controlador.Controlador;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import modelo.Socio;
 import modelo.SocioEstandar;
@@ -32,6 +33,8 @@ public class View {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setHeaderText(null);
         alerta.setTitle(null);
+        DialogPane dialogPane = alerta.getDialogPane();
+        dialogPane.setStyle("-fx-background-color: lightblue; -fx-font-size: 16px;");
         alerta.setContentText(info);
         alerta.showAndWait();
     }
@@ -40,6 +43,8 @@ public class View {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setHeaderText(descripcion);
         alerta.setTitle(null);
+        DialogPane dialogPane = alerta.getDialogPane();
+        dialogPane.setStyle("-fx-background-color: lightblue; -fx-font-size: 16px;");
         alerta.setContentText(info);
         alerta.showAndWait();
     }
@@ -48,6 +53,8 @@ public class View {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setHeaderText(null);
         alerta.setTitle(null);
+        DialogPane dialogPane = alerta.getDialogPane();
+        dialogPane.setStyle("-fx-background-color: #ffcccb; -fx-font-size: 16px;");
         alerta.setContentText(error);
         alerta.showAndWait();
     }
