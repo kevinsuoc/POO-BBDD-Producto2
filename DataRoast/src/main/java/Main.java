@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 
-public class Main extends Application{
+public class Main extends Application {
     public static void main(String[] args) {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
 
